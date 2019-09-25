@@ -1,0 +1,19 @@
+TRASHALL
+
+REGRAS:
+
+- CRIAR painel administrador, somente ele pode cadastrar condominios;
+- O login será feito de acordo com o cadastro feito pelo admin;
+- Painel do administrador terá o CRUD completo dos condominios e empresas coletoras;
+
+MENUS:
+
+****Condominio:
+- solicitar coleta;
+- ver coletores;
+
+
+****Empresa coletora:
+
+- lista condominios;
+- solicitações/notificações;
