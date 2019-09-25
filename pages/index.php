@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<?php 
-    session_start(); 
-    if(!$_SESSION['logged_in']){
-		echo "<script>alert('Não autorizado')</script>";	
-	}
-	?>
 
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -17,7 +11,7 @@
 	<meta name="author" content="Codrops" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/css/mdb.min.css" />
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link rel="shortcut icon" href="../favicon.ico">
 	<link rel="stylesheet" type="text/css" href="../bootstrap-css-js/css/style.css" />
 	<script src="../bootstrap-css-js/js/modernizr.custom.63321.js"></script>
@@ -32,6 +26,29 @@
 			background-size: 100%;
 		}
 	</style>
+
+	<script type="text/javascript">
+			$(document).ready(function(){
+				$('#formLogin').submit(function(){					
+					var data = $("#formLogin").serialize();
+					$.ajax({
+						type : 'POST',
+						url  : 'login.php',
+						data : data,
+						dataType: 'json',
+						success: function( response )
+						{
+							if(response == '1'){
+								alert('Logado com sucesso!!');
+							}else{
+								alert('Erro ao realizar login!!');
+							}
+						}
+					});
+					return false;
+				});
+			});
+	</script>
 </head>
 <body>
 	<div class="container">
@@ -39,7 +56,7 @@
 			<h1>Faça sua <strong>autenticação</strong></h1>
 		</header>
 		<section class="main">
-			<form id="formLogin" action="login.php" method="post" class="form-2">
+			<form id="formLogin" action="" method="post" class="form-2">
 				<h1><span class="sign-in">Log in</span></h1>
 				<p class="float">
 					<label for="login"><i class="icon-user"></i>Email</label>
