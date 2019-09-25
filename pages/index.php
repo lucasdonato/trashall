@@ -16,6 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="../bootstrap-css-js/css/style.css" />
 	<script src="../bootstrap-css-js/js/modernizr.custom.63321.js"></script>
 	<script src="script.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 	
 	<!--[if lte IE 7]><style>.main{display:none;} .support-note .note-ie{display:block;}</style><![endif]-->
 	<style>
@@ -39,9 +40,18 @@
 						success: function( response )
 						{
 							if(response == '1'){
-								alert('Logado com sucesso!!');
+								Swal.fire(
+									'',
+									'Login com sucesso!',
+									'success'
+								)
 							}else{
-								alert('Erro ao realizar login!!');
+								Swal.fire({
+										type: 'error',
+										title: 'Oops...',
+										text: 'Usuário ou senha inválidos!',
+										
+								})
 							}
 						}
 					});
