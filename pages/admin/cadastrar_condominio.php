@@ -17,6 +17,7 @@
   <link href="../../bootstrap-css-js/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../../bootstrap-css-js/assets/demo/demo.css" rel="stylesheet" />
+  <link href="../../bootstrap-css-js/css/style.css" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -122,6 +123,28 @@
           </div>
         </div>
       </nav>
+      
+      <div id="acoes">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAdicionarCondominio">
+                Adicionar</button>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalAdicionarColetor">
+                Excluir</button>
+            
+      </div><br><br>
+      <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+  </tbody>
+</table>
+
       <!-- End Navbar -->
   </div>
   <div class="fixed-plugin">
@@ -413,6 +436,61 @@
 
     });
   </script>
+
+<!-- Modal cadastrar condominio-->
+<div class="modal fade" id="modalAdicionarCondominio" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="TituloModalLongoExemplo">Cadastrar condominio</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="formCadastrarCondominio" action="" method="post">
+            <div class="modal-body">
+              
+                  Emafdfsdfil: <input type="email" required id="txtEmailCondominio">
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+              <input type="submit" id="btnConfirmaExclusao" class="btn btn-dark">
+          
+            </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal excluir coletor-->
+<div class="modal fade" id="modalAdicionarColetor" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="TituloModalLongoExemplo">Exclusão condomínio</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="formApagarCondominio" action="" method="post">
+            <div class="modal-body">
+              
+                  Email: <input type="email" required id="txtEmailCondominio">
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+              <input type="submit" id="btnConfirmaExclusao" class="btn btn-dark">
+          
+            </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
 </body>
 
 </html>

@@ -56,7 +56,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./cadastrar_condominio.html">
+            <a class="nav-link" href="./cadastrar_condominio.php">
               <i class="material-icons">person</i>
               <p>Cadastrar condominío</p>
             </a>
