@@ -40,11 +40,30 @@
 						success: function( response )
 						{
 							if(response == '1'){
-								Swal.fire(
-									'',
-									'Login com sucesso!',
-									'success'
-								)
+								let timerInterval
+								Swal.fire({
+								type: 'success',
+								title: 'Login com sucesso',
+								html: 'Carregando....<strong></strong> segundos.',
+								timer: 2000,
+								onBeforeOpen: () => {
+									Swal.showLoading()
+									timerInterval = setInterval(() => {
+									Swal.getContent().querySelector('strong')
+										.textContent = Swal.getTimerLeft()
+									}, 100)
+								},
+								onClose: () => {
+									clearInterval(timerInterval)
+								}
+								}).then((result) => {
+								if (
+									/* Read more about handling dismissals below */
+									result.dismiss === Swal.DismissReason.timer
+								) {
+									window.location.href = "admin/dashboard.php"
+								}
+								})
 							}else{
 								Swal.fire({
 										type: 'error',
