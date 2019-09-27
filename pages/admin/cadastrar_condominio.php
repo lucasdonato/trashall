@@ -18,6 +18,27 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../../bootstrap-css-js/assets/demo/demo.css" rel="stylesheet" />
   <link href="../../bootstrap-css-js/css/style.css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+  <script type="text/javascript">
+			$(document).ready(function(){
+				/*$('#formCadastrarCondominio').submit(function(){					
+					var data = $("#formCadastrarCondominio").serialize();
+					$.ajax({
+						type : 'POST',
+						url  : '../faz_cadastro_condominio.php',
+						data : data,
+						dataType: 'json',
+						success: function( response )
+						{
+							alert(response);
+						}
+					});
+					return false;
+				});*/
+			});
+	</script>
 </head>
 
 <body class="">
@@ -248,8 +269,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
   <!-- Library for adding dinamically elements -->
   <script src="../../bootstrap-css-js/assets/js/plugins/arrive.min.js"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
   <!-- Chartist JS -->
   <script src="../../bootstrap-css-js/assets/js/plugins/chartist.min.js"></script>
   <!--  Notifications Plugin    -->
@@ -439,7 +459,7 @@
 
 <!-- Modal cadastrar condominio-->
 <div class="modal fade" id="modalAdicionarCondominio" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="TituloModalLongoExemplo">Cadastrar condominio</h5>
@@ -447,10 +467,21 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form id="formCadastrarCondominio" action="" method="post">
+      <form id="formCadastrarCondominio" action="../faz_cadastro_condominio.php" method="post">
             <div class="modal-body">
               
-                  Emafdfsdfil: <input type="email" required id="txtEmailCondominio">
+                  Nome: <input type="nome" name="txtNomeCondominio" id="txtNomeCondominio">
+                  Email usuário: <input type="email" name="txtEmailCondominio" id="txtEmailCondominio">
+                  <br>
+                  Cep: <input typte="text" name="txtCepCondominio" id="txtCepCondominio">
+                  Logradouro: <input type="text" name = "txtLogradouroCondominio" id = "txtLogradouroCondominio">
+                  Número: <input type="number" name ="txtNumeroCondominio" maxlength="5" id ="txtNumeroCondominio">
+                  <br>
+                  Bairro: <input type="text" name ="txtBairroCondominio" id ="txtBairroCondominio">
+                  Cidade: <input type="text" name ="txtCidadeCondominio" id ="txtCidadeCondominio">
+                  <br>
+                  Contato: <input type="email"  name="txtEmailCondominio" id="txtEmailCondominio">
+
               
             </div>
             <div class="modal-footer">
