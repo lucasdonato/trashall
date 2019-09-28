@@ -472,6 +472,7 @@
               
                   Nome: <input type="nome" name="txtNomeCondominio" id="txtNomeCondominio">
                   Email usuário: <input type="email" name="txtEmailCondominio" id="txtEmailCondominio">
+                  Senha : <input type="password" name="txtSenhaCondominio" id="txtSenhaCondominio">
                   <br>
                   Cep: <input typte="text" name="txtCepCondominio" id="txtCepCondominio">
                   Logradouro: <input type="text" name = "txtLogradouroCondominio" id = "txtLogradouroCondominio">
@@ -480,7 +481,7 @@
                   Bairro: <input type="text" name ="txtBairroCondominio" id ="txtBairroCondominio">
                   Cidade: <input type="text" name ="txtCidadeCondominio" id ="txtCidadeCondominio">
                   <br>
-                  Contato: <input type="email"  name="txtEmailCondominio" id="txtEmailCondominio">
+                  Contato: <input type="email"  name="txtContatoCondominio" id="txtContatoCondominio">
 
               
             </div>
