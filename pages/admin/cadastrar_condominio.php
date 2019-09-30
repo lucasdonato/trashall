@@ -40,6 +40,12 @@
                   'success'
                 )
                   $('#modalAdicionarCondominio').modal('hide');
+              }else if(response == '0'){
+                Swal.fire({
+                  type: 'error',
+                  title: 'Oops...',
+                  text: 'Esse email já foi cadastrado!'
+                })
               }
 						}
 					});

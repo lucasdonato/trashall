@@ -31,14 +31,10 @@
 
             if($stmt->execute()){
                 $condominio = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                echo "1";
-                
-            }else{
-                
-                print_r($stmt->errorInfo());
+                echo "1";   
             }
         }else{
-            echo "<script>alert('chave prima');</script>";
+            echo "0";
         }     
         
     }
