@@ -34,7 +34,7 @@
 					var data = $("#formLogin").serialize();
 					$.ajax({
 						type : 'POST',
-						url  : 'login.php',
+						url  : 'faz_login.php',
 						data : data,
 						dataType: 'json',
 						success: function( response )

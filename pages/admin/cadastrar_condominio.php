@@ -23,7 +23,7 @@
 
   <script type="text/javascript">
 			$(document).ready(function(){
-				/*$('#formCadastrarCondominio').submit(function(){					
+				$('#formCadastrarCondominio').submit(function(){					
 					var data = $("#formCadastrarCondominio").serialize();
 					$.ajax({
 						type : 'POST',
@@ -32,11 +32,13 @@
 						dataType: 'json',
 						success: function( response )
 						{
-							alert(response);
+							if(response == '1'){
+                  alert('asdsdasdhuasidhasuidhasuidhasu');
+              }
 						}
 					});
 					return false;
-				});*/
+				});
 			});
 	</script>
 </head>
@@ -467,7 +469,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form id="formCadastrarCondominio" action="../faz_cadastro_condominio.php" method="post">
+      <form id="formCadastrarCondominio" action="" method="post">
             <div class="modal-body">
               
                   Nome: <input type="nome" name="txtNomeCondominio" id="txtNomeCondominio">

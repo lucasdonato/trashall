@@ -23,37 +23,24 @@
         $stmt->bindParam(':senha', $senha);
        
         if($stmt->execute()){
-            echo "executou";
-            echo $email_usuario;
-            echo $senha;
-        }else{
+            $sql = "INSERT INTO condominio(nome_condominio,data_cadastro,login_usuario) VALUES(:nome,NOW(),:login_usuario)";
+            $stmt = $PDO->prepare($sql);
             
-            print_r($stmt->errorInfo());
-        }
+            $stmt->bindParam(':nome', $nome);
+            $stmt->bindParam(':login_usuario', $email_usuario);
 
-        
-       // $sql = "INSERT INTO coletor_empresa(nome_empresa,data_cadastro) VALUES(:nome,NOW())";
-        //$stmt = $PDO->prepare($sql);
-        
-       // $stmt->bindParam(':nome', $nome);
-
-       /* if($stmt->execute()){
-            $condominio = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            echo $sql;
-            
+            if($stmt->execute()){
+                $condominio = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                echo "1";
+                
+            }else{
+                
+                print_r($stmt->errorInfo());
+            }
         }else{
-            
-            print_r($stmt->errorInfo());
-        }   */     
+            echo "<script>alert('chave prima');</script>";
+        }     
         
-        /*if (count($condominio) <= 0)
-        {
-            echo "0";
-        
-        }else{
-      
-            echo "1";
-        }*/
     }
 
 ?>
