@@ -52,7 +52,8 @@
 					return false;
 				});
 			});
-	</script>
+  </script>
+ 
 </head>
 
 <body class="">
@@ -164,21 +165,54 @@
                 Adicionar</button>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalAdicionarColetor">
                 Excluir</button>
+                <button onClick="window.location.reload();"type="button" class="btn btn-ligth">
+                    Recarregar
+                </button>
             
       </div><br><br>
-      <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-  </tbody>
-</table>
+        
+      <table class="table table-striped table-bordered table-hover">
+      <thead class=" text-primary">
+
+            <?php
+                  require_once '../init.php';
+                  $PDO = db_connect();
+                  try{
+                      $sql = "SELECT * FROM condominio";
+                      $stmt = $PDO->prepare($sql);
+                      $stmt->execute();
+
+                      echo "<div class='card-header card-header-primary'>";
+                      echo "<h4 class='card-title'>Condominio cadastrados</h4>";
+                      echo "<p class='card-category'>Listagem</p>";
+                      echo "</div>";
+                      echo "<thead class=' text-primary'>";
+                        echo "<th>Nome condominio</th>";
+                        echo "<th>Data Cadastro</th>";
+                        echo "<th>Login</th>";
+                      echo "</thead>";
+                      
+                      //constroí a tabela
+                      while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<tr>";
+                          echo " <td class='text-primary'>";
+                            echo $row['nome_condominio'];
+                          echo "</td>";
+                          echo " <td class='text-primary'>";
+                            echo $row['data_cadastro'];
+                          echo "</td>";
+                          echo " <td class='text-primary'>";
+                            echo $row['login_usuario'];
+                          echo "</td>";
+                        echo "</tr>";
+                      }
+
+                      
+                  }catch(PDOException $erro_2){
+                      echo 'erro'.$erro_2->getMessage();       
+                  }
+            ?>
+      </table>
 
       <!-- End Navbar -->
   </div>
