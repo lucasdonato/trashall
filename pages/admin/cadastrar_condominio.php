@@ -19,6 +19,7 @@
   <link href="../../bootstrap-css-js/assets/demo/demo.css" rel="stylesheet" />
   <link href="../../bootstrap-css-js/css/style.css" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 
   <script type="text/javascript">
@@ -33,7 +34,12 @@
 						success: function( response )
 						{
 							if(response == '1'){
-                  alert('asdsdasdhuasidhasuidhasuidhasu');
+                Swal.fire(
+                  'Good job!',
+                  'Condominio cadastrado com sucesso!',
+                  'success'
+                )
+                  $('#modalAdicionarCondominio').modal('hide');
               }
 						}
 					});
