@@ -76,8 +76,6 @@
                         title: 'Apagado com sucesso'
                   })
 
-                  $('#formApagarCondominio').modal('hide');
-
                 }else if(response == "0"){
                     Swal.fire(
                       'Opps..?',
@@ -85,6 +83,7 @@
                       'question'
                     )
                 }
+                $('#modalExcluirColetor').modal('hide');
               }
             });
             return false;
@@ -530,7 +529,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-              <input type="submit" id="btnConfirmaExclusao" class="btn btn-dark">Confirmar</button>
+              <input type="submit" id="btnConfirmaExclusao" value="Confirmar" class="btn btn-dark">
           
             </div>
       </form>
