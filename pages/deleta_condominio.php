@@ -2,8 +2,8 @@
     session_start();
 
     require 'init.php';
-    if (isset($_POST['txtEmailCondominio'])) {
-        $email_usuario = $_POST['txtEmailCondominio'];
+    if (isset($_POST['txtEmailCondominioExlusao'])) {
+        $email_usuario = $_POST['txtEmailCondominioExlusao'];
 
         $PDO = db_connect();
     
@@ -18,7 +18,6 @@
             }else{
                 echo "0";
             }
-
         }else{
             echo($stmt->errorInfo());
         }

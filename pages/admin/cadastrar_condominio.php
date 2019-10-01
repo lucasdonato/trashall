@@ -63,9 +63,27 @@
               success: function( response )
               {
                 if(response == "1"){
-                    alert('deletado');
+                    
+                  const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                  })
+
+                  Toast.fire({
+                        type: 'success',
+                        title: 'Apagado com sucesso'
+                  })
+
+                  $('#formApagarCondominio').modal('hide');
+
                 }else if(response == "0"){
-                  alert('email nao existe');
+                    Swal.fire(
+                      'Opps..?',
+                      'Email não existe',
+                      'question'
+                    )
                 }
               }
             });
@@ -184,7 +202,7 @@
       <div id="acoes">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAdicionarCondominio">
                 Adicionar</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalAdicionarColetor">
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluirColetor">
                 Excluir</button>
                 <button onClick="window.location.reload();"type="button" class="btn btn-ligth">
                     Recarregar
@@ -199,7 +217,7 @@
                   require_once '../init.php';
                   $PDO = db_connect();
                   try{
-                      $sql = "SELECT * FROM condominio";
+                      $sql = "SELECT * FROM condominio ORDER BY data_cadastro DESC";
                       $stmt = $PDO->prepare($sql);
                       $stmt->execute();
 
@@ -497,7 +515,7 @@
 </div>
 
 <!-- Modal excluir coletor-->
-<div class="modal fade" id="modalAdicionarColetor" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
+<div class="modal fade" id="modalExcluirColetor" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -508,11 +526,11 @@
       </div>
       <form id="formApagarCondominio" action="" method="post">
             <div class="modal-body">            
-                  Email: <input type="email" required name="txtEmailCondominio" id="txtEmailCondominio">  
+                  Email: <input type="email" required name="txtEmailCondominioExlusao" id="txtEmailCondominioExlusao">  
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-              <input type="submit" id="btnConfirmaExclusao" class="btn btn-dark">
+              <input type="submit" id="btnConfirmaExclusao" class="btn btn-dark">Confirmar</button>
           
             </div>
       </form>
