@@ -29,6 +29,7 @@
             $stmt->bindParam(':nome', $nome);
             $stmt->bindParam(':login_usuario', $email_usuario);
 
+            $id = $PDO->lastInsertId();
             if($stmt->execute()){
                 $condominio = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 echo "1";   
