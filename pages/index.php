@@ -61,7 +61,7 @@
 									/* Read more about handling dismissals below */
 									result.dismiss === Swal.DismissReason.timer
 								) {
-									window.location.href = "admin/dashboard.php"
+									window.location.href = "admin/pageDashboard.php"
 								}
 								})
 							}else{
