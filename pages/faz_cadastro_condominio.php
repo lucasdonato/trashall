@@ -28,10 +28,11 @@
             
             $stmt->bindParam(':nome', $nome);
             $stmt->bindParam(':login_usuario', $email_usuario);
-
-            /*necessário salvar contato e endereço*/
-
+            
             if($stmt->execute()){
+                $id_condominio = $PDO->lastInsertId();
+                //gravar nas tabelas endereço e contato
+
                 $condominio = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 echo "1";   
             }
