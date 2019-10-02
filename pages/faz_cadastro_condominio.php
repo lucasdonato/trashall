@@ -28,12 +28,31 @@
             
             $stmt->bindParam(':nome', $nome);
             $stmt->bindParam(':login_usuario', $email_usuario);
-            
+
             if($stmt->execute()){
                 $id_condominio = $PDO->lastInsertId();
                 //gravar nas tabelas endereço e contato
+                $sql = "INSERT INTO endereco(logradouro,bairro,cidade,estado,numero,cep,id_condominio)
+                    VALUES(:logradouro,:bairro,:cidade,:estado,:numero,:cep,:id_condominio)";
+                
+                $stmt = $PDO->prepare($sql);
+                $stmt->bindParam(':logradouro', $logradouro);
+                $stmt->bindParam(':bairro', $bairro);
+                $stmt->bindParam(':cidade', $cidade);
+                $stmt->bindParam(':estado', $estado);
+                $stmt->bindParam(':numero', $numero);  
+                $stmt->bindParam(':cep', $cep);
+                $stmt->bindParam(':id_condominio', $id_condominio);  
 
-                $condominio = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if($stmt->execute()){
+                    echo "executou";
+                }else{
+                    echo "nao executou";
+                }    
+
+                //fazer o insert no contato
+                
+
                 echo "1";   
             }
         }else{
