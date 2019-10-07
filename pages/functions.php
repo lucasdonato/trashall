@@ -21,3 +21,7 @@ function isLoggedIn()
  
     return true;
 }
+
+function inserirContato(){
+    
+}

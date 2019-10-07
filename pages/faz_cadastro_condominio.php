@@ -52,16 +52,19 @@
                     }
 
                 }
-                   //insere contato
-                $sql = "INSERT INTO contato(tipo,descricao,id_condominio) 
+                if($contato != ""){
+                        //insere contato
+                    $sql = "INSERT INTO contato(tipo,descricao,id_condominio) 
                     VALUES('EMAIL',:descricao,:id_condominio)";
-               $stmt = $PDO->prepare($sql);
-               $stmt->bindParam(':descricao', $contato);
-               $stmt->bindParam(':id_condominio', $id_condominio); 
+                    $stmt = $PDO->prepare($sql);
+                    $stmt->bindParam(':descricao', $contato);
+                    $stmt->bindParam(':id_condominio', $id_condominio); 
 
-               if(!$stmt->execute()){
-                   echo($stmt->errorInfo());
-               }
+                    if(!$stmt->execute()){
+                        echo($stmt->errorInfo());
+                    }
+                }
+                
                 echo "1";   
             }
         }else{
