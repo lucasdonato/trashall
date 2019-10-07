@@ -23,6 +23,7 @@
         $stmt->bindParam(':senha', $senha);
        
         if($stmt->execute()){
+
             $sql = "INSERT INTO condominio(nome_condominio,data_cadastro,login_usuario) VALUES(:nome,NOW(),:login_usuario)";
             $stmt = $PDO->prepare($sql);
             
@@ -30,29 +31,37 @@
             $stmt->bindParam(':login_usuario', $email_usuario);
 
             if($stmt->execute()){
-                $id_condominio = $PDO->lastInsertId();
-                //gravar nas tabelas endereço e contato
-                $sql = "INSERT INTO endereco(logradouro,bairro,cidade,estado,numero,cep,id_condominio)
-                    VALUES(:logradouro,:bairro,:cidade,:estado,:numero,:cep,:id_condominio)";
-                
-                $stmt = $PDO->prepare($sql);
-                $stmt->bindParam(':logradouro', $logradouro);
-                $stmt->bindParam(':bairro', $bairro);
-                $stmt->bindParam(':cidade', $cidade);
-                $stmt->bindParam(':estado', $estado);
-                $stmt->bindParam(':numero', $numero);  
-                $stmt->bindParam(':cep', $cep);
-                $stmt->bindParam(':id_condominio', $id_condominio);  
 
-                if($stmt->execute()){
-                    echo "executou";
-                }else{
-                    echo "nao executou";
-                }    
+                //verifica se existe endereço para cadastrar no bd;
+                if($cep != "" &&  $logradouro != "" && $numero != "" && $bairro != "" && $cidade != ""){
+                    $id_condominio = $PDO->lastInsertId();
+                    $sql = "INSERT INTO endereco(logradouro,bairro,cidade,estado,numero,cep,id_condominio)
+                        VALUES(:logradouro,:bairro,:cidade,:estado,:numero,:cep,:id_condominio)";
+                    
+                    $stmt = $PDO->prepare($sql);
+                    $stmt->bindParam(':logradouro', $logradouro);
+                    $stmt->bindParam(':bairro', $bairro);
+                    $stmt->bindParam(':cidade', $cidade);
+                    $stmt->bindParam(':estado', $estado);
+                    $stmt->bindParam(':numero', $numero);  
+                    $stmt->bindParam(':cep', $cep);
+                    $stmt->bindParam(':id_condominio', $id_condominio);  
+    
+                    if(!$stmt->execute()){
+                        echo($stmt->errorInfo());
+                    }
 
-                //fazer o insert no contato
-                
+                }
+                   //insere contato
+                $sql = "INSERT INTO contato(tipo,descricao,id_condominio) 
+                    VALUES('EMAIL',:descricao,:id_condominio)";
+               $stmt = $PDO->prepare($sql);
+               $stmt->bindParam(':descricao', $contato);
+               $stmt->bindParam(':id_condominio', $id_condominio); 
 
+               if(!$stmt->execute()){
+                   echo($stmt->errorInfo());
+               }
                 echo "1";   
             }
         }else{
