@@ -24,53 +24,31 @@
        
         if($stmt->execute()){
 
+            //tenta inserir condominio
             $sql = "INSERT INTO condominio(nome_condominio,data_cadastro,login_usuario) VALUES(:nome,NOW(),:login_usuario)";
             $stmt = $PDO->prepare($sql);
-            
             $stmt->bindParam(':nome', $nome);
             $stmt->bindParam(':login_usuario', $email_usuario);
 
+            //se conseguiu inserir condominio
             if($stmt->execute()){
-
-                //verifica se existe endereço para cadastrar no bd;
-                if($cep != "" &&  $logradouro != "" && $numero != "" && $bairro != "" && $cidade != ""){
-                    $id_condominio = $PDO->lastInsertId();
-                    $sql = "INSERT INTO endereco(logradouro,bairro,cidade,estado,numero,cep,id_condominio)
-                        VALUES(:logradouro,:bairro,:cidade,:estado,:numero,:cep,:id_condominio)";
-                    
-                    $stmt = $PDO->prepare($sql);
-                    $stmt->bindParam(':logradouro', $logradouro);
-                    $stmt->bindParam(':bairro', $bairro);
-                    $stmt->bindParam(':cidade', $cidade);
-                    $stmt->bindParam(':estado', $estado);
-                    $stmt->bindParam(':numero', $numero);  
-                    $stmt->bindParam(':cep', $cep);
-                    $stmt->bindParam(':id_condominio', $id_condominio);  
-    
-                    if(!$stmt->execute()){
-                        echo($stmt->errorInfo());
-                    }
-
-                }
-                if($contato != ""){
-                        //insere contato
-                    $sql = "INSERT INTO contato(tipo,descricao,id_condominio) 
-                    VALUES('EMAIL',:descricao,:id_condominio)";
-                    $stmt = $PDO->prepare($sql);
-                    $stmt->bindParam(':descricao', $contato);
-                    $stmt->bindParam(':id_condominio', $id_condominio); 
-
-                    if(!$stmt->execute()){
-                        echo($stmt->errorInfo());
-                    }
-                }
+                //recupera o último id do condominio
+                $id_condominio = $PDO->lastInsertId();
                 
+                //insere endereço condominio
+                if($cep != "" &&  $logradouro != "" && $numero != "" && $bairro != "" && $cidade != ""){
+                    inserirEnderecoCondominio($cep,$logradouro,$numero,$bairro,$cidade,$id_condominio);
+                }
+
+                //insere contato condominio
+                if($contato != ""){
+                    inserirContatoCondominio($contato,$id_condominio);
+                }
                 echo "1";   
             }
         }else{
             echo "0";
-        }     
-        
+        }           
     }
 
 ?>
