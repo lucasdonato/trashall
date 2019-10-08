@@ -17,7 +17,7 @@
 
         $PDO = db_connect();
     
-        $sql = "INSERT INTO login(usuario,senha,tipo_entidade) VALUES(:email,:senha,'CC')";
+        $sql = "INSERT INTO login(usuario,senha,tipo_entidade) VALUES(:email,:senha,'CONDOMINIO')";
         $stmt = $PDO->prepare($sql);
         $stmt->bindParam(':email', $email_usuario);
         $stmt->bindParam(':senha', $senha);

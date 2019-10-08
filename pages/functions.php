@@ -44,5 +44,15 @@
                 echo($stmt->errorInfo());
             }
         }
+
+        function desativaUsuario($email_usuario){
+            $PDO = db_connect();
+            $sql = "UPDATE login SET ativo = '0' WHERE usuario = :email_usuario";
+            $stmt = $PDO->prepare($sql);
+            $stmt->bindParam(':email_usuario', $email_usuario);
+            if(!$stmt->execute()){
+                echo($stmt->errorInfo());
+            }
+        }
         
 ?>

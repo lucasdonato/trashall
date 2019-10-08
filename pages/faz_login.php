@@ -20,7 +20,7 @@ if (isset($_POST['txtLogin'])) {
     
     $PDO = db_connect();
     
-    $sql = "SELECT * FROM login WHERE usuario = :usuario AND senha = :senha";
+    $sql = "SELECT * FROM login WHERE usuario = :usuario AND senha = :senha AND ativo = '1'";
 
     $stmt = $PDO->prepare($sql);
     

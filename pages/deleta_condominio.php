@@ -14,6 +14,7 @@
         if($stmt->execute()){
             $count = $stmt->rowCount();
             if($count > 0){
+                desativaUsuario($email_usuario);
                 echo "1";
             }else{
                 echo "0";
