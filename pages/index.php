@@ -38,8 +38,8 @@
 						data : data,
 						dataType: 'json',
 						success: function( response )
-						{
-							if(response == '1'){
+						{							
+							if(response["success"] == '1'){
 								let timerInterval
 								Swal.fire({
 								type: 'success',
@@ -61,7 +61,17 @@
 									/* Read more about handling dismissals below */
 									result.dismiss === Swal.DismissReason.timer
 								) {
-									window.location.href = "admin/pageDashboard.php"
+									/*RESPONSÁVEL POR FAZER O CONTROLE DE
+									QUAL PÁGINA O USUÁRIO LOGADO VERÁ*/
+									if(response["tipo_entidade"] == 'COLETOR'){
+										window.location.href = "coletor/pageDashboard.php"
+
+									}else if(response["tipo_entidade"] == 'CONDOMINIO'){
+										window.location.href = "condominio/pageDashboard.php"
+
+									}else if(response["tipo_entidade"] == 'ADMINISTRADOR'){
+										window.location.href = "admin/pageDashboard.php"
+									}
 								}
 								})
 							}else{

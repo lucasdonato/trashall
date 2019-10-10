@@ -25,7 +25,8 @@ if (isset($_POST['txtLogin'])) {
     $stmt = $PDO->prepare($sql);
     
     $stmt->bindParam(':usuario', $login);
-    $stmt->bindParam(':senha', $passwordHash);
+    //$stmt->bindParam(':senha', $passwordHash);
+    $stmt->bindParam(':senha', $senha);
 
     $stmt->execute();
     
@@ -33,12 +34,18 @@ if (isset($_POST['txtLogin'])) {
 
     if (count($users) <= 0)
     {
+        
         $_SESSION['logged_in'] = false;
         echo "0";
     
     }else{
+        $_SESSION['tipo_entidade'] = $users[0]['tipo_entidade'];
         $_SESSION['logged_in'] = true;
         $_SESSION['email'] =  $login;
-        echo "1";
+        $array = [
+            "success" => "1",
+            "tipo_entidade" => $users[0]['tipo_entidade'],
+        ];
+        echo json_encode($array);
     }
 }
