@@ -2,22 +2,80 @@
 <html lang="pt">
 
 <head>
-  <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../../bootstrap-css-js/assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../../bootstrap-css-js/assets/img/favicon.png">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>
-    Trashall
-  </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-  <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  <!-- CSS Files -->
-  <link href="../../bootstrap-css-js/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="../../bootstrap-css-js/assets/demo/demo.css" rel="stylesheet" />
+    <?php
+          include "../bibliotecas.php";
+    ?>
 </head>
+
+<script type="text/javascript">
+			$(document).ready(function(){
+				$('#formCadastrarColetor').submit(function(){					
+					var data = $("#formCadastrarColetor").serialize();
+					$.ajax({
+						type : 'POST',
+						url  : '../faz_cadastro_coletor.php',
+						data : data,
+						dataType: 'json',
+						success: function( response )
+						{
+							if(response == '1'){
+                Swal.fire(
+                  'Good job!',
+                  'Condominio cadastrado com sucesso!',
+                  'success'
+                )
+                  $('#modalAdicionarColetor').modal('hide');
+              }else if(response == '0'){
+                Swal.fire({
+                  type: 'error',
+                  title: 'Oops...',
+                  text: 'Esse email já foi cadastrado!'
+                })
+              }
+						}
+					});
+					return false;
+        });
+        
+        
+        $('#formApagarColetor').submit(function(){					
+            var data = $("#formApagarColetor").serialize();
+            $.ajax({
+              type : 'POST',
+              url  : '../deleta_coletor.php',
+              data : data,
+              dataType: 'json',
+              success: function( response )
+              {
+                if(response == "1"){
+                    
+                  const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                  })
+
+                  Toast.fire({
+                        type: 'success',
+                        title: 'Apagado com sucesso'
+                  })
+
+                }else if(response == "0"){
+                    Swal.fire(
+                      'Opps..?',
+                      'Email não existe',
+                      'question'
+                    )
+                }
+                $('#modalExcluirColetor').modal('hide');
+              }
+            });
+            return false;
+        })
+
+			});
+  </script>
 
 <body class="">
   <div class="wrapper ">
@@ -30,25 +88,25 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="./dashboard.html">
+                <a class="nav-link" href="./pageDashboard.php">
                   <i class="material-icons">dashboard</i>
                   <p>Dashboard</p>
                 </a>
               </li>
           <li class="nav-item active">
-            <a class="nav-link" href="./cadastrar_coletor.html">
+            <a class="nav-link" href="./pageColetor.php">
               <i class="material-icons">dashboard</i>
               <p>Cadastrar coletor</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./cadastrar_condominio.html">
+            <a class="nav-link" href="./pageCondominio.php">
               <i class="material-icons">person</i>
               <p>Cadastrar condominío</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./gerenciamento.html">
+            <a class="nav-link" href="./pageGerenciamento.php">
               <i class="material-icons">content_paste</i>
               <p>Gerenciamento</p>
             </a>
@@ -122,7 +180,61 @@
           </div>
         </div>
       </nav>
-      <!-- End Navbar -->
+
+      <div id="acoes">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAdicionarColetor">
+                Adicionar</button>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluirColetor">
+                Excluir</button>
+                <button onClick="window.location.reload();"type="button" class="btn btn-ligth">
+                    Recarregar
+                </button>
+            
+      </div><br><br>
+
+      <table class="table table-striped table-bordered table-hover">
+      <thead class=" text-primary">
+
+            <?php
+                  require_once '../init.php';
+                  $PDO = db_connect();
+                  try{
+                      $sql = "SELECT * FROM coletor_empresa ORDER BY data_cadastro DESC";
+                      $stmt = $PDO->prepare($sql);
+                      $stmt->execute();
+
+                      echo "<div class='card-header card-header-primary'>";
+                      echo "<h4 class='card-title'>Condominio cadastrados</h4>";
+                      echo "<p class='card-category'>Listagem</p>";
+                      echo "</div>";
+                      echo "<thead class=' text-primary'>";
+                        echo "<th>Nome Coletor</th>";
+                        echo "<th>Data Cadastro</th>";
+                        echo "<th>Login</th>";
+                      echo "</thead>";
+                      
+                      //constroí a tabela
+                      while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<tr>";
+                          echo " <td class='text-primary'>";
+                            echo $row['nome_empresa'];
+                          echo "</td>";
+                          echo " <td class='text-primary'>";
+                            echo $row['data_cadastro'];
+                          echo "</td>";
+                          echo " <td class='text-primary'>";
+                            echo $row['login_usuario'];
+                          echo "</td>";
+                        echo "</tr>";
+                      }
+
+                      
+                  }catch(PDOException $erro_2){
+                      echo 'erro'.$erro_2->getMessage();       
+                  }
+            ?>
+      </table>
+
   </div>
   <div class="fixed-plugin">
     <div class="dropdown show-dropdown">
@@ -413,6 +525,70 @@
 
     });
   </script>
+
+
+<!-- Modal cadastrar coletor-->
+<div class="modal fade" id="modalAdicionarColetor" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="TituloModalLongoExemplo">Cadastrar coletor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="formCadastrarColetor" action="" method="post">
+            <div class="modal-body">
+              
+                  Coletor: <input type="nome" name="txtNomeColetor" id="txtNomeColetor">
+                  Email usuário: <input type="email" name="txtEmailColetor" id="txtEmailColetor">
+                  Senha : <input type="password" name="txtSenhaColetor" id="txtSenhaColetor">
+                  <br>
+                  Cep: <input typte="text" name="txtCepColetor" id="txtCepColetor">
+                  Logradouro: <input type="text" name = "txtLogradouroColetor" id = "txtLogradouroColetor">
+                  Número: <input type="number" name ="txtNumeroColetor" maxlength="5" id ="txtNumeroColetor">
+                  <br>
+                  Bairro: <input type="text" name ="txtBairroColetor" id ="txtBairroColetor">
+                  Cidade: <input type="text" name ="txtCidadeColetor" id ="txtCidadeColetor">
+                  <br>
+                  Contato: <input type="email"  name="txtContatoColetor" id="txtContatoColetor">
+
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+              <input type="submit" id="btnConfirmaExclusao" class="btn btn-dark">
+          
+            </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal excluir coletor-->
+<div class="modal fade" id="modalExcluirColetor" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="TituloModalLongoExemplo">Exclusão coletor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="formApagarColetor" action="" method="post">
+            <div class="modal-body">            
+                  Email: <input type="email" required name="txtEmailColetorExlusao" id="txtEmailColetorExlusao">  
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+              <input type="submit" id="btnConfirmaExclusao" value="Confirmar" class="btn btn-dark">
+          
+            </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 </body>
 
 </html>

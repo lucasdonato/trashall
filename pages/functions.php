@@ -45,6 +45,39 @@
             }
         }
 
+        function inserirContatoColetor($contato,$id_coletor){
+            $PDO = db_connect();
+            //insere contato
+            $sql = "INSERT INTO contato(tipo,descricao,id_coletor) 
+            VALUES('EMAIL',:descricao,:id_coletor)";
+            $stmt = $PDO->prepare($sql);
+            $stmt->bindParam(':descricao', $contato);
+            $stmt->bindParam(':id_coletor', $id_coletor); 
+
+            if(!$stmt->execute()){
+                echo($stmt->errorInfo());
+            }
+    }
+
+        function inserirEnderecoColetor($cep,$logradouro,$numero,$bairro,$cidade,$id_coletor){
+            $PDO = db_connect();
+            $sql = "INSERT INTO endereco(logradouro,bairro,cidade,estado,numero,cep,id_coletor)
+            VALUES(:logradouro,:bairro,:cidade,:estado,:numero,:cep,:id_coletor)";
+
+            $stmt = $PDO->prepare($sql);
+            $stmt->bindParam(':logradouro', $logradouro);
+            $stmt->bindParam(':bairro', $bairro);
+            $stmt->bindParam(':cidade', $cidade);
+            $stmt->bindParam(':estado', $estado);
+            $stmt->bindParam(':numero', $numero);  
+            $stmt->bindParam(':cep', $cep);
+            $stmt->bindParam(':id_coletor', $id_coletor);  
+
+            if(!$stmt->execute()){
+                echo($stmt->errorInfo());
+            }
+        }
+
         function desativaUsuario($email_usuario){
             $PDO = db_connect();
             $sql = "UPDATE login SET ativo = '0' WHERE usuario = :email_usuario";
