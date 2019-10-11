@@ -4,10 +4,9 @@
 <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@8"></script> 
   <?php 
     session_start(); 
-    if($_SESSION['logged_in']){
-    }else{
+    if(!$_SESSION['logged_in'] || $_SESSION['tipo_entidade'] != 'ADMINISTRADOR'){
       header('Location: ../index.php');
-    } 
+    }
   ?>
 <head>
   <!-- Latest compiled and minified CSS -->

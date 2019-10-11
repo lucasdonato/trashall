@@ -233,7 +233,10 @@
                             echo date('d/m/Y H:i:s',strtotime($row['data_cadastro']));
                           echo "</td>";
                           echo " <td>";
-                            echo $row['materiais_coletados'];
+                            $ma = json_decode($row['materiais_coletados']);
+                            foreach ($ma as $value) {
+                              echo $value.".. ";
+                            } 
                           echo "</td>";
                           
                         echo "</tr>";

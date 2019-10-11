@@ -121,7 +121,10 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Cadastrar condominío</a>
+          <h3>
+                Trashall -
+                <small class="text-muted">Cadastrar Condominios</small>
+              </h3>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -188,14 +191,14 @@
                 Adicionar</button>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluirColetor">
                 Excluir</button>
-                <button onClick="window.location.reload();"type="button" class="btn btn-ligth">
+                <button onClick="window.location.reload();"type="button" class="btn btn-dark">
                     Recarregar
                 </button>
             
       </div><br><br>
         
-      <table class="table table-striped table-bordered table-hover">
-      <thead class=" text-primary">
+      <table class="table table-striped">
+      <thead>
 
             <?php
                   require_once '../init.php';
@@ -207,9 +210,8 @@
 
                       echo "<div class='card-header card-header-primary'>";
                       echo "<h4 class='card-title'>Condominio cadastrados</h4>";
-                      echo "<p class='card-category'>Listagem</p>";
                       echo "</div>";
-                      echo "<thead class=' text-primary'>";
+                      echo "<thead class='bg-info'>";
                         echo "<th>Nome condominio</th>";
                         echo "<th>Data Cadastro</th>";
                         echo "<th>Login</th>";
@@ -217,14 +219,14 @@
                       
                       //constroí a tabela
                       while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        echo "<tr>";
-                          echo " <td class='text-primary'>";
+                        echo "<tr class='table-info'>";
+                          echo " <td>";
                             echo $row['nome_condominio'];
                           echo "</td>";
-                          echo " <td class='text-primary'>";
+                          echo " <td>";
                             echo $row['data_cadastro'];
                           echo "</td>";
-                          echo " <td class='text-primary'>";
+                          echo " <td>";
                             echo $row['login_usuario'];
                           echo "</td>";
                         echo "</tr>";
