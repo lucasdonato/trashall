@@ -204,7 +204,7 @@
                       $stmt->execute();
 
                       echo "<div class='card-header card-header-primary'>";
-                      echo "<h4 class='card-title'>Condominio cadastrados</h4>";
+                      echo "<h4 class='card-title'>Coletores cadastrados</h4>";
                       echo "<p class='card-category'>Listagem</p>";
                       echo "</div>";
                       echo "<thead class=' text-primary'>";
@@ -552,6 +552,30 @@
                   Cidade: <input type="text" name ="txtCidadeColetor" id ="txtCidadeColetor">
                   <br>
                   Contato: <input type="email"  name="txtContatoColetor" id="txtContatoColetor">
+
+                  <br>
+                  Materias coletados:<br>
+                  <!-- Default checked -->
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" name="checkMaterial[]" value="papel" class="custom-control-input" id="checkPapel">
+                    <label class="custom-control-label" for="checkPapel">Papel</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" name="checkMaterial[]" value="plastico" class="custom-control-input" id="checkPlastico">
+                    <label class="custom-control-label" for="checkPlastico">Plástico</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" name="checkMaterial[]" value="metal" class="custom-control-input" id="checkMetal">
+                    <label class="custom-control-label" for="checkMetal">Metal</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" name="checkMaterial[]" value="vidro" class="custom-control-input" id="checkVidro">
+                    <label class="custom-control-label" for="checkVidro">Vidro</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" name="checkMaterial[]" value="aluminio" class="custom-control-input" id="checkAluminio">
+                    <label class="custom-control-label" for="checkAluminio">Alumínio</label>
+                  </div>                
 
               
             </div>

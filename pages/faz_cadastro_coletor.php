@@ -13,7 +13,13 @@
         $bairro             = $_POST['txtBairroColetor'];
         $cidade             = $_POST['txtCidadeColetor'];
         $contato            = $_POST['txtContatoColetor'];
-        $senha              = $_POST['txtSenhaColetor'];
+        $senha              = $_POST['txtSenhaColetor'];        
+
+        /*monta a string do check dos materiais e 
+        adiciona na tabela materiais em formato json*/
+        $material = $_POST['checkMaterial'];
+        $material_coletor =  json_encode($material);
+         
 
         $PDO = db_connect();
     
@@ -25,16 +31,18 @@
         if($stmt->execute()){
 
             //tenta inserir coletor
-            $sql = "INSERT INTO coletor_empresa(nome_empresa,data_cadastro,login_usuario) VALUES(:nome,NOW(),:login_usuario)";
+            $sql = "INSERT INTO coletor_empresa(nome_empresa,data_cadastro,login_usuario,materiais_coletados) 
+                    VALUES(:nome,NOW(),:login_usuario,:materiais_coletados)";
             $stmt = $PDO->prepare($sql);
             $stmt->bindParam(':nome', $nome);
             $stmt->bindParam(':login_usuario', $email_usuario);
+            $stmt->bindParam(':materiais_coletados', $material_coletor);
 
             //se conseguiu inserir coletor
             if($stmt->execute()){
                 //recupera o último id do coletor
                 $id_coletor = $PDO->lastInsertId();
-                
+
                 //insere endereço coletor
                 if($cep != "" &&  $logradouro != "" && $numero != "" && $bairro != "" && $cidade != ""){
                     inserirEnderecoColetor($cep,$logradouro,$numero,$bairro,$cidade,$id_coletor);
