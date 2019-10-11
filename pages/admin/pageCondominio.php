@@ -213,8 +213,10 @@
                       echo "</div>";
                       echo "<thead class='bg-info'>";
                         echo "<th>Nome condominio</th>";
-                        echo "<th>Data Cadastro</th>";
                         echo "<th>Login</th>";
+                        echo "<th>Contato</th>";
+                        echo "<th>Data Cadastro</th>";
+                        
                       echo "</thead>";
                       
                       //constroí a tabela
@@ -224,11 +226,15 @@
                             echo $row['nome_condominio'];
                           echo "</td>";
                           echo " <td>";
-                            echo $row['data_cadastro'];
-                          echo "</td>";
-                          echo " <td>";
                             echo $row['login_usuario'];
                           echo "</td>";
+                          echo " <td>";
+                            echo 'resolver dps';
+                          echo "</td>";
+                          echo " <td>";
+                            echo date('d/m/Y H:i:s',strtotime($row['data_cadastro']));
+                          echo "</td>";
+                        
                         echo "</tr>";
                       }
 
