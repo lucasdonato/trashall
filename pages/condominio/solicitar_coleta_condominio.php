@@ -80,11 +80,18 @@
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                   });
                 });
-              });                
+              });     
 
+              /*responsável por popular os campos do modal com as 
+              informações sobre o coletor*/
               $(document).ready(function() {
-                  $("tr").click(function() {
-                      $("#testeinput").val($(this).find('td[name="nomeempresa"]').html());
+                  $("tr").click(function() { //ação disparada ao clicar na linha da tabela
+
+
+
+                      $("#nomeempresa").text($(this).find('td[name="nomeempresa"]').html());
+                      $("#testelogin").text($(this).find('td[name="login"]').html());
+                      $("#materiais_coletados").text($(this).find('td[name="materiais_coletados"]').html());
                   });
               });
               
@@ -97,13 +104,20 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
-                  <h5 class="modal-title" id="TituloModalLongoExemplo">Informações Coletores</h5>
-                  <input type="text" id="testeinput">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-            </div>
+                  <h5 class="modal-title" id="TituloModalLongoExemplo">Resumo coletor:</h5>
+              </div>
+              
+              Nome: <span class="font-weight-light" id="nomeempresa"></span>
+              Login: <span class="font-weight-light" id="testelogin"></span>
+              Materiais coletados: <span class="font-weight-light" id="materiais_coletados"></span>
+              
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success">Enviar solicitação</button>
+              </div>
+            
+            </div>   
           </div>
       </div>
 
@@ -127,8 +141,11 @@
                       echo "<h4 class='card-title'>Coletores disponíveis</h4>";
                       echo "</div>";
                       echo "<thead class='bg-info'>";
-                        echo "<th>Coletor</th>";
-                        echo "<th>Materiais coletados</th>";
+                        echo "<th>Nome Coletor</th>";
+
+                        //colunas ocultas na listagem
+                        echo "<th style='display:none;'>Login</th>"; 
+                        echo "<th style='display:none;'>Materiais reciclados</th>"; 
                       echo "</thead>";
                       
                       //constroí a tabela
@@ -136,10 +153,13 @@
                         echo "<tr data-toggle='modal' data-target='#modalColetor' class='table-info'>";
                           echo " <td name='nomeempresa'>";
                           echo $row['nome_empresa'];
-                          echo "</td>";
-                          echo " <td>";
-                            echo $row['materiais_coletados'];
-                          echo "</td>";                        
+                          echo "</td>";  
+                          echo " <td name='login' style='display:none;'>";
+                          echo $row['login_usuario'];
+                          echo "</td>";  
+                          echo " <td name='materiais_coletados' style='display:none;'>";
+                          echo $row['materiais_coletados'];
+                          echo "</td>";                   
                         echo "</tr>";
                       }
 
