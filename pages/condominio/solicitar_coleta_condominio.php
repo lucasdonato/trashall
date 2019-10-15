@@ -80,13 +80,13 @@
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                   });
                 });
-              });  
-              
-              function setaDadosModal(valor) {
-                  document.getElementById('testeinput').value = valor;
-                 alert(valor);
-                  
-              }
+              });                
+
+              $(document).ready(function() {
+                  $("tr").click(function() {
+                      $("#testeinput").val($(this).find('td[name="nomeempresa"]').html());
+                  });
+              });
               
             </script>
             
@@ -129,16 +129,12 @@
                       echo "<thead class='bg-info'>";
                         echo "<th>Coletor</th>";
                         echo "<th>Materiais coletados</th>";
-                        
                       echo "</thead>";
                       
                       //constroí a tabela
                       while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        //echo "<tr data-toggle='modal' data-target='#modalColetor' class='table-info'  onclick=\"setaDadosModal('xxxxxx')\"  >";
                         echo "<tr data-toggle='modal' data-target='#modalColetor' class='table-info'>";
-                        
-                          //echo " <td onclick=\"setaDadosModal(this)\">";
-                          echo " <td onclick=\"setaDadosModal(this)\">";
+                          echo " <td name='nomeempresa'>";
                           echo $row['nome_empresa'];
                           echo "</td>";
                           echo " <td>";
