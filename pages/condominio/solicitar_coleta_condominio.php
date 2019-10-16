@@ -105,39 +105,70 @@
               <div class="modal-header">
                   <h5 class="modal-title" id="TituloModalLongoExemplo">Resumo coletor:</h5>
               </div>
-              
-              Nome: <span class="font-weight-light" id="nomeempresa"></span>
-              Contato: <span class="font-weight-light" id="contato"></span>
-              Materiais coletados: <span class="font-weight-light" id="materiais_coletados"></span>
-              Endereço: <span class="font-weight-light" id="logradouro"></span>
+              <div id="conteudo-solicitacao">  
+                <form id="formFazSolicitacao" action="" method="post">   
+                  Nome: <span class="font-weight-light" id="nomeempresa"></span>
+                  <br>
+                  Contato: <span class="font-weight-light" id="contato"></span>
+                  <br>
+                  Materiais coletados: <span class="font-weight-light" id="materiais_coletados"></span>
+                  <br>
+                  Endereço: <span class="font-weight-light" id="logradouro"></span>
+                  <br><hr>  
+                  Peso aproximado em KG: <input name="txtPesoAproximado" required form-control type="number">
+                  <br>
 
-              <br>
-              Peso aproximado em KG: <input required form-control type="number">
+                  Quais são os materias que serão coletados? :<br>
+
+                      <!-- Default checked -->
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" name="checkMaterial[]" value="papel" class="custom-control-input" id="checkPapel">
+                        <label class="custom-control-label" for="checkPapel">Papel</label>
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" name="checkMaterial[]" value="plastico" class="custom-control-input" id="checkPlastico">
+                        <label class="custom-control-label" for="checkPlastico">Plástico</label>
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" name="checkMaterial[]" value="metal" class="custom-control-input" id="checkMetal">
+                        <label class="custom-control-label" for="checkMetal">Metal</label>
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" name="checkMaterial[]" value="vidro" class="custom-control-input" id="checkVidro">
+                        <label class="custom-control-label" for="checkVidro">Vidro</label>
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" name="checkMaterial[]" value="aluminio" class="custom-control-input" id="checkAluminio">
+                        <label class="custom-control-label" for="checkAluminio">Alumínio</label>
+                      </div>
+                  </form>                
+              </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-success">Enviar solicitação</button>
+                <input type="submit" id="btnEnviaSolicitacao" value="Enviar solicitação" class="btn btn-success">
               </div>
             
             </div>   
           </div>
       </div>
 
-
     <label for="formGroupExampleInput">Pesquisar:</label>
     <input type="text" class="form-control" id="pesquisa_coletor" placeholder="Faça sua busca">
 
 
-      <table id="list_coletores" class="table table-striped">
+      <table  id="list_coletores" class="table table-striped">
       <thead>
 
             <?php
                   require_once '../init.php';
                   $PDO = db_connect();
                   try{
-                    $sql = "SELECT * FROM coletor_empresa ce
-                    LEFT JOIN endereco e ON ce.id_coletor = e.id_coletor 
-                    LEFT JOIN contato ct ON ce.id_coletor = ct.id_coletor
-                    ORDER BY data_cadastro DESC";
+                    $sql = "SELECT ce.id_coletor,ce.nome_empresa,ce.materiais_coletados,ct.descricao,
+                              e.logradouro,e.bairro,e.numero
+                            FROM coletor_empresa ce
+                            LEFT JOIN endereco e ON ce.id_coletor = e.id_coletor 
+                            LEFT JOIN contato ct ON ce.id_coletor = ct.id_coletor
+                            ORDER BY data_cadastro DESC";
                       $stmt = $PDO->prepare($sql);
                       $stmt->execute();
 
@@ -151,6 +182,8 @@
                         echo "<th style='display:none;'>Login</th>"; 
                         echo "<th style='display:none;'>Materiais reciclados</th>"; 
                         echo "<th style='display:none;'>Logradouro</th>"; 
+                        echo "<th>id_coletor</th>";
+                        echo "<th>id_condominio</th>";
                       echo "</thead>";
                       
                       //constroí a tabela
@@ -160,13 +193,34 @@
                           echo $row['nome_empresa'];
                           echo "</td>";  
                           echo " <td name='contato' style='display:none;'>";
-                          echo $row['descricao'];
+                          if($row['descricao'] != ''){
+                            echo $row['descricao'];
+                          }else{
+                            echo "";
+                          }
                           echo "</td>";  
                           echo " <td name='materiais_coletados' style='display:none;'>";
                           echo $row['materiais_coletados'];
                           echo "</td>";     
+
+                          /*esses ids precisam ser ocultos
+                          servem apenas para inserir na tabela de solicitações*/                          
+                          echo " <td name='id_coletor'>";
+                          echo $row['id_coletor'];
+                          echo "</td>";     
+
+                          echo " <td name='id_coletor'>";
+                          echo $row['id_coletor'];
+                          echo "</td>";  
+
+
                           echo " <td name='endereco' style='display:none;'>";
-                          echo $row['logradouro'].', '. $row['numero']. ', '. $row['bairro'];
+                          if($row['logradouro'] != ''){
+                            
+                            echo $row['logradouro'].', '. $row['numero']. ', '. $row['bairro'];
+                          }else{
+                            echo "";
+                          }
                           echo "</td>";                  
                         echo "</tr>";
                       }
