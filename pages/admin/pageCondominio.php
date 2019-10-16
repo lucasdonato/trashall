@@ -197,14 +197,17 @@
             
       </div><br><br>
         
-      <table class="table table-striped">
+      <table class="table table-striped table-bordered">
       <thead>
 
             <?php
                   require_once '../init.php';
                   $PDO = db_connect();
                   try{
-                      $sql = "SELECT * FROM condominio ORDER BY data_cadastro DESC";
+                      $sql = "SELECT * FROM condominio c
+                        LEFT JOIN endereco e ON c.id_condominio = e.id_condominio 
+                        LEFT JOIN contato ct ON c.id_condominio = ct.id_condominio
+                       ORDER BY data_cadastro DESC";
                       $stmt = $PDO->prepare($sql);
                       $stmt->execute();
 
@@ -214,6 +217,7 @@
                       echo "<thead class='bg-info'>";
                         echo "<th>Nome condominio</th>";
                         echo "<th>Login</th>";
+                        echo "<th>Endereço</th>";
                         echo "<th>Contato</th>";
                         echo "<th>Data Cadastro</th>";
                         
@@ -229,7 +233,20 @@
                             echo $row['login_usuario'];
                           echo "</td>";
                           echo " <td>";
-                            echo 'resolver dps';
+
+                          if($row['logradouro'] != ''){
+                            echo $row['logradouro'].', '. $row['numero']. ', '. $row['bairro'];
+                          }else{
+                            echo "-";
+                          }                          
+                          echo "</td>";
+                          echo "<td>";
+                          if($row['descricao'] != ''){
+                            echo $row['descricao'];
+                          }else{
+                            echo "-";
+                          }
+                            
                           echo "</td>";
                           echo " <td>";
                             echo date('d/m/Y H:i:s',strtotime($row['data_cadastro']));
@@ -485,7 +502,7 @@
                   Email usuário: <input type="email" name="txtEmailCondominio" id="txtEmailCondominio">
                   Senha : <input type="password" name="txtSenhaCondominio" id="txtSenhaCondominio">
                   <br>
-                  Cep: <input typte="text" name="txtCepCondominio" id="txtCepCondominio">
+                  Cep: <input tyte="text" name="txtCepCondominio" id="txtCepCondominio">
                   Logradouro: <input type="text" name = "txtLogradouroCondominio" id = "txtLogradouroCondominio">
                   Número: <input type="number" name ="txtNumeroCondominio" maxlength="5" id ="txtNumeroCondominio">
                   <br>

@@ -87,11 +87,10 @@
               $(document).ready(function() {
                   $("tr").click(function() { //ação disparada ao clicar na linha da tabela
 
-
-
                       $("#nomeempresa").text($(this).find('td[name="nomeempresa"]').html());
-                      $("#testelogin").text($(this).find('td[name="login"]').html());
+                      $("#contato").text($(this).find('td[name="contato"]').html());
                       $("#materiais_coletados").text($(this).find('td[name="materiais_coletados"]').html());
+                      $("#logradouro").text($(this).find('td[name="endereco"]').html());
                   });
               });
               
@@ -108,10 +107,12 @@
               </div>
               
               Nome: <span class="font-weight-light" id="nomeempresa"></span>
-              Login: <span class="font-weight-light" id="testelogin"></span>
+              Contato: <span class="font-weight-light" id="contato"></span>
               Materiais coletados: <span class="font-weight-light" id="materiais_coletados"></span>
-              
+              Endereço: <span class="font-weight-light" id="logradouro"></span>
 
+              <br>
+              Peso aproximado em KG: <input required form-control type="number">
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-success">Enviar solicitação</button>
@@ -133,7 +134,10 @@
                   require_once '../init.php';
                   $PDO = db_connect();
                   try{
-                      $sql = "SELECT * FROM coletor_empresa ORDER BY data_cadastro DESC";
+                    $sql = "SELECT * FROM coletor_empresa ce
+                    LEFT JOIN endereco e ON ce.id_coletor = e.id_coletor 
+                    LEFT JOIN contato ct ON ce.id_coletor = ct.id_coletor
+                    ORDER BY data_cadastro DESC";
                       $stmt = $PDO->prepare($sql);
                       $stmt->execute();
 
@@ -146,6 +150,7 @@
                         //colunas ocultas na listagem
                         echo "<th style='display:none;'>Login</th>"; 
                         echo "<th style='display:none;'>Materiais reciclados</th>"; 
+                        echo "<th style='display:none;'>Logradouro</th>"; 
                       echo "</thead>";
                       
                       //constroí a tabela
@@ -154,12 +159,15 @@
                           echo " <td name='nomeempresa'>";
                           echo $row['nome_empresa'];
                           echo "</td>";  
-                          echo " <td name='login' style='display:none;'>";
-                          echo $row['login_usuario'];
+                          echo " <td name='contato' style='display:none;'>";
+                          echo $row['descricao'];
                           echo "</td>";  
                           echo " <td name='materiais_coletados' style='display:none;'>";
                           echo $row['materiais_coletados'];
-                          echo "</td>";                   
+                          echo "</td>";     
+                          echo " <td name='endereco' style='display:none;'>";
+                          echo $row['logradouro'].', '. $row['numero']. ', '. $row['bairro'];
+                          echo "</td>";                  
                         echo "</tr>";
                       }
 

@@ -202,7 +202,10 @@
                   require_once '../init.php';
                   $PDO = db_connect();
                   try{
-                      $sql = "SELECT * FROM coletor_empresa ORDER BY data_cadastro DESC";
+                      $sql = "SELECT * FROM coletor_empresa ce
+                      LEFT JOIN endereco e ON ce.id_coletor = e.id_coletor 
+                      LEFT JOIN contato ct ON ce.id_coletor = ct.id_coletor
+                      ORDER BY data_cadastro DESC";
                       $stmt = $PDO->prepare($sql);
                       $stmt->execute();
 
@@ -212,6 +215,7 @@
                       echo "<thead class='bg-info'>";
                         echo "<th>Nome Coletor</th>";
                         echo "<th>Login</th>";
+                        echo "<th>Endereço</th>";
                         echo "<th>Contato</th>";
                         echo "<th>Data Cadastro</th>";
                         echo "<th>Materiais coletados</th>";
@@ -226,9 +230,19 @@
                           echo " <td>";
                             echo $row['login_usuario'];
                           echo "</td>";
-                          echo " <td>";
-                            echo 'resolvercontato';
+                          echo "<td>";
+                          if($row['logradouro'] != ''){
+                            echo $row['logradouro'].', '. $row['numero']. ', '. $row['bairro'];
+                          }else{
+                            echo "-";
+                          }                          
                           echo "</td>";
+                          echo "<td>";
+                          if($row['descricao'] != ''){
+                            echo $row['descricao'];
+                          }else{
+                            echo "-";
+                          }
                           echo " <td>";
                             echo date('d/m/Y H:i:s',strtotime($row['data_cadastro']));
                           echo "</td>";
