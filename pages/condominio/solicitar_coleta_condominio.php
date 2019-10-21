@@ -6,7 +6,24 @@
           include "../bibliotecas.php";
     ?>
 </head>
-
+<script type="text/javascript">
+			$(document).ready(function(){
+				$('#formFazSolicitacao').submit(function(){					
+					var data = $("#formFazSolicitacao").serialize();
+					$.ajax({
+						type : 'POST',
+						url  : '../faz_solicitacao.php',
+						data : data,
+						dataType: 'json',
+						success: function( response )
+						{
+							
+						}
+					});
+					return false;
+        });
+      });
+</script>
 <body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="azure" data-background-color="white" data-image="../../bootstrap-css-js/assets/img/side.jpg">
@@ -140,14 +157,13 @@
                       <div class="custom-control custom-checkbox">
                         <input type="checkbox" name="checkMaterial[]" value="aluminio" class="custom-control-input" id="checkAluminio">
                         <label class="custom-control-label" for="checkAluminio">Alumínio</label>
-                      </div>
-                  </form>                
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                <input type="submit" id="btnEnviaSolicitacao" value="Enviar solicitação" class="btn btn-success">
-              </div>
-            
+                      </div>                                 
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <input type="submit" id="btnEnviaSolicitacao" value="Enviar solicitação" class="btn btn-success">
+                  </div>
+              </form> 
             </div>   
           </div>
       </div>
@@ -183,7 +199,6 @@
                         echo "<th style='display:none;'>Materiais reciclados</th>"; 
                         echo "<th style='display:none;'>Logradouro</th>"; 
                         echo "<th>id_coletor</th>";
-                        echo "<th>id_condominio</th>";
                       echo "</thead>";
                       
                       //constroí a tabela
@@ -208,11 +223,6 @@
                           echo " <td name='id_coletor'>";
                           echo $row['id_coletor'];
                           echo "</td>";     
-
-                          echo " <td name='id_coletor'>";
-                          echo $row['id_coletor'];
-                          echo "</td>";  
-
 
                           echo " <td name='endereco' style='display:none;'>";
                           if($row['logradouro'] != ''){
