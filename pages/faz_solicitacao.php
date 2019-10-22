@@ -4,7 +4,11 @@
     require 'init.php';
     if (isset($_POST['txtPesoAproximado'])) {
 
-        $peso_aproximado = $_POST['txtPesoAproximado'];
+        $id_coletor = $_POST['txtIdCondominio'];
+        echo "aquiiiiiiiiii".$id_coletor;
+        $material = $_POST['checkMaterial'];
+        $material_solicitacao =  json_encode($material);
+        
         $PDO = db_connect();
 
        /*RECUPERA O ID DO CONDOMINIO PARA REALIZAR A
@@ -18,24 +22,28 @@
     
         if($stmt->execute()){ //se encontrou o id, vamos inserir na tabela de solicitações
             $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            echo $users[0]['id_condominio'];
+            $id_condominio =  $users[0]['id_condominio'];
 
-            $sql = "INSERT INTO solicitacoes(feita_por,id_coletor,id_empresa,data_solicitacao,peso) 
-                VALUES()";
+            $sql = "INSERT INTO solicitacoes(materiais_coletados,id_coletor,id_condominio,data_solicitacao,peso) 
+                VALUES(:id_coletor,:id_empresa,NOW(),:peso)";
             $stmt = $PDO->prepare($sql);
+            
+            /*define os parametros que serão enviados*/
+            $stmt->bindParam(':materiais_coletados', $material_solicitacao);
+            $stmt->bindParam(':id_coletor', $id_coletor);
+            $stmt->bindParam(':id_condominio', $id_condominio );
+            $stmt->bindParam(':peso', $peso_aproximado );
+            $stmt->execute();
+
+            if($stmt->execute()){
+
+                echo "execou essa merda";
+            }else{
+                echo "nao executou";
+            }
+
         }
-
-
-       /* 
         
-        //$stmt->bindParam();
-        //$stmt->bindParam();
-        
-        if($stmt->execute()){
-
-            echo "execou essa merda";
-        }*/
     }
-
 
 ?>

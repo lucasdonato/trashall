@@ -108,6 +108,8 @@
                       $("#contato").text($(this).find('td[name="contato"]').html());
                       $("#materiais_coletados").text($(this).find('td[name="materiais_coletados"]').html());
                       $("#logradouro").text($(this).find('td[name="endereco"]').html());
+                      $("#txtIdCondominio").text($(this).find('td[name="id_coletor_coluna"]').html());
+                      
                   });
               });
               
@@ -134,6 +136,11 @@
                   <br><hr>  
                   Peso aproximado em KG: <input name="txtPesoAproximado" required form-control type="number">
                   <br>
+
+                  <!-- CAMPO OCULTO PARA ESCONDER O
+                  ID DO CONDOMINIO -->
+                  <span style="display:none;" class="font-weight-light" id="txtIdCondominio"></span>
+                 
 
                   Quais são os materias que serão coletados? :<br>
 
@@ -220,7 +227,7 @@
 
                           /*esses ids precisam ser ocultos
                           servem apenas para inserir na tabela de solicitações*/                          
-                          echo " <td name='id_coletor'>";
+                          echo " <td name='id_coletor_coluna'>";
                           echo $row['id_coletor'];
                           echo "</td>";     
 
