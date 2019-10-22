@@ -140,7 +140,6 @@
                   <!-- CAMPO OCULTO PARA ESCONDER O
                   ID DO CONDOMINIO -->
                   <span style="display:none;" class="font-weight-light" id="txtIdCondominio"></span>
-                 
 
                   Quais são os materias que serão coletados? :<br>
 

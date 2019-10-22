@@ -4,10 +4,16 @@
     require 'init.php';
     if (isset($_POST['txtPesoAproximado'])) {
 
-        $id_coletor = $_POST['txtIdCondominio'];
-        echo "aquiiiiiiiiii".$id_coletor;
+        //$id_coletor = $_POST['txtIdCondominio'];
+        
+        //echo "<script>document.getElementById('txtIdCondominio').value</script>";
+        
+        //echo "aquiiiiiiiiii>>>>".$id_coletor;
+        
+        /*acontece undefined index somente se não selecionar nenhum material,
+        mas, o campo será required no form;*/
         $material = $_POST['checkMaterial'];
-        $material_solicitacao =  json_encode($material);
+        $material_solicitacao =  json_encode($material);    
         
         $PDO = db_connect();
 
