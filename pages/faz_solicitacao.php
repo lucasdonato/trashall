@@ -1,15 +1,12 @@
 <?php
-    session_start();
+        session_start();
 
-    require 'init.php';
-    if (isset($_POST['txtPesoAproximado'])) {
+        require 'init.php';
+        
+        if (isset($_POST['txtIdCondominio'])) {
+            $id_coletor = $_POST['txtIdCondominio'];
+        }      
 
-        //$id_coletor = $_POST['txtIdCondominio'];
-        
-        //echo "<script>document.getElementById('txtIdCondominio').value</script>";
-        
-        //echo "aquiiiiiiiiii>>>>".$id_coletor;
-        
         /*acontece undefined index somente se não selecionar nenhum material,
         mas, o campo será required no form;*/
         $material = $_POST['checkMaterial'];
@@ -31,7 +28,7 @@
             $id_condominio =  $users[0]['id_condominio'];
 
             $sql = "INSERT INTO solicitacoes(materiais_coletados,id_coletor,id_condominio,data_solicitacao,peso) 
-                VALUES(:id_coletor,:id_empresa,NOW(),:peso)";
+                VALUES(:materiais_coletados,:id_coletor,:id_condominio,NOW(),:peso)";
             $stmt = $PDO->prepare($sql);
             
             /*define os parametros que serão enviados*/
@@ -42,14 +39,12 @@
             $stmt->execute();
 
             if($stmt->execute()){
-
                 echo "execou essa merda";
             }else{
-                echo "nao executou";
+                var_dump($stmt->errorInfo());
             }
-
+        }else{
+            var_dump($stmt->errorInfo());
         }
-        
-    }
 
 ?>

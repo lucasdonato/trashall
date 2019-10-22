@@ -108,7 +108,7 @@
                       $("#contato").text($(this).find('td[name="contato"]').html());
                       $("#materiais_coletados").text($(this).find('td[name="materiais_coletados"]').html());
                       $("#logradouro").text($(this).find('td[name="endereco"]').html());
-                      $("#txtIdCondominio").text($(this).find('td[name="id_coletor_coluna"]').html());
+                      $("#txtIdCondominio").val($(this).find('td[name="id_coletor_coluna"]').html());
                       
                   });
               });
@@ -139,7 +139,7 @@
 
                   <!-- CAMPO OCULTO PARA ESCONDER O
                   ID DO CONDOMINIO -->
-                  <span style="display:none;" class="font-weight-light" id="txtIdCondominio"></span>
+                  <input type="text" style="display:none;" class="font-weight-light" name="txtIdCondominio" id="txtIdCondominio">
 
                   Quais são os materias que serão coletados? :<br>
 
