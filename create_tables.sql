@@ -157,6 +157,30 @@ CREATE TABLE IF NOT EXISTS `db_trashall`.`feedback` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `db_trashall`.`solicitacoes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_trashall`.`solicitacoes` (
+  `id_solicitacao` INT NOT NULL AUTO_INCREMENT,
+  `materiais_coletados` VARCHAR(200) NULL DEFAULT NULL,
+  `id_coletor` INT(100) NOT NULL,
+  `id_condominio` INT(100) NOT NULL,
+  `data_solicitacao` DATETIME NOT NULL,
+  `peso` DOUBLE NOT NULL,
+  `situacao` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_solicitacao`),
+  CONSTRAINT `fk_solicitacoes_coletor_empresa1`
+    FOREIGN KEY (`id_coletor`)
+    REFERENCES `db_trashall`.`coletor_empresa` (`id_coletor`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_solicitacoes_condominio1`
+    FOREIGN KEY (`id_condominio`)
+    REFERENCES `db_trashall`.`condominio` (`id_condominio`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

@@ -10,7 +10,8 @@
         /*acontece undefined index somente se não selecionar nenhum material,
         mas, o campo será required no form;*/
         $material = $_POST['checkMaterial'];
-        $material_solicitacao =  json_encode($material);    
+        $material_solicitacao =  json_encode($material);   
+        $peso_aproximado = $_POST['txtPesoAproximado']; 
         
         $PDO = db_connect();
 
@@ -36,10 +37,10 @@
             $stmt->bindParam(':id_coletor', $id_coletor);
             $stmt->bindParam(':id_condominio', $id_condominio );
             $stmt->bindParam(':peso', $peso_aproximado );
-            $stmt->execute();
-
             if($stmt->execute()){
-                echo "execou essa merda";
+                /*retorna 1 para que seja tratado o 
+                response do ajax*/
+                echo "1";
             }else{
                 var_dump($stmt->errorInfo());
             }

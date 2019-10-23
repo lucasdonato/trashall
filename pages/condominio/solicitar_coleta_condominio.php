@@ -16,9 +16,16 @@
 						data : data,
 						dataType: 'json',
 						success: function( response )
-						{
-							
-						}
+						{		
+              if(response == '1'){
+                Swal.fire(
+                  'Good job!',
+                  'Solicitação enviada ao coletor!',
+                  'success'
+                )
+                  $('#modalColetor').modal('hide');
+						    }
+            }
 					});
 					return false;
         });
