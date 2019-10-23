@@ -18,13 +18,28 @@
 						success: function( response )
 						{		
               if(response == '1'){
-                Swal.fire(
-                  'Good job!',
-                  'Solicitação enviada ao coletor!',
-                  'success'
-                )
-                  $('#modalColetor').modal('hide');
+                    
+                Swal.fire({
+                    type: 'success',
+                    title: 'Solicitação enviada ao coletor!',
+                    text: "Você pode acompanhar suas solicitações no menu 'Acompanhar Solicitações'",
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Sim, acessar!',
+                    cancelButtonText: 'Não, obrigado!'
+                  }).then((result) => {
+                    if (result.value) {
+                      /*caso o cliente queira trocar de página
+                      será feito com o timeout de 1,5 segundos*/
+                      setTimeout(function() {
+                          window.location.href = "./solicitacoes_condominio.php";
+                      }, 1500);
+                    }
+                  })  
+                  
 						    }
+                $('#modalColetor').modal('hide');
             }
 					});
 					return false;
@@ -54,9 +69,9 @@
                 </a>
               </li>
           <li class="nav-item">
-            <a class="nav-link" href="./solicitacoes_condominio.html">
+            <a class="nav-link" href="./solicitacoes_condominio.php">
               <i class="material-icons">dashboard</i>
-              <p>Ver solicitações</p>
+              <p>Acompanhar solicitações</p>
             </a>
           </li>
           <li class="nav-item active ">
