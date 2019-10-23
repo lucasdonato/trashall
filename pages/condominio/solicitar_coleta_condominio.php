@@ -35,6 +35,8 @@
                       setTimeout(function() {
                           window.location.href = "./solicitacoes_condominio.php";
                       }, 1500);
+                    }else{
+                      location.reload();
                     }
                   })  
                   
