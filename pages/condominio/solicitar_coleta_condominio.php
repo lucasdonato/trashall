@@ -36,11 +36,15 @@
                           window.location.href = "./solicitacoes_condominio.php";
                       }, 1500);
                     }else{
+                      /*recarrega a página para
+                      limpar os dados do modal*/ 
                       location.reload();
                     }
                   })  
                   
 						    }
+                /*fecha o modal após o ajax realizar
+                a requisição*/
                 $('#modalColetor').modal('hide');
             }
 					});
@@ -228,7 +232,7 @@
                         echo "<th style='display:none;'>Login</th>"; 
                         echo "<th style='display:none;'>Materiais reciclados</th>"; 
                         echo "<th style='display:none;'>Logradouro</th>"; 
-                        echo "<th>id_coletor</th>";
+                        echo "<th style='display:none;'>id_coletor</th>";
                       echo "</thead>";
                       
                       //constroí a tabela
@@ -250,7 +254,7 @@
 
                           /*esses ids precisam ser ocultos
                           servem apenas para inserir na tabela de solicitações*/                          
-                          echo " <td name='id_coletor_coluna'>";
+                          echo " <td name='id_coletor_coluna' style='display:none;'>";
                           echo $row['id_coletor'];
                           echo "</td>";     
 
