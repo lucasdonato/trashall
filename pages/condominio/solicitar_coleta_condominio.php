@@ -205,78 +205,80 @@
     <label for="formGroupExampleInput">Pesquisar:</label>
     <input type="text" class="form-control" id="pesquisa_coletor" placeholder="Faça sua busca">
 
+    <div class='col-lg-6 col-md-12'>
+              <div class='card'>
+                <div class='card-header card-header-warning'>
+                  <h4 class='card-title'>Coletores disponíveis</h4>
+                  <p class='card-category'>Escolha abaixo um coletor para coletar o seu lixo!</p>
+                </div>
+                <div class='card-body table-responsive'>
+                  <table class='table table-hover'>
+                    <?php
+                          require_once '../init.php';
+                          $PDO = db_connect();
+                          try{
+                            $sql = "SELECT ce.id_coletor,ce.nome_empresa,ce.materiais_coletados,ct.descricao,
+                                      e.logradouro,e.bairro,e.numero
+                                    FROM coletor_empresa ce
+                                    LEFT JOIN endereco e ON ce.id_coletor = e.id_coletor 
+                                    LEFT JOIN contato ct ON ce.id_coletor = ct.id_coletor
+                                    ORDER BY data_cadastro DESC";
+                              $stmt = $PDO->prepare($sql);
+                              $stmt->execute();
 
-      <table  id="list_coletores" class="table table-striped">
-      <thead>
+                                echo "<thead class='text-warning'>";
+                                  echo "<th>Nome Coletor</th>";
 
-            <?php
-                  require_once '../init.php';
-                  $PDO = db_connect();
-                  try{
-                    $sql = "SELECT ce.id_coletor,ce.nome_empresa,ce.materiais_coletados,ct.descricao,
-                              e.logradouro,e.bairro,e.numero
-                            FROM coletor_empresa ce
-                            LEFT JOIN endereco e ON ce.id_coletor = e.id_coletor 
-                            LEFT JOIN contato ct ON ce.id_coletor = ct.id_coletor
-                            ORDER BY data_cadastro DESC";
-                      $stmt = $PDO->prepare($sql);
-                      $stmt->execute();
+                                  //colunas ocultas na listagem
+                                  echo "<th style='display:none;'>Login</th>"; 
+                                  echo "<th style='display:none;'>Materiais reciclados</th>"; 
+                                  echo "<th style='display:none;'>Logradouro</th>"; 
+                                  echo "<th style='display:none;'>id_coletor</th>";
+                                echo "<thead class='text-warning'>";
+                              
+                              //constroí a tabela
+                              while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                echo "<tr data-toggle='modal' data-target='#modalColetor'>";
+                                  echo " <td name='nomeempresa'>";
+                                  echo $row['nome_empresa'];
+                                  echo "</td>";  
+                                  echo " <td name='contato' style='display:none;'>";
+                                  if($row['descricao'] != ''){
+                                    echo $row['descricao'];
+                                  }else{
+                                    echo "";
+                                  }
+                                  echo "</td>";  
+                                  echo " <td name='materiais_coletados' style='display:none;'>";
+                                  echo $row['materiais_coletados'];
+                                  echo "</td>";     
 
-                      echo "<div class='card-header card-header-primary'>";
-                      echo "<h4 class='card-title'>Coletores disponíveis</h4>";
-                      echo "</div>";
-                      echo "<thead class='bg-info'>";
-                        echo "<th>Nome Coletor</th>";
+                                  /*esses ids precisam ser ocultos
+                                  servem apenas para inserir na tabela de solicitações*/                          
+                                  echo " <td name='id_coletor_coluna' style='display:none;'>";
+                                  echo $row['id_coletor'];
+                                  echo "</td>";     
 
-                        //colunas ocultas na listagem
-                        echo "<th style='display:none;'>Login</th>"; 
-                        echo "<th style='display:none;'>Materiais reciclados</th>"; 
-                        echo "<th style='display:none;'>Logradouro</th>"; 
-                        echo "<th style='display:none;'>id_coletor</th>";
-                      echo "</thead>";
-                      
-                      //constroí a tabela
-                      while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        echo "<tr data-toggle='modal' data-target='#modalColetor' class='table-info'>";
-                          echo " <td name='nomeempresa'>";
-                          echo $row['nome_empresa'];
-                          echo "</td>";  
-                          echo " <td name='contato' style='display:none;'>";
-                          if($row['descricao'] != ''){
-                            echo $row['descricao'];
-                          }else{
-                            echo "";
+                                  echo " <td name='endereco' style='display:none;'>";
+                                  if($row['logradouro'] != ''){
+                                    
+                                    echo $row['logradouro'].', '. $row['numero']. ', '. $row['bairro'];
+                                  }else{
+                                    echo "";
+                                  }
+                                  echo "</td>";                  
+                                echo "</tr>";
+                              }
+
+                              
+                          }catch(PDOException $erro_2){
+                              echo 'erro'.$erro_2->getMessage();       
                           }
-                          echo "</td>";  
-                          echo " <td name='materiais_coletados' style='display:none;'>";
-                          echo $row['materiais_coletados'];
-                          echo "</td>";     
-
-                          /*esses ids precisam ser ocultos
-                          servem apenas para inserir na tabela de solicitações*/                          
-                          echo " <td name='id_coletor_coluna' style='display:none;'>";
-                          echo $row['id_coletor'];
-                          echo "</td>";     
-
-                          echo " <td name='endereco' style='display:none;'>";
-                          if($row['logradouro'] != ''){
-                            
-                            echo $row['logradouro'].', '. $row['numero']. ', '. $row['bairro'];
-                          }else{
-                            echo "";
-                          }
-                          echo "</td>";                  
-                        echo "</tr>";
-                      }
-
-                      
-                  }catch(PDOException $erro_2){
-                      echo 'erro'.$erro_2->getMessage();       
-                  }
             ?>
-      </table>
-
-
+                  </table>
+                </div>
+              </div>
+    </div>
 
   </div>
   
