@@ -32,19 +32,50 @@ if (isset($_POST['txtLogin'])) {
         $_SESSION['logged_in'] = false;
         echo "0";
     
-    }else{ 
-          
-            /*cria as variáveis de sessão para validações*/ 
-            $_SESSION['tipo_entidade'] = $users[0]['tipo_entidade'];
-            $_SESSION['logged_in'] = true;
-            $_SESSION['email'] =  $login; //variável responsável por pegar os ids nas entidades;
+    }else{             
+            /*VERIFICA O TIPO DA ENTIDADE PARA 
+            REALIZAR A BUSCA DO ID*/  
+            $tipo_entidade = $users[0]['tipo_entidade'];
+            $sql_retorna_id_entidade = "";
+            $e_condominio = false;
 
+            if($tipo_entidade == 'CONDOMINIO'){
+                $sql_retorna_id_entidade = "SELECT id_condominio FROM condominio
+                WHERE login_usuario = :login_usuario";
+                $_SESSION['tipo_entidade'] = 'CONDOMINIO';
+                $e_condominio = true;
+            }else if($tipo_entidade == 'COLETOR'){
+                $sql_retorna_id_entidade = "SELECT id_coletor FROM coletor_empresa
+                WHERE login_usuario = :login_usuario";
+                $_SESSION['tipo_entidade'] = 'COLETOR';
+            }else if($tipo_entidade == 'ADMINISTRADOR'){
+                $_SESSION['tipo_entidade'] = 'ADMINISTRADOR';
+            }
+        
+            /*Recuperando o id de acordo com o tipo
+            da entidade*/
+            $stmt = $PDO->prepare($sql_retorna_id_entidade);
+            $stmt->bindParam(':login_usuario', $login);
+            $stmt->execute();
+
+            /*compara o tipo da entidade para verificar qual
+            id será sera gravado*/
+            if($stmt->execute()){
+                $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if($e_condominio){
+                    $_SESSION['id_condominio'] =  $users[0]['id_condominio'];
+                }else{
+                    $_SESSION['id_coletor'] =  $users[0]['id_coletor'];
+                }
+            }
+
+            $_SESSION['logged_in'] = true;
             /*necessario enviar array por que no arquivo index.php
             é necessário validar alguns campos*/
             $array = [
                 "email" => $login,
                 "success" => "1",
-                "tipo_entidade" => $users[0]['tipo_entidade'],
+                "tipo_entidade" => $_SESSION['tipo_entidade'],
             ];
             echo json_encode($array);     
     }

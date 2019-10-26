@@ -4,6 +4,7 @@
 <head>
     <?php
           include "../bibliotecas.php";
+          session_start();
     ?>
 </head>
 
@@ -18,25 +19,25 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="./dashboard.html">
+                <a class="nav-link" href="pageDashboard.php">
                   <i class="material-icons">content_paste</i>
                   <p>Dashboard</p>
                 </a>
               </li>
             <li class="nav-item">
-                <a class="nav-link" href="./feedback_condominio.html">
+                <a class="nav-link" href="feedback_condominio.php">
                   <i class="material-icons">dashboard</i>
                   <p>Feedback</p>
                 </a>
               </li>
           <li class="nav-item active">
-            <a class="nav-link" href="./solicitacoes_condominio.html">
+            <a class="nav-link" href="solicitacoes_condominio.php">
               <i class="material-icons">dashboard</i>
               <p>Acompanhar solicitações</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./solicitar_coleta_condominio.html">
+            <a class="nav-link" href="solicitar_coleta_condominio.php">
               <i class="material-icons">person</i>
               <p>Solicitar coleta</p>
             </a>
@@ -66,9 +67,9 @@
             require_once '../init.php';
             $PDO = db_connect();
             try{
-                  $sql = "SELECT*FROM solicitacoes"; //mostrar somente do id do condominio
-                  //criar funcao para retornar o id idem LOGIN;
+                  $sql = "SELECT*FROM solicitacoes WHERE id_condominio = :id_condominio"; 
                   $stmt = $PDO->prepare($sql);
+                  $stmt->bindParam(':id_condominio', $_SESSION['id_condominio']);
                   $stmt->execute();
 
                   echo "<thead>";
