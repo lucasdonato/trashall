@@ -67,29 +67,52 @@
             require_once '../init.php';
             $PDO = db_connect();
             try{
-                  $sql = "SELECT*FROM solicitacoes WHERE id_condominio = :id_condominio"; 
+                  $sql = "SELECT s.*,ce.nome_empresa
+                          FROM solicitacoes s 
+                          JOIN coletor_empresa ce ON s.id_coletor = ce.id_coletor
+                          WHERE id_condominio = :id_condominio
+                          ORDER BY s.data_solicitacao DESC"; 
+
                   $stmt = $PDO->prepare($sql);
                   $stmt->bindParam(':id_condominio', $_SESSION['id_condominio']);
                   $stmt->execute();
 
                   echo "<thead>";
-                          echo "<th>Materias Solicitados</th>";
+                          echo "<th>Nome do Coletor</th>";
                           echo "<th>Data Solicitação</th>";
+                          echo "<th>Situação</th>";
                           echo "<th class'actions'>Ações</th>";
                   echo "</thead>";                 
 
                   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo "<tr>";
                       echo "<td>";
-                        echo $row['materiais_coletados'];
+                        echo $row['nome_empresa'];
                       echo "</td>";
                       echo "<td>";
-                        echo $row['data_solicitacao'];
+                        echo date('d/m/Y H:i:s',strtotime($row['data_solicitacao']));
+                      echo "</td>";
+                      
+                      /*VALIDA O TIPO DE SITUACAO
+                      PARA ALTERAR A CORD EXIBIDA NA COLUNA*/
+                      echo "<td>";
+                          if($row['situacao'] == 'EM ABERTO'){
+                            echo "<img src='../../imagens/time.png'>";
+
+                          }else if($row['situacao'] == 'REJEITADA'){
+                            echo "<img src='../../imagens/cancel.png'>";
+
+                          }else if($row['situacao'] == 'CONFIRMADA'){
+                            echo "<img src='../../imagens/ok.png'>";
+                          }
+
                       echo "</td>";
                       echo "<td class='actions'>";
-                        echo "<a class='btn btn-info btn-xs' href='#'>Visualizar</a>";
+                        echo "<button type='button' class='btn btn-info' data-toggle='modal' 
+                              data-target='#ExemploModalCentralizado'>Visualizar</button>";
                         //echo "<a class='btn btn-success btn-xs' href='#'>Aceitar</a>";
                         //echo "<a class='btn btn-danger btn-xs'  href='#' data-toggle='modal' data-target='#delete-modal'>Negar</a>";
+                        //echo "<img src='../../imagens/visualizar.png' alt='EM ABERTO'>";
                       echo "</td>";
                     echo "</tr>";
 
@@ -327,6 +350,29 @@
 
     });
   </script>
+
+<!-- Modal -->
+<div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="TituloModalCentralizado">Informações sobre a coleta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        implementar depois
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-success">Salvar mudanças</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 </body>
 
 </html>

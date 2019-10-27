@@ -14,8 +14,8 @@
         
         $PDO = db_connect();
 
-            $sql = "INSERT INTO solicitacoes(materiais_coletados,id_coletor,id_condominio,data_solicitacao,peso) 
-                VALUES(:materiais_coletados,:id_coletor,:id_condominio,NOW(),:peso)";
+            $sql = "INSERT INTO solicitacoes(materiais_coletados,id_coletor,id_condominio,data_solicitacao,peso,situacao) 
+                VALUES(:materiais_coletados,:id_coletor,:id_condominio,NOW(),:peso,'EM ABERTO')";
             $stmt = $PDO->prepare($sql);
             
             /*define os parametros que serão enviados*/
