@@ -8,6 +8,48 @@
     ?>
 </head>
 
+<script type="text/javascript">
+			$(document).ready(function(){
+          /*COMO O ELEMENTO REPETE, DEVEMOS PASSAR A CLASSE NA TD
+          COMO O ID É ÚNICO, APENAS 1 TD SERÁ CLICÁVEL*/
+          $( ".aceitarColeta" ).click(function() {
+                Swal.fire({
+                  title: 'Aceitar coleta?',
+                  text: "Essa ação não poderá ser desfeita",
+                  type: 'question',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Sim, aceitar!',
+                  cancelButtonText: "Cancelar"
+              }).then((result) => {
+                  if (result.value) {
+                    /*DEVE CRIAR UM REGISTRO NA TABELA COLETA_ANDAMENTO
+                    DEVE ALTERA O STATUS DA SOLICITAÇÃO PARA CONFIRMADA*/                    
+                    $.ajax({
+                            type : 'POST',
+                            url  : '../faz_coleta.php',                            
+                            dataType: 'json',
+                            success: function( response )
+                            {
+                              if(response == '1'){
+                                Swal.fire(
+                                  'Good Job!',
+                                  'Coleta em andamento, acesse o menu "Minhas coletas"',
+                                  'success'
+                                )
+                              }else if(response == '0'){
+                               alert(response);
+                              }
+                            }
+                      });                   
+                  }
+                })
+            });
+			});
+
+  </script>
+
 <body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="azure" data-background-color="white" data-image="../../bootstrap-css-js/assets/img/side.jpg">
@@ -39,7 +81,13 @@
           <li class="nav-item ">
             <a class="nav-link" href="solicitar_coleta_condominio.php">
               <i class="material-icons">person</i>
-              <p>Solicitar coleta</p>
+              <p>Oferecer coleta</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="solicitar_coleta_condominio.php">
+              <i class="material-icons">person</i>
+              <p>Minhas coletas</p>
             </a>
           </li>
         </ul>
@@ -72,12 +120,12 @@
                 WHERE s.id_coletor = :id_coletor
                 ORDER BY s.data_solicitacao DESC";
 
-
                   $stmt = $PDO->prepare($sql);
                   $stmt->bindParam(':id_coletor', $_SESSION['id_coletor']);
                   $stmt->execute();
 
                   echo "<thead>";
+                          echo "<th>id_solicitacao</th>";
                           echo "<th>Condomínio</th>";
                           echo "<th>Data Solicitação</th>";
                           echo "<th>Situação</th>";
@@ -86,6 +134,9 @@
 
                   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo "<tr>";
+                    echo "<td id='idsolicitacao'>";
+                        echo $row['id_solicitacao'];
+                      echo "</td>";
                       echo "<td>";
                         echo $row['nome_condominio'];
                       echo "</td>";
@@ -110,7 +161,7 @@
                       echo "<td class='actions'>";
                         echo "<button type='button' class='btn btn-info' data-toggle='modal' 
                               data-target='#ExemploModalCentralizado'>Visualizar</button>";
-                        echo "<a class='btn btn-success btn-xs' href='#'>Aceitar</a>";
+                        echo "<a class='btn btn-success aceitarColeta btn-xs' href='#'>Aceitar</a>";
                         echo "<a class='btn btn-danger btn-xs'  href='#' data-toggle='modal' data-target='#delete-modal'>Negar</a>";
                         
                       echo "</td>";
