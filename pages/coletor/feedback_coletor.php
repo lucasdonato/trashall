@@ -30,25 +30,25 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="./dashboard.html">
+                <a class="nav-link" href="pageDashboard.php">
                   <i class="material-icons">content_paste</i>
                   <p>Dashboard</p>
                 </a>
               </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./feedback_coletor.html">
+            <li class="nav-item active ">
+                <a class="nav-link" href="feedback_coletor.php">
                   <i class="material-icons">dashboard</i>
                   <p>Feedback</p>
                 </a>
               </li>
           <li class="nav-item">
-            <a class="nav-link" href="./solicitacoes_coletor.html">
+            <a class="nav-link" href="solicitacoes_coletor.php">
               <i class="material-icons">dashboard</i>
               <p>Ver solicitações</p>
             </a>
           </li>
-          <li class="nav-item active ">
-            <a class="nav-link" href="./solicitar_coleta_coletor.html">
+          <li class="nav-item ">
+            <a class="nav-link" href="solicitar_coleta_coletor.php">
               <i class="material-icons">person</i>
               <p>Oferecer coleta</p>
             </a>
@@ -61,7 +61,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Dashboard</a>
+            <a class="navbar-brand" href="#pablo">Feedback</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
