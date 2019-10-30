@@ -114,14 +114,16 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_trashall`.`coleta_andamento`
 -- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `db_trashall` DEFAULT CHARACTER SET utf8 ;
+USE `db_trashall` ;
 CREATE TABLE IF NOT EXISTS `db_trashall`.`coleta_andamento` (
   `id_coleta` INT NOT NULL AUTO_INCREMENT,
   `status` VARCHAR(45) NULL DEFAULT NULL,
   `data_coleta` DATETIME NULL DEFAULT NULL,
-  `endereco_destino` INT NULL DEFAULT NULL,
   `id_coletor` INT(100) NULL DEFAULT NULL,
   `id_condominio` INT(100) NULL DEFAULT NULL,
   `id_solicitacao` INT(100) NOT NULL,
+  `id_endereco_destino` INT(100) NOT NULL,
   PRIMARY KEY (`id_coleta`),
   CONSTRAINT `fk_coleta_andamento_coletor_empresa1`
     FOREIGN KEY (`id_coletor`)
@@ -136,6 +138,11 @@ CREATE TABLE IF NOT EXISTS `db_trashall`.`coleta_andamento` (
   CONSTRAINT `fk_coleta_andamento_solicitacoes1`
     FOREIGN KEY (`id_solicitacao`)
     REFERENCES `db_trashall`.`solicitacoes` (`id_solicitacao`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_coleta_andamento_endereco1`
+    FOREIGN KEY (`id_endereco_destino`)
+    REFERENCES `db_trashall`.`endereco` (`id_endereco`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

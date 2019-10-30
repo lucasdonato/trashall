@@ -87,5 +87,25 @@
                 echo($stmt->errorInfo());
             }
         }
+
+        function recupera_id_endereco_condominio($id_condominio){
+            $PDO = db_connect();
+            $sql = "SELECT id_endereco FROM endereco WHERE id_condominio = :id_condominio";
+            $stmt = $PDO->prepare($sql);
+            $stmt->bindParam(':id_condominio', $id_condominio);
+            $stmt->execute();
+            $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $dados[0]['id_endereco'];
+        }
+
+        function confirma_solicitacao($id_solicitacao){
+            $PDO = db_connect();
+            $sql = "UPDATE solicitacoes SET situacao = 'CONFIRMADA' WHERE id_solicitacao = :id_solicitacao";
+            $stmt = $PDO->prepare($sql);
+            $stmt->bindParam(':id_solicitacao', $id_solicitacao);
+            if(!$stmt->execute()){
+                echo($stmt->errorInfo());
+            }
+        }
         
 ?>
