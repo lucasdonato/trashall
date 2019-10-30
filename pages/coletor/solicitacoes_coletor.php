@@ -13,6 +13,14 @@
           /*COMO O ELEMENTO REPETE, DEVEMOS PASSAR A CLASSE NA TD
           COMO O ID É ÚNICO, APENAS 1 TD SERÁ CLICÁVEL*/
           $( ".aceitarColeta" ).click(function() {
+
+                /*recuperar o id da solicitacao aqui*/              
+                let id_solicitacao = $(this)                // Representa o elemento clicado (checkbox)
+                                    .closest('tr')  // Encontra o elemento pai do seletor mais próximo
+                                    .find('td') // Encontra o elemento do seletor (todos os tds)
+                                    .eq(0)      // pega o primeiro elemento (contagem do eq inicia em 0)
+                                    .text();    // Retorna o texto do elemento
+
                 Swal.fire({
                   title: 'Aceitar coleta?',
                   text: "Essa ação não poderá ser desfeita",
@@ -28,8 +36,8 @@
                     DEVE ALTERA O STATUS DA SOLICITAÇÃO PARA CONFIRMADA*/                    
                     $.ajax({
                             type : 'POST',
-                            url  : '../faz_coleta.php',                            
-                            dataType: 'json',
+                            url  : '../faz_coleta.php/' + id_solicitacao,
+                      
                             success: function( response )
                             {
                               if(response == '1'){
@@ -110,7 +118,7 @@
       
       <br><br><br><br><br>
       <div class="table-responsive col-md-12">
-        <table class="table table-striped" cellspacing="0" cellpadding="0">
+        <table id="solicitacoesColetor" class="table table-striped" cellspacing="0" cellpadding="0">
         <?php
             require_once '../init.php';
             $PDO = db_connect();
@@ -134,7 +142,7 @@
 
                   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo "<tr>";
-                    echo "<td id='idsolicitacao'>";
+                    echo "<td class='idsolicitacao'>";
                         echo $row['id_solicitacao'];
                       echo "</td>";
                       echo "<td>";
