@@ -4,9 +4,7 @@
 <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@8"></script> 
   <?php 
     session_start(); 
-    if(!$_SESSION['logged_in'] || $_SESSION['tipo_entidade'] != 'ADMINISTRADOR'){
-      header('Location: ../index.php');
-    }
+    
   ?>
 <head>
   <!-- Latest compiled and minified CSS -->
@@ -34,34 +32,32 @@
       <div class="logo">
         <a href="#" class="simple-text logo-normal">
         <span class="glyphicon glyphicon-trash" aria-hidden="true"> TrashAll </span>
-          <br>
-             <?php echo $_SESSION['email']?>
-          
+          <br>          
           
         </a>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="nav-item active">
-                <a class="nav-link" href="./dashboard.html">
+                <a class="nav-link" href="pageDashboard.php">
                   <i class="material-icons">dashboard</i>
                   <p>Dashboard</p>
                 </a>
               </li>
           <li class="nav-item">
-            <a class="nav-link" href="./cadastrar_coletor.html">
+            <a class="nav-link" href="pageColetor.php">
               <i class="material-icons">dashboard</i>
               <p>Cadastrar coletor</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./cadastrar_condominio.php">
+            <a class="nav-link" href="pageCondominio.php">
               <i class="material-icons">person</i>
               <p>Cadastrar condominío</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./gerenciamento.html">
+            <a class="nav-link" href="pageGerencimento.php">
               <i class="material-icons">content_paste</i>
               <p>Gerenciamento</p>
             </a>
