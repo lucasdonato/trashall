@@ -21,6 +21,10 @@
                                     .eq(0)      // pega o primeiro elemento (contagem do eq inicia em 0)
                                     .text();    // Retorna o texto do elemento
 
+                /*enviar o id da solicitacao para o faz_coleta
+                no faz_coleta usar o id da solicitacao para enviar os 
+                dddos para a tabela de coleta;*/
+
                 Swal.fire({
                   title: 'Aceitar coleta?',
                   text: "Essa ação não poderá ser desfeita",
@@ -36,7 +40,8 @@
                     DEVE ALTERA O STATUS DA SOLICITAÇÃO PARA CONFIRMADA*/                    
                     $.ajax({
                             type : 'POST',
-                            url  : '../faz_coleta.php/' + id_solicitacao,
+                            url  : '../faz_coleta.php',
+                            data : {id_solicitacao : id_solicitacao},
                       
                             success: function( response )
                             {

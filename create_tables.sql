@@ -121,6 +121,7 @@ CREATE TABLE IF NOT EXISTS `db_trashall`.`coleta_andamento` (
   `endereco_destino` INT NULL DEFAULT NULL,
   `id_coletor` INT(100) NULL DEFAULT NULL,
   `id_condominio` INT(100) NULL DEFAULT NULL,
+  `id_solicitacao` INT(100) NOT NULL,
   PRIMARY KEY (`id_coleta`),
   CONSTRAINT `fk_coleta_andamento_coletor_empresa1`
     FOREIGN KEY (`id_coletor`)
@@ -130,6 +131,11 @@ CREATE TABLE IF NOT EXISTS `db_trashall`.`coleta_andamento` (
   CONSTRAINT `fk_coleta_andamento_condominio1`
     FOREIGN KEY (`id_condominio`)
     REFERENCES `db_trashall`.`condominio` (`id_condominio`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_coleta_andamento_solicitacoes1`
+    FOREIGN KEY (`id_solicitacao`)
+    REFERENCES `db_trashall`.`solicitacoes` (`id_solicitacao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
