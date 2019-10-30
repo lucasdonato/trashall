@@ -33,7 +33,8 @@
                   confirmButtonColor: '#3085d6',
                   cancelButtonColor: '#d33',
                   confirmButtonText: 'Sim, aceitar!',
-                  cancelButtonText: "Cancelar"
+                  cancelButtonText: "Cancelar",
+                  background: '#98FB98'
               }).then((result) => {
                   if (result.value) {
                     /*DEVE CRIAR UM REGISTRO NA TABELA COLETA_ANDAMENTO
@@ -51,6 +52,7 @@
                                   'Coleta em andamento, acesse o menu "Minhas coletas"',
                                   'success'
                                 )
+                                  location.reload();
                               }else if(response == '0'){
                                alert(response);
                               }
@@ -59,6 +61,11 @@
                   }
                 })
             });
+
+            $( ".negarColeta" ).click(function() {
+              
+                  //fazer o negar aqui..
+            });            
 			});
 
   </script>
@@ -138,7 +145,7 @@
                   $stmt->execute();
 
                   echo "<thead>";
-                          echo "<th>id_solicitacao</th>";
+                          echo "<th style='display:none;'>id_solicitacao</th>";
                           echo "<th>Condomínio</th>";
                           echo "<th>Data Solicitação</th>";
                           echo "<th>Situação</th>";
@@ -147,7 +154,7 @@
 
                   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo "<tr>";
-                    echo "<td class='idsolicitacao'>";
+                    echo "<td style='display:none;' class='idsolicitacao'>";
                         echo $row['id_solicitacao'];
                       echo "</td>";
                       echo "<td>";
@@ -175,7 +182,7 @@
                         echo "<button type='button' class='btn btn-info' data-toggle='modal' 
                               data-target='#ExemploModalCentralizado'>Visualizar</button>";
                         echo "<a class='btn btn-success aceitarColeta btn-xs' href='#'>Aceitar</a>";
-                        echo "<a class='btn btn-danger btn-xs'  href='#' data-toggle='modal' data-target='#delete-modal'>Negar</a>";
+                        echo "<a class='btn btn-danger negarColeta btn-xs'  href='#' data-toggle='modal' data-target='#delete-modal'>Negar</a>";
                         
                       echo "</td>";
                     echo "</tr>";
