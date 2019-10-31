@@ -51,8 +51,7 @@
                                   'Good Job!',
                                   'Coleta em andamento, acesse o menu "Minhas coletas"',
                                   'success'
-                                )
-                                  location.reload();
+                                )                                
                               }else if(response == '0'){
                                 console.log(response);
                               }
@@ -63,7 +62,7 @@
             });
 
             $( ".negarColeta" ).click(function() {
-              
+
                     /*recuperar o id da solicitacao aqui*/              
                     let id_solicitacao = $(this)                // Representa o elemento clicado (checkbox)
                                     .closest('tr')  // Encontra o elemento pai do seletor mais próximo
@@ -96,7 +95,6 @@
                                   'Coleta negada"',
                                   'success'
                                 )
-                                  location.reload();
                               }else if(response == '0'){
                                 console.log(response);
                               }
@@ -220,8 +218,16 @@
                       echo "<td class='actions'>";
                         echo "<button type='button' class='btn btn-info' data-toggle='modal' 
                               data-target='#ExemploModalCentralizado'>Visualizar</button>";
-                        echo "<a class='btn btn-success aceitarColeta btn-xs' href='#'>Aceitar</a>";
-                        echo "<a class='btn btn-danger negarColeta btn-xs'  href='#' data-toggle='modal' data-target='#delete-modal'>Negar</a>";
+                              /*APENAS SOLICITAÇÕES EM ABERTO PODEM FICAR COM OS BOTÕES 
+                              DE ACEITAR E NEGAR HABILITADOS*/
+                              if($row['situacao'] != 'EM ABERTO'){
+                                echo "<a style='cursor: not-allowed;' class='btn btn-success btn-xs' href='#'>Aceitar</a>";
+                                echo "<a style='cursor: not-allowed;' class='btn btn-danger btn-xs'  href='#' data-toggle='modal' data-target='#delete-modal'>Negar</a>";
+                              }else{
+                                echo "<a class='btn btn-success aceitarColeta btn-xs' href='#'>Aceitar</a>";
+                                echo "<a class='btn btn-danger negarColeta btn-xs'  href='#' data-toggle='modal' data-target='#delete-modal'>Negar</a>";
+                              }
+                        
                         
                       echo "</td>";
                     echo "</tr>";

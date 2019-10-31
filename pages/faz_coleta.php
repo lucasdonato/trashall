@@ -36,7 +36,8 @@
 
         if($stmt->execute()){
             /*ALTERA O STATUS DA SOLICITAÇÃO PARA CONFIRMADA*/
-            confirma_solicitacao($id_solicitacao);            
+            confirma_solicitacao($id_solicitacao);   
+            echo "1";         
         }else{
             var_dump($stmt->errorInfo());
         }
