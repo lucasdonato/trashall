@@ -20,7 +20,7 @@
                 echo "0";
             }
         }else{
-            echo($stmt->errorInfo());
+            echo "2"
         }
     }
 ?>

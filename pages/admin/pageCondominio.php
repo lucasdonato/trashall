@@ -67,6 +67,13 @@
                       'Email não existe',
                       'question'
                     )
+                }else if(response == "2"){
+                  Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    background: '#FFA07A',
+                    text: 'Não é possível apagar o registro, existem vinculações em aberto!'
+                  })             
                 }
                 $('#modalExcluirColetor').modal('hide');
               }

@@ -1,7 +1,7 @@
 <?php
     session_start();
-
     require 'init.php';
+
     if (isset($_POST['txtEmailColetorExlusao'])) {
         $email_usuario = $_POST['txtEmailColetorExlusao'];
 
@@ -20,7 +20,8 @@
                 echo "0";
             }
         }else{
-            echo($stmt->errorInfo());
+            echo "2"; //erro foreign key    
+            
         }
     }
 ?>
