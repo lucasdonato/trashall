@@ -54,7 +54,7 @@
                                 )
                                   location.reload();
                               }else if(response == '0'){
-                               alert(response);
+                                console.log(response);
                               }
                             }
                       });                   
@@ -64,7 +64,46 @@
 
             $( ".negarColeta" ).click(function() {
               
-                  //fazer o negar aqui..
+                    /*recuperar o id da solicitacao aqui*/              
+                    let id_solicitacao = $(this)                // Representa o elemento clicado (checkbox)
+                                    .closest('tr')  // Encontra o elemento pai do seletor mais próximo
+                                    .find('td') // Encontra o elemento do seletor (todos os tds)
+                                    .eq(0)      // pega o primeiro elemento (contagem do eq inicia em 0)
+                                    .text();    // Retorna o texto do elemento
+              
+              Swal.fire({
+                  title: 'Rejeitar coleta?',
+                  text: "Essa ação não poderá ser desfeita",
+                  type: 'question',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Sim, rejeitar!',
+                  cancelButtonText: "Cancelar",
+                  background: '#FFA07A'
+              }).then((result) => {
+                  if (result.value) {                 
+                    $.ajax({
+                            type : 'POST',
+                            url  : '../rejeitar_coleta.php',
+                            data : {id_solicitacao : id_solicitacao},
+                      
+                            success: function( response )
+                            {
+                              if('response' == '1'){
+                                Swal.fire(
+                                  'Good Job!',
+                                  'Coleta negada"',
+                                  'success'
+                                )
+                                  location.reload();
+                              }else if(response == '0'){
+                                console.log(response);
+                              }
+                            }
+                      });                   
+                  }
+                })
             });            
 			});
 
