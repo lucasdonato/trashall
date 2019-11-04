@@ -136,13 +136,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="solicitar_coleta_condominio.php">
-              <i class="material-icons">person</i>
-              <p>Oferecer coleta</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="solicitar_coleta_condominio.php">
+            <a class="nav-link" href="coletas_coletor.php">
               <i class="material-icons">person</i>
               <p>Minhas coletas</p>
             </a>

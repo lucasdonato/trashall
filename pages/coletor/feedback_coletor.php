@@ -47,12 +47,6 @@
               <p>Ver solicitações</p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="solicitar_coleta_coletor.php">
-              <i class="material-icons">person</i>
-              <p>Oferecer coleta</p>
-            </a>
-          </li>
         </ul>
       </div>
     </div>

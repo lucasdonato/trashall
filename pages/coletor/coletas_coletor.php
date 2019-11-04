@@ -8,6 +8,10 @@
     ?>
 </head>
 
+<script type="text/javascript">
+			
+  </script>
+
 <body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="azure" data-background-color="white" data-image="../../bootstrap-css-js/assets/img/side.jpg">
@@ -30,16 +34,16 @@
                   <p>Feedback</p>
                 </a>
               </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="solicitacoes_condominio.php">
               <i class="material-icons">dashboard</i>
               <p>Acompanhar solicitações</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item active">
             <a class="nav-link" href="solicitar_coleta_condominio.php">
               <i class="material-icons">person</i>
-              <p>Solicitar coleta</p>
+              <p>Minhas coletas</p>
             </a>
           </li>
         </ul>
@@ -53,7 +57,7 @@
           <div class="navbar-wrapper">
           <h3>
                 Trashall -
-                <small class="text-muted">Acompanhamento solicitações</small>
+                <small class="text-muted">Minhas Coletas</small>
               </h3>
           </div>
           
@@ -62,65 +66,17 @@
       
       <br><br><br><br><br>
       <div class="table-responsive col-md-12">
-        <table class="table table-striped" cellspacing="0" cellpadding="0">
+        <table id="solicitacoesColetor" class="table table-striped" cellspacing="0" cellpadding="0">
         <?php
             require_once '../init.php';
             $PDO = db_connect();
-            try{
-                  $sql = "SELECT s.*,ce.nome_empresa
-                          FROM solicitacoes s 
-                          JOIN coletor_empresa ce ON s.id_coletor = ce.id_coletor
-                          WHERE id_condominio = :id_condominio
-                          ORDER BY s.data_solicitacao DESC"; 
-
-                  $stmt = $PDO->prepare($sql);
-                  $stmt->bindParam(':id_condominio', $_SESSION['id_condominio']);
-                  $stmt->execute();
-
-                  echo "<thead>";
-                          echo "<th>Nome do Coletor</th>";
-                          echo "<th>Data Solicitação</th>";
-                          echo "<th>Situação</th>";
-                          echo "<th class'actions'>Ações</th>";
-                  echo "</thead>";                 
-
-                  while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<tr>";
-                      echo "<td>";
-                        echo $row['nome_empresa'];
-                      echo "</td>";
-                      echo "<td>";
-                        echo date('d/m/Y H:i:s',strtotime($row['data_solicitacao']));
-                      echo "</td>";
-                      
-                      /*VALIDA O TIPO DE SITUACAO
-                      PARA ALTERAR A CORD EXIBIDA NA COLUNA*/
-                      echo "<td>";
-                          if($row['situacao'] == 'EM ABERTO'){
-                            echo "<img src='../../imagens/time.png'>";
-
-                          }else if($row['situacao'] == 'REJEITADA'){
-                            echo "<img src='../../imagens/cancel.png'>";
-
-                          }else if($row['situacao'] == 'CONFIRMADA'){
-                            echo "<img src='../../imagens/ok.png'>";
-                          }
-
-                      echo "</td>";
-                      echo "<td class='actions'>";
-                        echo "<button type='button' class='btn btn-info' data-toggle='modal' 
-                              data-target='#ExemploModalCentralizado'>Visualizar</button>";
-                        //echo "<a class='btn btn-success btn-xs' href='#'>Aceitar</a>";
-                        //echo "<a class='btn btn-danger btn-xs'  href='#' data-toggle='modal' data-target='#delete-modal'>Negar</a>";
-                        //echo "<img src='../../imagens/visualizar.png' alt='EM ABERTO'>";
-                      echo "</td>";
-                    echo "</tr>";
-
-                  }
-
-            }catch(PDOException $erro_2){
-              echo 'erro'.$erro_2->getMessage();       
-          } 
+                
+               /* SELECT ca.status,ca.data_coleta, cole.nome_empresa, cond.nome_condominio, e.logradouro
+FROM coleta_andamento ca 
+JOIN coletor_empresa cole ON ca.id_coletor = cole.id_coletor
+JOIN condominio cond ON ca.id_condominio = cond.id_condominio
+JOIN endereco e ON ca.id_endereco_destino = e.id_endereco */
+ 
 
         ?>
 
@@ -350,29 +306,5 @@
 
     });
   </script>
-
-<!-- Modal -->
-<div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="TituloModalCentralizado">Informações sobre a coleta</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        implementar depois
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-success">Salvar mudanças</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 </body>
-
 </html>

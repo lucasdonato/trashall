@@ -52,6 +52,12 @@
               <i class="material-icons">person</i>
               <p>Solicitar coleta</p>
             </a>
+          </li>          
+          <li class="nav-item ">
+            <a class="nav-link" href="minhas_coletas.php">
+              <i class="material-icons">person</i>
+              <p>Minhas Coletas</p>
+            </a>
           </li>
         </ul>
       </div>
