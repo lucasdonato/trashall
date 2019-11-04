@@ -35,7 +35,7 @@
                 </a>
               </li>
           <li class="nav-item">
-            <a class="nav-link" href="solicitacoes_condominio.php">
+            <a class="nav-link" href="solicitacoes_coletor.php">
               <i class="material-icons">dashboard</i>
               <p>Acompanhar solicitações</p>
             </a>
@@ -66,17 +66,52 @@
       
       <br><br><br><br><br>
       <div class="table-responsive col-md-12">
-        <table id="solicitacoesColetor" class="table table-striped" cellspacing="0" cellpadding="0">
+        <table id="coletasColetor" class="table table-striped" cellspacing="0" cellpadding="0">
         <?php
             require_once '../init.php';
             $PDO = db_connect();
-                
-               /* SELECT ca.status,ca.data_coleta, cole.nome_empresa, cond.nome_condominio, e.logradouro
-FROM coleta_andamento ca 
-JOIN coletor_empresa cole ON ca.id_coletor = cole.id_coletor
-JOIN condominio cond ON ca.id_condominio = cond.id_condominio
-JOIN endereco e ON ca.id_endereco_destino = e.id_endereco */
- 
+            try{
+               
+                $sql = "SELECT ca.id_coleta,ca.status,ca.data_coleta, cole.nome_empresa, 
+                                cond.nome_condominio, e.logradouro
+                        FROM coleta_andamento ca 
+                        JOIN coletor_empresa cole ON ca.id_coletor = cole.id_coletor
+                        JOIN condominio cond ON ca.id_condominio = cond.id_condominio
+                        JOIN endereco e ON ca.id_endereco_destino = e.id_endereco
+                        WHERE ca.id_coletor = :id_coletor
+                        ORDER BY ca.data_coleta";
+
+                  $stmt = $PDO->prepare($sql);
+                  $stmt->bindParam(':id_coletor', $_SESSION['id_coletor']);
+    
+                  //se executar a consulta
+                  if($stmt->execute()){
+                        
+                    echo "<thead>";
+                        echo "<th>id_coleta</th>";
+                        echo "<th>Status</th>";
+                        echo "<th>Data da coleta</th>";
+                        echo "<th>Peso total</th>";
+                        echo "<th>Condomínio</th>";
+                        echo "<th>Logradouro</th>";
+                        echo "<th>Maps</th>";
+                        echo "<th>Acões</th>";
+                    echo "</thead>";   
+  
+                    while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<tr>";
+                            echo "<td>";
+                                    echo $row['id_coleta'];
+                            echo "</td>";
+                        echo "</tr>";
+
+                    }
+
+                 }
+            }catch(PDOException $erro_2){
+                echo 'erro'.$erro_2->getMessage();       
+            }
+        
 
         ?>
 
