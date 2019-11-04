@@ -72,12 +72,12 @@
             $PDO = db_connect();
             try{
                
-                $sql = "SELECT ca.id_coleta,ca.status,ca.data_coleta, cole.nome_empresa, 
-                                cond.nome_condominio, e.logradouro
+                $sql = "SELECT ca.id_coleta,ca.status,ca.data_coleta, cole.nome_empresa, cond.nome_condominio, e.logradouro, s.peso
                         FROM coleta_andamento ca 
                         JOIN coletor_empresa cole ON ca.id_coletor = cole.id_coletor
                         JOIN condominio cond ON ca.id_condominio = cond.id_condominio
                         JOIN endereco e ON ca.id_endereco_destino = e.id_endereco
+                        JOIN solicitacoes s ON s.id_solicitacao = ca.id_solicitacao
                         WHERE ca.id_coletor = :id_coletor
                         ORDER BY ca.data_coleta";
 
@@ -88,20 +88,43 @@
                   if($stmt->execute()){
                         
                     echo "<thead>";
-                        echo "<th>id_coleta</th>";
+                        echo "<th style='display:none;'>id_coleta</th>";
                         echo "<th>Status</th>";
                         echo "<th>Data da coleta</th>";
                         echo "<th>Peso total</th>";
                         echo "<th>Condomínio</th>";
-                        echo "<th>Logradouro</th>";
+                        echo "<th>Local da coleta</th>";
                         echo "<th>Maps</th>";
                         echo "<th>Acões</th>";
                     echo "</thead>";   
   
                     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         echo "<tr>";
-                            echo "<td>";
+                            echo "<td style='display:none;'>";
                                     echo $row['id_coleta'];
+                            echo "</td>";
+                            echo "<td>";
+                                    echo $row['status'];
+                            echo "</td>";
+                            echo "<td>";
+                                    echo date('d/m/Y H:i:s',strtotime($row['data_coleta']));
+                            echo "</td>";
+                            echo "<td>";
+                                    echo $row['peso'].' KG';
+                            echo "</td>";
+                            echo "<td>";
+                                    echo $row['nome_condominio'];
+                            echo "</td>";                           
+                            echo "<td>";
+                                    echo $row['logradouro'];
+                            echo "</td>";
+                            echo "<td>";
+                                    echo '<img src="../../imagens/maps.png"';
+                            echo "</td>";
+                            echo "<td>";
+                                echo '<img src="../../imagens/ok.png"';
+                                echo "<br>";
+                                echo '<img src="../../imagens/cancel.png"';
                             echo "</td>";
                         echo "</tr>";
 
