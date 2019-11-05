@@ -208,8 +208,8 @@
                 Excluir</button>
                 
       </div><br><br>
-
-      <table class="table table-striped">
+      <div class="table-responsive col-md-12">
+        <table id="coletasColetor" class="table table-striped" cellspacing="0" cellpadding="0">
       <thead>
 
             <?php
@@ -223,10 +223,7 @@
                       $stmt = $PDO->prepare($sql);
                       $stmt->execute();
 
-                      echo "<div class='card-header card-header-primary'>";
-                      echo "<h4 class='card-title'>Coletores cadastrados</h4>";
-                      echo "</div>";
-                      echo "<thead class='bg-info'>";
+                      echo "<thead>";
                         echo "<th>Nome Coletor</th>";
                         echo "<th>Login</th>";
                         echo "<th>Endereço</th>";
@@ -237,7 +234,7 @@
                       
                       //constroí a tabela
                       while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        echo "<tr class='table-info'>";
+                        echo "<tr>";
                           echo " <td>";
                             echo $row['nome_empresa'];
                           echo "</td>";
