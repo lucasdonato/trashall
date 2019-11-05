@@ -58,8 +58,7 @@
                                     //regarrega página automaticamente;  
                                     setTimeout(function(){
                                         window.location.reload(1);
-                                    }, 3000);
-
+                                    }, 10000);
                                                             
                               }else if(response == '0'){
                                 console.log(response);
