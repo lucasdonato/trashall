@@ -9,8 +9,74 @@
 </head>
 
 <script type="text/javascript">
-			
-  </script>
+    $(document).ready(function(){
+       
+          $( ".finalizarColeta" ).click(function() { 
+                /*recuperar o id da solicitacao aqui*/              
+                let id_coleta = $(this)                // Representa o elemento clicado (checkbox)
+                                    .closest('tr')  // Encontra o elemento pai do seletor mais próximo
+                                    .find('td') // Encontra o elemento do seletor (todos os tds)
+                                    .eq(0)      // pega o primeiro elemento (contagem do eq inicia em 0)
+                                    .text();    // Retorna o texto do elemento
+
+                                    Swal.fire({
+                  title: 'Encerrar coleta?',
+                  text: "Essa ação não poderá ser desfeita",
+                  type: 'question',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Sim, finalizar!',
+                  cancelButtonText: "Cancelar",
+                  background: '#98FB98'
+              }).then((result) => {
+                  if (result.value) {                  
+                    $.ajax({
+                            type : 'POST',
+                            url  : '../finaliza_coleta.php',
+                            data : {id_coleta : id_coleta},
+                      
+                            success: function( response )
+                            {
+                              if(response == '1'){
+                                    Swal.fire({
+                                        title: '<strong>Avalie a coleta</strong>',
+                                        icon: 'info',
+                                        html:
+                                            'You can use <b>bold text</b>',
+                                        showCloseButton: true,
+                                        showCancelButton: true,
+                                        focusConfirm: false,
+                                        confirmButtonText:
+                                            '<i class="fa fa-thumbs-up"></i> Great!',
+                                        confirmButtonAriaLabel: 'Thumbs up, great!',
+                                        cancelButtonText:
+                                            '<i class="fa fa-thumbs-down"></i>',
+                                        cancelButtonAriaLabel: 'Thumbs down'
+                                    })
+                                                            
+                              }else if(response == '0'){
+                                console.log(response);
+                              }
+                            }
+                      });                   
+                  }
+                })
+          });
+
+          $( ".cancelarColeta" ).click(function() { 
+                 /*recuperar o id da solicitacao aqui*/              
+                 let id_coleta = $(this)                // Representa o elemento clicado (checkbox)
+                                    .closest('tr')  // Encontra o elemento pai do seletor mais próximo
+                                    .find('td') // Encontra o elemento do seletor (todos os tds)
+                                    .eq(0)      // pega o primeiro elemento (contagem do eq inicia em 0)
+                                    .text();    // Retorna o texto do elemento
+
+                                    
+                                    
+        });
+    });
+</script>
 
 <body class="">
   <div class="wrapper ">
@@ -79,7 +145,7 @@
                         JOIN endereco e ON ca.id_endereco_destino = e.id_endereco
                         JOIN solicitacoes s ON s.id_solicitacao = ca.id_solicitacao
                         WHERE ca.id_coletor = :id_coletor
-                        ORDER BY ca.data_coleta";
+                        ORDER BY ca.data_coleta DESC";
 
                   $stmt = $PDO->prepare($sql);
                   $stmt->bindParam(':id_coletor', $_SESSION['id_coletor']);
@@ -122,9 +188,14 @@
                                     echo '<img src="../../imagens/maps.png"';
                             echo "</td>";
                             echo "<td>";
-                                echo '<img src="../../imagens/ok.png"';
-                                echo "<br>";
-                                echo '<img src="../../imagens/cancel.png"';
+                                if($row['status'] != 'FINALIZADA'){
+                                    echo '<img class="finalizarColeta" src="../../imagens/ok.png"';
+                                    echo "<br>";
+                                    echo '<img class="cancelarColeta" src="../../imagens/cancel.png"';
+                                }else{
+                                    echo '<img  class="" src="../../imagens/trash-full_97204.png"';
+                                }
+                                
                             echo "</td>";
                         echo "</tr>";
 

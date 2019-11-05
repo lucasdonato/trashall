@@ -205,7 +205,7 @@
                             echo "<img src='../../imagens/cancel.png'>";
 
                           }else if($row['situacao'] == 'CONFIRMADA'){
-                            echo "<img src='../../imagens/ok.png'>";
+                            echo "<img  src='../../imagens/ok.png'>";
                           }
 
                       echo "</td>";

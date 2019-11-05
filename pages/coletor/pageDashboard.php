@@ -47,6 +47,12 @@
               <p>Ver solicitações</p>
             </a>
           </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="coletas_coletor.php">
+              <i class="material-icons">person</i>
+              <p>Minhas coletas</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>

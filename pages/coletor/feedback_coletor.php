@@ -46,6 +46,12 @@
               <i class="material-icons">dashboard</i>
               <p>Ver solicitações</p>
             </a>
+            <li class="nav-item ">
+            <a class="nav-link" href="coletas_coletor.php">
+              <i class="material-icons">person</i>
+              <p>Minhas coletas</p>
+            </a>
+          </li>
           </li>
         </ul>
       </div>
