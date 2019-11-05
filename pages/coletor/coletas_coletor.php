@@ -72,8 +72,39 @@
                                     .eq(0)      // pega o primeiro elemento (contagem do eq inicia em 0)
                                     .text();    // Retorna o texto do elemento
 
-                                    
-                                    
+
+                                    Swal.fire({
+                  title: 'cancelar coleta?',
+                  text: "Essa ação não poderá ser desfeita",
+                  type: 'question',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Sim, cancelar!',
+                  cancelButtonText: "Sair"
+              }).then((result) => {
+                  if (result.value) {                  
+                    $.ajax({
+                            type : 'POST',
+                            url  : '../cancelarColeta.php',
+                            data : {id_coleta : id_coleta},
+                      
+                            success: function( response )
+                            {
+                              if(response == '1'){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Coleta cancelada...',
+                                    text: ':(',
+                                })
+                                                            
+                              }else if(response == '0'){
+                                console.log(response);
+                              }
+                            }
+                      });                   
+                  }
+                })                  
         });
     });
 </script>
@@ -188,12 +219,12 @@
                                     echo '<img src="../../imagens/maps.png"';
                             echo "</td>";
                             echo "<td>";
-                                if($row['status'] != 'FINALIZADA'){
+                                if($row['status'] == 'ABERTO'){
                                     echo '<img class="finalizarColeta" src="../../imagens/ok.png"';
                                     echo "<br>";
                                     echo '<img class="cancelarColeta" src="../../imagens/cancel.png"';
                                 }else{
-                                    echo '<img  class="" src="../../imagens/trash-full_97204.png"';
+                                    echo '<img  class="" src="../../imagens/silverblock_6302.png"';
                                 }
                                 
                             echo "</td>";
