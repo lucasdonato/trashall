@@ -54,6 +54,12 @@
                                             '<i class="fa fa-thumbs-down"></i>',
                                         cancelButtonAriaLabel: 'Thumbs down'
                                     })
+
+                                    //regarrega página automaticamente;  
+                                    setTimeout(function(){
+                                        window.location.reload(1);
+                                    }, 3000);
+
                                                             
                               }else if(response == '0'){
                                 console.log(response);
@@ -74,7 +80,7 @@
 
 
                                     Swal.fire({
-                  title: 'cancelar coleta?',
+                  title: 'Cancelar coleta?',
                   text: "Essa ação não poderá ser desfeita",
                   type: 'question',
                   showCancelButton: true,
@@ -97,6 +103,10 @@
                                     title: 'Coleta cancelada...',
                                     text: ':(',
                                 })
+                                    //regarrega página automaticamente;  
+                                    setTimeout(function(){
+                                        window.location.reload(1);
+                                    }, 3000);
                                                             
                               }else if(response == '0'){
                                 console.log(response);
