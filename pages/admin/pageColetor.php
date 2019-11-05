@@ -24,6 +24,11 @@
                   'Condominio cadastrado com sucesso!',
                   'success'
                 )
+                //regarrega página automaticamente;  
+                setTimeout(function(){
+                                        window.location.reload(1);
+                                    }, 3000);
+
                   $('#modalAdicionarColetor').modal('hide');
               }else if(response == '0'){
                 Swal.fire({
@@ -60,6 +65,11 @@
                         type: 'success',
                         title: 'Apagado com sucesso'
                   })
+
+                  //regarrega página automaticamente;  
+                  setTimeout(function(){
+                                        window.location.reload(1);
+                                    }, 2000);
 
                 }else if(response == "0"){
                     Swal.fire(
@@ -196,10 +206,7 @@
                 Adicionar</button>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluirColetor">
                 Excluir</button>
-                <button onClick="window.location.reload();"type="button" class="btn btn-dark">
-                    Recarregar
-                </button>
-            
+                
       </div><br><br>
 
       <table class="table table-striped">
@@ -549,7 +556,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-              <input type="submit" id="btnConfirmaExclusao" class="btn btn-dark">
+              <input type="submit" id="btnConfirmaExclusao" class="btn btn-success">
           
             </div>
       </form>
@@ -573,7 +580,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-              <input type="submit" id="btnConfirmaExclusao" value="Confirmar" class="btn btn-dark">
+              <input type="submit" id="btnConfirmaExclusao" value="Confirmar" class="btn btn-success">
           
             </div>
       </form>
