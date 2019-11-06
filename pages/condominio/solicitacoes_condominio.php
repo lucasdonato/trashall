@@ -13,56 +13,7 @@ $(document).ready(function(){
           /*COMO O ELEMENTO REPETE, DEVEMOS PASSAR A CLASSE NA TD
           COMO O ID É ÚNICO, APENAS 1 TD SERÁ CLICÁVEL*/
           $( ".cancelarSolicitacao" ).click(function() {
-
-                /*recuperar o id da solicitacao aqui*/              
-                let id_solicitacao = $(this)                // Representa o elemento clicado (checkbox)
-                                    .closest('tr')  // Encontra o elemento pai do seletor mais próximo
-                                    .find('td') // Encontra o elemento do seletor (todos os tds)
-                                    .eq(0)      // pega o primeiro elemento (contagem do eq inicia em 0)
-                                    .text();    // Retorna o texto do elemento
-
-                /*enviar o id da solicitacao para o faz_coleta
-                no faz_coleta usar o id da solicitacao para enviar os 
-                dddos para a tabela de coleta;*/
-
-                Swal.fire({
-                  title: 'Aceitar coleta?',
-                  text: "Essa ação não poderá ser desfeita",
-                  type: 'question',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Sim, aceitar!',
-                  cancelButtonText: "Cancelar",
-                  background: '#98FB98'
-              }).then((result) => {
-                  if (result.value) {
-                    /*DEVE CRIAR UM REGISTRO NA TABELA COLETA_ANDAMENTO
-                    DEVE ALTERA O STATUS DA SOLICITAÇÃO PARA CONFIRMADA*/                    
-                    $.ajax({
-                            type : 'POST',
-                            url  : '../faz_coleta.php',
-                            data : {id_solicitacao : id_solicitacao},
-                      
-                            success: function( response )
-                            {
-                              if(response == '1'){
-                                Swal.fire(
-                                  'Good Job!',
-                                  'Coleta em andamento, acesse o menu "Minhas coletas"',
-                                  'success'
-                                )      
-                                    //regarrega página automaticamente;  
-                                    setTimeout(function(){
-                                        window.location.reload(1);
-                                    }, 3000);                          
-                              }else if(response == '0'){
-                                console.log(response);
-                              }
-                            }
-                      });                   
-                  }
-                })
+              alert('vamos cancelar?');
             });
 
 
