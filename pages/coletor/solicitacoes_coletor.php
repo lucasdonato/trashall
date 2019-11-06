@@ -51,7 +51,11 @@
                                   'Good Job!',
                                   'Coleta em andamento, acesse o menu "Minhas coletas"',
                                   'success'
-                                )                                
+                                )      
+                                    //regarrega página automaticamente;  
+                                    setTimeout(function(){
+                                        window.location.reload(1);
+                                    }, 3000);                          
                               }else if(response == '0'){
                                 console.log(response);
                               }
@@ -95,6 +99,10 @@
                                   'Coleta negada"',
                                   'success'
                                 )
+                                    //regarrega página automaticamente;  
+                                    setTimeout(function(){
+                                        window.location.reload(1);
+                                    }, 3000);
                               }else if(response == '0'){
                                 console.log(response);
                               }
@@ -210,18 +218,17 @@
 
                       echo "</td>";
                       echo "<td class='actions'>";
-                        echo "<button type='button' class='btn btn-info' data-toggle='modal' 
-                              data-target='#ExemploModalCentralizado'>Visualizar</button>";
-                              /*APENAS SOLICITAÇÕES EM ABERTO PODEM FICAR COM OS BOTÕES 
-                              DE ACEITAR E NEGAR HABILITADOS*/
-                              if($row['situacao'] != 'EM ABERTO'){
-                                echo "<a style='cursor: not-allowed;' class='btn btn-success btn-xs' href='#'>Aceitar</a>";
-                                echo "<a style='cursor: not-allowed;' class='btn btn-danger btn-xs'  href='#' data-toggle='modal' data-target='#delete-modal'>Negar</a>";
-                              }else{
-                                echo "<a class='btn btn-success aceitarColeta btn-xs' href='#'>Aceitar</a>";
-                                echo "<a class='btn btn-danger negarColeta btn-xs'  href='#' data-toggle='modal' data-target='#delete-modal'>Negar</a>";
-                              }
-                        
+                              /*apenas solicitações confirmadas ficam com o botão
+                              visualizar ativo*/
+                              if($row['situacao'] == 'CONFIRMADA' || ($row['situacao'] == 'REJEITADA')){
+                                echo "<button type='button' class='btn btn-info' data-toggle='modal' 
+                                  data-target='#ExemploModalCentralizado'>Visualizar</button>";
+                                  echo "";
+                                  echo "";
+                              }else if($row['situacao'] == 'EM ABERTO'){
+                                echo "<a class='btn btn-success btn-xs aceitarColeta'  href='#'>Aceitar</a>";
+                                echo "<a class='btn btn-danger btn-xs negarColeta'  href='#' data-toggle='modal' data-target='#delete-modal'>Negar</a>";
+                              }      
                         
                       echo "</td>";
                     echo "</tr>";
