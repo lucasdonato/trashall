@@ -24,6 +24,8 @@ $(document).ready(function(){
                   if (result.value) {
 
                     /*AJAX PARA CANCELAR*/  
+                    /*apagar registro tabela solicitacoes 
+                    ja vai sumir automaticamente pro coletor também*/
                     
                   }
             })
