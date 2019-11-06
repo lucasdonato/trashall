@@ -39,26 +39,24 @@
                             success: function( response )
                             {
                               if(response == '1'){
-                                    Swal.fire({
-                                        title: '<strong>Avalie a coleta</strong>',
-                                        icon: 'info',
-                                        html:
-                                            'You can use <b>bold text</b>',
-                                        showCloseButton: true,
-                                        showCancelButton: true,
-                                        focusConfirm: false,
-                                        confirmButtonText:
-                                            '<i class="fa fa-thumbs-up"></i> Great!',
-                                        confirmButtonAriaLabel: 'Thumbs up, great!',
-                                        cancelButtonText:
-                                            '<i class="fa fa-thumbs-down"></i>',
-                                        cancelButtonAriaLabel: 'Thumbs down'
-                                    })
-
-                                    //regarrega página automaticamente;  
-                                    setTimeout(function(){
-                                        window.location.reload(1);
-                                    }, 10000);
+                                Swal.fire({
+                                      title: 'Avalie a coleta',
+                                      input: 'text',
+                                      icon: 'info',
+                                      inputAttributes: {
+                                        autocapitalize: 'off'
+                                      },
+                                      showCancelButton: true,
+                                      confirmButtonText: 'Enviar',
+                                      showLoaderOnConfirm: true,
+                                      preConfirm: (login) => {
+                                          //regarrega página automaticamente;  
+                                          setTimeout(function(){
+                                              window.location.reload(1);
+                                            }, 2000);   
+                                      },
+                                      allowOutsideClick: () => !Swal.isLoading()
+                                    })                                    
                                                             
                               }else if(response == '0'){
                                 console.log(response);

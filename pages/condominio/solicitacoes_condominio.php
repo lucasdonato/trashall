@@ -10,11 +10,25 @@
 <script>
 
 $(document).ready(function(){
-          /*COMO O ELEMENTO REPETE, DEVEMOS PASSAR A CLASSE NA TD
-          COMO O ID É ÚNICO, APENAS 1 TD SERÁ CLICÁVEL*/
+  
           $( ".cancelarSolicitacao" ).click(function() {
-              alert('vamos cancelar?');
-            });
+            Swal.fire({
+                  title: 'Cancelar e excluir solicitação?',
+                  text: "Essa ação não poderá ser desfeita",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Sim, cancelar e excluir!'
+                }).then((result) => {
+                  if (result.value) {
+
+                    /*AJAX PARA CANCELAR*/  
+                    
+                  }
+            })
+        }); 
+});
 
 
 </script>
@@ -121,9 +135,7 @@ $(document).ready(function(){
 
                           }else if($row['situacao'] == 'CONFIRMADA'){
                             echo "<img src='../../imagens/ok.png'>";
-                          }
-
-                         
+                          }                         
 
                       echo "</td>";
                       echo "<td class='actions'>";
