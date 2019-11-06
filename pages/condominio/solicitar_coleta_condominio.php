@@ -63,27 +63,34 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="./dashboard.html">
+                <a class="nav-link" href="pageDashboard.php">
                   <i class="material-icons">content_paste</i>
                   <p>Dashboard</p>
                 </a>
               </li>
             <li class="nav-item">
-                <a class="nav-link" href="./feedback_condominio.html">
+                <a class="nav-link" href="feedback_condominio.php">
                   <i class="material-icons">dashboard</i>
                   <p>Feedback</p>
                 </a>
               </li>
           <li class="nav-item">
-            <a class="nav-link" href="./solicitacoes_condominio.php">
+            <a class="nav-link" href="solicitacoes_condominio.php">
               <i class="material-icons">dashboard</i>
               <p>Acompanhar solicitações</p>
             </a>
           </li>
           <li class="nav-item active ">
-            <a class="nav-link" href="./solicitar_coleta_condominio.html">
+            <a class="nav-link" href="solicitar_coleta_condominio.php">
               <i class="material-icons">person</i>
               <p>Solicitar coleta</p>
+            </a>
+          </li>
+          
+          <li class="nav-item ">
+            <a class="nav-link" href="minhas_coletas.php">
+              <i class="material-icons">person</i>
+              <p>Minhas Coletas</p>
             </a>
           </li>
         </ul>
