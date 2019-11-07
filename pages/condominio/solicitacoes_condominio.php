@@ -12,6 +12,15 @@
 $(document).ready(function(){
   
           $( ".cancelarSolicitacao" ).click(function() {
+
+                                /*recuperar o id da solicitacao aqui*/              
+                                let id_solicitacao = $(this)                // Representa o elemento clicado (checkbox)
+                                    .closest('tr')  // Encontra o elemento pai do seletor mais próximo
+                                    .find('td') // Encontra o elemento do seletor (todos os tds)
+                                    .eq(0)      // pega o primeiro elemento (contagem do eq inicia em 0)
+                                    .text();    // Retorna o texto do elemento
+
+
             Swal.fire({
                   title: 'Cancelar e excluir solicitação?',
                   text: "Essa ação não poderá ser desfeita",
@@ -22,11 +31,30 @@ $(document).ready(function(){
                   confirmButtonText: 'Sim, cancelar e excluir!'
                 }).then((result) => {
                   if (result.value) {
-
-                    /*AJAX PARA CANCELAR*/  
-                    /*apagar registro tabela solicitacoes 
-                    ja vai sumir automaticamente pro coletor também*/
                     
+                        $.ajax({
+                                type : 'POST',
+                                url  : '../cancelar_solicitacao_condominio.php',
+                                data : {id_solicitacao : id_solicitacao},
+                          
+                                success: function( response )
+                                {
+                                  if(response == '1'){
+                                    Swal.fire(
+                                      'Good Job!',
+                                      'Solicitação cancelada e excluída',
+                                      'success'
+                                    )
+                                        //regarrega página automaticamente;  
+                                        setTimeout(function(){
+                                            window.location.reload(1);
+                                        }, 3000);
+                                  }else if(response == '0'){
+                                    console.log(response);
+                                  }
+                                }
+                          });
+
                   }
             })
         }); 
@@ -111,6 +139,7 @@ $(document).ready(function(){
                   $stmt->execute();
 
                   echo "<thead>";
+                          echo "<th style='display:none;'>id_solicitacao</th>";
                           echo "<th>Nome do Coletor</th>";
                           echo "<th>Data Solicitação</th>";
                           echo "<th>Situação</th>";
@@ -119,6 +148,9 @@ $(document).ready(function(){
 
                   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo "<tr>";
+                        echo "<td style='display:none;'>";
+                          echo $row['id_solicitacao'];
+                        echo "</td>";
                       echo "<td>";
                         echo $row['nome_empresa'];
                       echo "</td>";

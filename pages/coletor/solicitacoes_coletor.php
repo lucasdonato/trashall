@@ -93,7 +93,7 @@
                       
                             success: function( response )
                             {
-                              if('response' == '1'){
+                              if(response == '1'){
                                 Swal.fire(
                                   'Good Job!',
                                   'Coleta negada"',
