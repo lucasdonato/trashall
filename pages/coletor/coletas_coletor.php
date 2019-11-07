@@ -176,7 +176,7 @@
             $PDO = db_connect();
             try{
                
-                $sql = "SELECT ca.id_coleta,ca.status,ca.data_coleta, cole.nome_empresa, cond.nome_condominio, e.logradouro, s.peso
+                $sql = "SELECT ca.id_coleta,ca.status,ca.data_coleta, cole.nome_empresa, cond.nome_condominio, e.*, s.peso
                         FROM coleta_andamento ca 
                         JOIN coletor_empresa cole ON ca.id_coletor = cole.id_coletor
                         JOIN condominio cond ON ca.id_condominio = cond.id_condominio
@@ -220,10 +220,12 @@
                                     echo $row['nome_condominio'];
                             echo "</td>";                           
                             echo "<td>";
-                                    echo $row['logradouro'];
+                                    $endereco = $row['logradouro'].' '.$row['numero'].' '.$row['bairro'].' - '.
+                                                $row['cidade'].'/'.$row['estado'];
+                                    echo $endereco;
                             echo "</td>";
                             echo "<td>";
-                                    echo '<img  data-toggle="modal" data-target="#exampleModal" src="../../imagens/maps.png"';
+                                    echo '<img  data-toggle="modal" data-target="#modalMaps" src="../../imagens/maps.png"';
                             echo "</td>";
                             echo "<td>";
                                 if($row['status'] == 'ABERTO'){
@@ -476,7 +478,7 @@
 
 
 <!-- Large modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalMaps" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
