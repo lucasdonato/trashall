@@ -223,7 +223,7 @@
                                     echo $row['logradouro'];
                             echo "</td>";
                             echo "<td>";
-                                    echo '<img src="../../imagens/maps.png"';
+                                    echo '<img  data-toggle="modal" data-target="#exampleModal" src="../../imagens/maps.png"';
                             echo "</td>";
                             echo "<td>";
                                 if($row['status'] == 'ABERTO'){
@@ -473,5 +473,26 @@
 
     });
   </script>
+
+
+<!-- Large modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Localização</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          
+		    <iframe width="100%" height="500" src="https://maps.google.com/maps?q=<?php echo 'Una+aimores'; ?>&output=embed"></iframe>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
