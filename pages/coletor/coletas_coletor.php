@@ -272,7 +272,7 @@
                             echo "</td>";
                             echo "<td>";
                                 if($row['status'] == 'EM ANDAMENTO'){
-                                    echo '<img class="finalizarColeta" src="../../imagens/ok.png" title="A coleta está em andamento."';
+                                    echo '<img class="finalizarColeta" src="../../imagens/ok.png" title="Clique aqui para finalizar a coleta."';
                                     echo "<br>";
                                     echo '<img class="cancelarColeta" src="../../imagens/cancel.png" title="Clique aqui para cancelar a coleta."';
                                 }else if($row['status'] == 'CANCELADA'){
