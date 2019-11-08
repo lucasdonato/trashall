@@ -180,9 +180,12 @@
                                     .text();                                        
 
                     /*realiza um append no HTML passando via parametro
-                    a váriavel de endereço que foi recuperado acima*/
-                    $("#conteudoMaps").append('<iframe width="100%" height="500" src="https://maps.google.com/maps?q='+enderecoMaps+'&output=embed"></iframe>');
-                    $('#modalMaps').modal('show');                 
+                    a váriavel de endereço que foi recuperado acima
+                    é necessário remover antes para não ficar criando um novo frame
+                    sempre que for clicado no ícone*/
+                    $('#frameMaps').remove();
+                    $("#conteudoMaps").append('<iframe id="frameMaps" width="100%" height="500" src="https://maps.google.com/maps?q='+enderecoMaps+'&output=embed"></iframe>');
+                    $('#modalMaps').modal('show');                
                   
                 });
 
