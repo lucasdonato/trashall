@@ -268,15 +268,15 @@
                                     echo $endereco;
                             echo "</td>";
                             echo "<td>";
-                                    echo '<img class="classMaps" data-toggle="modal" data-target="#" src="../../imagens/maps.png"';
+                                    echo '<img class="classMaps" data-toggle="modal" data-target="#" src="../../imagens/maps.png" title="Clique aqui para ver a localização do endereço."';
                             echo "</td>";
                             echo "<td>";
                                 if($row['status'] == 'EM ANDAMENTO'){
-                                    echo '<img class="finalizarColeta" src="../../imagens/ok.png"';
+                                    echo '<img class="finalizarColeta" src="../../imagens/ok.png" title="A coleta está em andamento."';
                                     echo "<br>";
-                                    echo '<img class="cancelarColeta" src="../../imagens/cancel.png"';
+                                    echo '<img class="cancelarColeta" src="../../imagens/cancel.png" title="Clique aqui para cancelar a coleta."';
                                 }else if($row['status'] == 'CANCELADA'){
-                                    echo '<img  class="" src="../../imagens/silverblock_6302.png"';
+                                    echo '<img  class="" src="../../imagens/silverblock_6302.png" title="Essa coleta foi cancelada."';
                                 }else{
                                     echo '<img class="enviaWPP" src="../../imagens/Whatsapp_icon-icons.com_66931.png"';
                                 }

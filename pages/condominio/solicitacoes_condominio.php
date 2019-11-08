@@ -162,13 +162,13 @@ $(document).ready(function(){
                       PARA ALTERAR A CORD EXIBIDA NA COLUNA*/
                       echo "<td>";
                           if($row['situacao'] == 'EM ABERTO'){
-                            echo "<img src='../../imagens/time.png'>";
+                            echo "<img src='../../imagens/time.png' title='Solicitação em aberto, aguardando coletor.'>";
 
                           }else if($row['situacao'] == 'REJEITADA'){
-                            echo "<img src='../../imagens/cancel.png'>";
+                            echo "<img src='../../imagens/cancel.png' title='Solicitação rejeitada pelo coletor.'>";
 
                           }else if($row['situacao'] == 'CONFIRMADA'){
-                            echo "<img src='../../imagens/ok.png'>";
+                            echo "<img src='../../imagens/ok.png' title='Solicitação confirmada pelo coletor, uma coleta foi gerada!'>";
                           }                         
 
                       echo "</td>";
