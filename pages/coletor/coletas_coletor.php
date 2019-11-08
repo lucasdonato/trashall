@@ -278,7 +278,7 @@
                                 }else if($row['status'] == 'CANCELADA'){
                                     echo '<img  class="" src="../../imagens/silverblock_6302.png" title="Essa coleta foi cancelada."';
                                 }else{
-                                    echo '<img class="enviaWPP" src="../../imagens/Whatsapp_icon-icons.com_66931.png"';
+                                    echo '<img class="enviaWPP" src="../../imagens/Whatsapp_icon-icons.com_66931.png" title="Enviar WhatsApp para o condominío."';
                                 }
                                 
                             echo "</td>";
