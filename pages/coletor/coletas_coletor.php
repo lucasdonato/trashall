@@ -271,7 +271,7 @@
                                     echo '<img class="classMaps" data-toggle="modal" data-target="#" src="../../imagens/maps.png"';
                             echo "</td>";
                             echo "<td>";
-                                if($row['status'] == 'ABERTO'){
+                                if($row['status'] == 'EM ANDAMENTO'){
                                     echo '<img class="finalizarColeta" src="../../imagens/ok.png"';
                                     echo "<br>";
                                     echo '<img class="cancelarColeta" src="../../imagens/cancel.png"';

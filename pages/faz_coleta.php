@@ -24,7 +24,7 @@
 
         /*INSERE REGISTRO NA TABELA COLETA*/
         $sql_coleta = "INSERT INTO coleta_andamento(status,data_coleta, id_endereco_destino, id_coletor,id_condominio,id_solicitacao)
-                       VALUES('ABERTO',NOW(),:id_endereco,:id_coletor, :id_condominio, :id_solicitacao)"; 
+                       VALUES('EM ANDAMENTO',NOW(),:id_endereco,:id_coletor, :id_condominio, :id_solicitacao)"; 
         
         $stmt = $PDO->prepare($sql_coleta);        
         $stmt->bindParam(':id_endereco', $id_endereco_destino);
