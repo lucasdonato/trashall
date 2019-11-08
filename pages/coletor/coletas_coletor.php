@@ -113,6 +113,20 @@
                   }
                 })                  
         });
+        
+        $( ".enviaWPP" ).click(function() { 
+              /*recupera contato do condominio para enviar
+              a mensagem via zap zap*/
+                   var contato_condominio = $(this)        
+                                    .closest('tr')
+                                    .find('td') 
+                                    .eq(5)      
+                                    .text(); 
+              
+              /*link de redirecionamento com os parametros para o zap*/
+              window.open("https://api.whatsapp.com/send?phone="+contato_condominio+"&text=Ol%C3%A1%2C%20sua%20coleta%20foi%20finalizada!");
+        });
+        
     });
 </script>
 
@@ -176,7 +190,7 @@
                    var enderecoMaps = $(this)        
                                     .closest('tr')
                                     .find('td') 
-                                    .eq(5)      
+                                    .eq(6)      
                                     .text();                                        
 
                     /*realiza um append no HTML passando via parametro
@@ -200,12 +214,13 @@
             $PDO = db_connect();
             try{
                
-                $sql = "SELECT ca.id_coleta,ca.status,ca.data_coleta, cole.nome_empresa, cond.nome_condominio, e.*, s.peso
+                $sql = "SELECT ca.id_coleta,ca.status,ca.data_coleta, cole.nome_empresa, cond.nome_condominio, e.*, s.peso,cont.descricao
                         FROM coleta_andamento ca 
                         JOIN coletor_empresa cole ON ca.id_coletor = cole.id_coletor
                         JOIN condominio cond ON ca.id_condominio = cond.id_condominio
                         JOIN endereco e ON ca.id_endereco_destino = e.id_endereco
                         JOIN solicitacoes s ON s.id_solicitacao = ca.id_solicitacao
+                        JOIN contato cont ON cont.id_condominio = ca.id_condominio
                         WHERE ca.id_coletor = :id_coletor
                         ORDER BY ca.data_coleta DESC";
 
@@ -221,6 +236,7 @@
                         echo "<th>Data da coleta</th>";
                         echo "<th>Peso total</th>";
                         echo "<th>Condomínio</th>";
+                        echo "<th>Contato</th>";
                         echo "<th>Local da coleta</th>";
                         echo "<th>Maps</th>";
                         echo "<th>Acões</th>";
@@ -242,7 +258,10 @@
                             echo "</td>";
                             echo "<td>";
                                     echo $row['nome_condominio'];
-                            echo "</td>";                           
+                            echo "</td>";    
+                            echo "<td>";
+                                    echo $row['descricao'];
+                            echo "</td>";                          
                             echo "<td>";
                                     $endereco = $row['logradouro'].' '.$row['numero'].' '.$row['bairro'].' - '.
                                                 $row['cidade'].'/'.$row['estado'];
@@ -256,8 +275,10 @@
                                     echo '<img class="finalizarColeta" src="../../imagens/ok.png"';
                                     echo "<br>";
                                     echo '<img class="cancelarColeta" src="../../imagens/cancel.png"';
-                                }else{
+                                }else if($row['status'] == 'CANCELADA'){
                                     echo '<img  class="" src="../../imagens/silverblock_6302.png"';
+                                }else{
+                                    echo '<img class="enviaWPP" src="../../imagens/Whatsapp_icon-icons.com_66931.png"';
                                 }
                                 
                             echo "</td>";
