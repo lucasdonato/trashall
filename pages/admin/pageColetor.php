@@ -242,11 +242,9 @@
                             echo $row['login_usuario'];
                           echo "</td>";
                           echo "<td>";
-                          if($row['logradouro'] != ''){
-                            echo $row['logradouro'].', '. $row['numero']. ', '. $row['bairro'];
-                          }else{
-                            echo "-";
-                          }                          
+                              $endereco = $row['logradouro'].' '.$row['numero'].' '.$row['bairro'].' - '.
+                                          $row['cidade'].'/'.$row['estado'];
+                              echo $endereco;
                           echo "</td>";
                           echo "<td>";
                           if($row['descricao'] != ''){
