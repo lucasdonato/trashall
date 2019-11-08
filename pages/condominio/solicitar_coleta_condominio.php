@@ -6,6 +6,13 @@
           include "../bibliotecas.php";
     ?>
 </head>
+<style>
+
+  table>td{
+    font-weight:bold;
+  }
+
+</style>
 <script type="text/javascript">
 			$(document).ready(function(){
 				$('#formFazSolicitacao').submit(function(){					
@@ -214,12 +221,12 @@
 
     <div class='col-lg-6 col-md-12'>
               <div class='card'>
-                <div class='card-header card-header-warning'>
+                <div class='card-header card-header-info'>
                   <h4 class='card-title'>Coletores disponíveis</h4>
                   <p class='card-category'>Escolha abaixo um coletor para coletar o seu lixo!</p>
                 </div>
                 <div class='card-body table-responsive'>
-                  <table class='table table-hover'>
+                  <table class='table-hover'>
                     <?php
                           require_once '../init.php';
                           $PDO = db_connect();
@@ -233,7 +240,7 @@
                               $stmt = $PDO->prepare($sql);
                               $stmt->execute();
 
-                                echo "<thead class='text-warning'>";
+                                echo "<thead class='text-info'>";
                                   echo "<th>Nome Coletor</th>";
 
                                   //colunas ocultas na listagem
@@ -241,7 +248,7 @@
                                   echo "<th style='display:none;'>Materiais reciclados</th>"; 
                                   echo "<th style='display:none;'>Logradouro</th>"; 
                                   echo "<th style='display:none;'>id_coletor</th>";
-                                echo "<thead class='text-warning'>";
+                                echo "<thead class='text-info'>";
                               
                               //constroí a tabela
                               while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
