@@ -167,6 +167,27 @@
           
       </nav>
       <!-- End Navbar -->
+
+      <script>
+          $(document).ready(function(){       
+                $( ".classMaps" ).click(function() { 
+                   /*recupera o endereço para 
+                   montar o maps no modal */
+                   var enderecoMaps = $(this)        
+                                    .closest('tr')
+                                    .find('td') 
+                                    .eq(5)      
+                                    .text();                                        
+
+                    /*realiza um append no HTML passando via parametro
+                    a váriavel de endereço que foi recuperado acima*/
+                    $("#conteudoMaps").append('<iframe width="100%" height="500" src="https://maps.google.com/maps?q='+enderecoMaps+'&output=embed"></iframe>');
+                    $('#modalMaps').modal('show');                 
+                  
+                });
+
+          }); 
+      </script>
       
       <br><br><br><br><br>
       <div class="table-responsive col-md-12">
@@ -225,7 +246,7 @@
                                     echo $endereco;
                             echo "</td>";
                             echo "<td>";
-                                    echo '<img  data-toggle="modal" data-target="#modalMaps" src="../../imagens/maps.png"';
+                                    echo '<img class="classMaps" data-toggle="modal" data-target="#" src="../../imagens/maps.png"';
                             echo "</td>";
                             echo "<td>";
                                 if($row['status'] == 'ABERTO'){
@@ -246,13 +267,29 @@
                 echo 'erro'.$erro_2->getMessage();       
             }
         
-
         ?>
-
-         </table>
- 
+         </table> 
      </div>
   </div>
+
+<!-- Large modal responsavel por mostrar a localização do mapa-->
+<div class="modal fade" id="modalMaps" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Localização</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="conteudoMaps" class="modal-body">             
+  
+            <!-- VIA JQUERY OS DADOS SÃO INSERIDOS AQUI-->
+      </div>
+    </div>
+  </div>
+</div>
+
  
   <!--   Core JS Files   -->
   <script src="../../bootstrap-css-js/assets/js/core/jquery.min.js"></script>
@@ -475,26 +512,6 @@
 
     });
   </script>
-
-
-<!-- Large modal -->
-<div class="modal fade" id="modalMaps" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Localização</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          
-		    <iframe width="100%" height="500" src="https://maps.google.com/maps?q=<?php echo 'Una+aimores'; ?>&output=embed"></iframe>
-
-      </div>
-    </div>
-  </div>
-</div>
 
 </body>
 </html>
