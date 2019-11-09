@@ -33,8 +33,7 @@
                   confirmButtonColor: '#3085d6',
                   cancelButtonColor: '#d33',
                   confirmButtonText: 'Sim, aceitar!',
-                  cancelButtonText: "Cancelar",
-                  background: '#98FB98'
+                  cancelButtonText: "Cancelar"
               }).then((result) => {
                   if (result.value) {
                     /*DEVE CRIAR UM REGISTRO NA TABELA COLETA_ANDAMENTO
@@ -82,8 +81,7 @@
                   confirmButtonColor: '#3085d6',
                   cancelButtonColor: '#d33',
                   confirmButtonText: 'Sim, rejeitar!',
-                  cancelButtonText: "Cancelar",
-                  background: '#FFA07A'
+                  cancelButtonText: "Cancelar"
               }).then((result) => {
                   if (result.value) {                 
                     $.ajax({
@@ -482,8 +480,7 @@
         implementar depois
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-success">Salvar mudanças</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>

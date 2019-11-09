@@ -208,8 +208,8 @@
                       </div>                                 
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    <input type="submit" id="btnEnviaSolicitacao" value="Enviar solicitação" class="btn btn-success">
+                    <input type="submit" id="btnEnviaSolicitacao" value="Solicitar" class="btn btn-success">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>                    
                   </div>
               </form> 
             </div>   

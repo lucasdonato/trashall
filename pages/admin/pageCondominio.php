@@ -80,7 +80,6 @@
                   Swal.fire({
                     type: 'error',
                     title: 'Oops...',
-                    background: '#FFA07A',
                     text: 'Não é possível apagar o registro, existem vinculações em aberto!'
                   })             
                 }

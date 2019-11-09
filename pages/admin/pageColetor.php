@@ -81,7 +81,6 @@
                   Swal.fire({
                     type: 'error',
                     title: 'Oops...',
-                    background: '#FFA07A',
                     text: 'Não é possível apagar o registro, existem vinculações em aberto!'
                   })             
                 }
@@ -202,7 +201,7 @@
       </nav>
 
       <div id="acoes">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAdicionarColetor">
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalAdicionarColetor">
                 Adicionar</button>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluirColetor">
                 Excluir</button>
@@ -550,8 +549,8 @@
               
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
               <input type="submit" id="btnConfirmaExclusao" class="btn btn-success">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
           
             </div>
       </form>
@@ -574,9 +573,8 @@
                   Email: <input type="email" required name="txtEmailColetorExlusao" id="txtEmailColetorExlusao">  
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
               <input type="submit" id="btnConfirmaExclusao" value="Confirmar" class="btn btn-success">
-          
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>  
             </div>
       </form>
     </div>

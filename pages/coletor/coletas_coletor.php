@@ -27,8 +27,7 @@
                   confirmButtonColor: '#3085d6',
                   cancelButtonColor: '#d33',
                   confirmButtonText: 'Sim, finalizar!',
-                  cancelButtonText: "Cancelar",
-                  background: '#98FB98'
+                  cancelButtonText: "Cancelar"
               }).then((result) => {
                   if (result.value) {                  
                     $.ajax({
