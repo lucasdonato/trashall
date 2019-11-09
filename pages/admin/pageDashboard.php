@@ -56,12 +56,6 @@
               <p>Cadastrar condominío</p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="pageGerencimento.php">
-              <i class="material-icons">content_paste</i>
-              <p>Gerenciamento</p>
-            </a>
-          </li>
         </ul>
       </div>
     </div>
