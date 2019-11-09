@@ -19,11 +19,17 @@
 						success: function( response )
 						{
 							if(response == '1'){
-                Swal.fire(
-                  'Good job!',
-                  'Condominio cadastrado com sucesso!',
-                  'success'
-                )
+                const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                  })
+
+                  Toast.fire({
+                        type: 'success',
+                        title: 'Condominio cadastrado'
+                  })
                 //regarrega página automaticamente;  
                 setTimeout(function(){
                                         window.location.reload(1);
@@ -62,7 +68,7 @@
 
                   Toast.fire({
                         type: 'success',
-                        title: 'Apagado com sucesso'
+                        title: 'Condominio apagado'
                   })
 
                   //regarrega página automaticamente;  
@@ -202,7 +208,7 @@
       </nav>
       
       <div id="acoes">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAdicionarCondominio">
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalAdicionarCondominio">
                 Adicionar</button>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluirColetor">
                 Excluir</button>
@@ -521,8 +527,8 @@
               
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-              <input type="submit" id="btnConfirmar" class="btn btn-success">
+              <input type="submit" value='Confirmar' id="btnConfirmar" class="btn btn-success">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>             
           
             </div>
       </form>
@@ -545,8 +551,8 @@
                   Email: <input type="email" required name="txtEmailCondominioExlusao" id="txtEmailCondominioExlusao">  
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
               <input type="submit" id="btnConfirmaExclusao" value="Confirmar" class="btn btn-success">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>             
           
             </div>
       </form>

@@ -94,11 +94,17 @@
                             success: function( response )
                             {
                               if(response == '1'){
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Coleta cancelada...',
-                                    text: ':(',
-                                })
+                                  const Toast = Swal.mixin({
+                                      toast: true,
+                                      position: 'top-end',
+                                      showConfirmButton: false,
+                                      timer: 3000
+                                  })
+
+                                  Toast.fire({
+                                        type: 'success',
+                                        title: 'Coleta finalizada'
+                                  })                                
                                     //regarrega página automaticamente;  
                                     setTimeout(function(){
                                         window.location.reload(1);

@@ -19,11 +19,17 @@
 						success: function( response )
 						{
 							if(response == '1'){
-                Swal.fire(
-                  'Good job!',
-                  'Condominio cadastrado com sucesso!',
-                  'success'
-                )
+                const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                  })
+
+                  Toast.fire({
+                        type: 'success',
+                        title: 'Coletor cadastrado'
+                  })
                 //regarrega página automaticamente;  
                 setTimeout(function(){
                                         window.location.reload(1);
@@ -63,7 +69,7 @@
 
                   Toast.fire({
                         type: 'success',
-                        title: 'Apagado com sucesso'
+                        title: 'Coletor apagado'
                   })
 
                   //regarrega página automaticamente;  
@@ -549,7 +555,7 @@
               
             </div>
             <div class="modal-footer">
-              <input type="submit" id="btnConfirmaExclusao" class="btn btn-success">
+              <input type="submit" value='Confirmar' id="btnConfirmaExclusao" class="btn btn-success">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
           
             </div>

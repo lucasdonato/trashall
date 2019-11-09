@@ -40,11 +40,17 @@ $(document).ready(function(){
                                 success: function( response )
                                 {
                                   if(response == '1'){
-                                    Swal.fire(
-                                      'Good Job!',
-                                      'Solicitação cancelada e excluída',
-                                      'success'
-                                    )
+                                    const Toast = Swal.mixin({
+                                            toast: true,
+                                            position: 'top-end',
+                                            showConfirmButton: false,
+                                            timer: 3000
+                                      })
+
+                                      Toast.fire({
+                                            type: 'success',
+                                            title: 'Solicitação cancelada e excluída'
+                                      })
                                         //regarrega página automaticamente;  
                                         setTimeout(function(){
                                             window.location.reload(1);
