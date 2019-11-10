@@ -179,9 +179,9 @@ $(document).ready(function(){
                       echo "</td>";
                       echo "<td class='actions'>";
                           if($row['situacao'] == 'CONFIRMADA' || $row['situacao'] == 'REJEITADA'){
-                            echo "<button type='button' class='btn btn-info visualizarColeta'>Visualizar</button>";
+                            echo "<button type='button' title='Clique aqui para visualizar dados da coleta vinculada.' class='btn btn-info visualizarColeta'>Visualizar</button>";
                           }else if($row['situacao'] == 'EM ABERTO'){
-                            echo "<a class='btn btn-danger btn-xs cancelarSolicitacao'  href='#' data-toggle='modal' data-target='#delete-modal'>Cancelar</a>";
+                            echo "<a class='btn btn-danger btn-xs cancelarSolicitacao' title='Clique aqui para cancelar a solicitação.' href='#' data-toggle='modal' data-target='#delete-modal'>Cancelar</a>";
                           }   
                       echo "</td>";
                     echo "</tr>";
