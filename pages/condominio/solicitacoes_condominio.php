@@ -66,7 +66,6 @@ $(document).ready(function(){
         }); 
 });
 
-
 </script>
 
 <body class="">
@@ -179,12 +178,11 @@ $(document).ready(function(){
 
                       echo "</td>";
                       echo "<td class='actions'>";
-                          if($row['situacao'] != 'EM ABERTO'){
-                            echo "<button type='button' class='btn btn-info' data-toggle='modal' 
-                            data-target='#ExemploModalCentralizado'>Visualizar</button>";
-                          }else{
+                          if($row['situacao'] == 'CONFIRMADA' || $row['situacao'] == 'REJEITADA'){
+                            echo "<button type='button' class='btn btn-info visualizarColeta'>Visualizar</button>";
+                          }else if($row['situacao'] == 'EM ABERTO'){
                             echo "<a class='btn btn-danger btn-xs cancelarSolicitacao'  href='#' data-toggle='modal' data-target='#delete-modal'>Cancelar</a>";
-                          }                        
+                          }   
                       echo "</td>";
                     echo "</tr>";
 
@@ -423,9 +421,31 @@ $(document).ready(function(){
     });
   </script>
 
+<script>
+
+    /*RESPONSÁVEL POR CARREGAR O MODAL 
+    COM OS DADOS DA COLETA, PARA ISSO É NECESSÁRIO
+    REALIZAR UMA REQUISIÇÃO EM OUTRO ARQUIVO PHP*/
+    $(document).ready(function() {
+          $(".visualizarColeta").click(function() { 
+
+              /*RECUPERA O ID DA SOLICITACAO*/           
+                       let id_solicitacao = $(this)             
+                                    .closest('tr')  
+                                    .find('td') 
+                                    .eq(0)      
+                                    .text();
+                        
+              $('#ExemploModalCentralizado').modal('show'); 
+              $(".modal-body").load('../coleta_vinculada.php?id_solicitacao=' + id_solicitacao);
+          });
+    });
+
+</script>
+
 <!-- Modal -->
 <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="TituloModalCentralizado">Informações sobre a coleta</h5>
@@ -434,7 +454,8 @@ $(document).ready(function(){
         </button>
       </div>
       <div class="modal-body">
-        implementar depois
+          <!-- AQUI É PREENCHIDO AUTOMATICAMENTE COM O LOAD 
+        DO JQUERY QUE UTILIZAMOS-->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
