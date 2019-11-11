@@ -107,5 +107,74 @@
                 echo($stmt->errorInfo());
             }
         }
+
+
+        function total_coletores_dashboard_admin(){
+            $PDO = db_connect();
+            $sql = "SELECT COUNT(1) as total_coletor FROM coletor_empresa";
+            $stmt = $PDO->prepare($sql);
+            if(!$stmt->execute()){
+                echo($stmt->errorInfo());
+            }
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row['total_coletor'];
+        }
+
+        function total_condominio_dashboard_admin(){
+            $PDO = db_connect();
+            $sql = "SELECT COUNT(1) as total_condominio FROM condominio";
+            $stmt = $PDO->prepare($sql);
+            if(!$stmt->execute()){
+                echo($stmt->errorInfo());
+            }
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row['total_condominio'];
+        }
+
+        function total_solicitacao_rejeitadas_dashboard_admin(){
+            $PDO = db_connect();
+            $sql = "SELECT COUNT(1) as total_solicitacao_rejeitadas FROM solicitacoes WHERE situacao ='REJEITADA'";
+            $stmt = $PDO->prepare($sql);
+            if(!$stmt->execute()){
+                echo($stmt->errorInfo());
+            }
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row['total_solicitacao_rejeitadas'];
+        }
+
+        function total_solicitacao_emaberto_dashboard_admin(){
+            $PDO = db_connect();
+            $sql = "SELECT COUNT(1) as total_solicitacao_aberto FROM solicitacoes WHERE situacao ='EM ABERTO'";
+            $stmt = $PDO->prepare($sql);
+            if(!$stmt->execute()){
+                echo($stmt->errorInfo());
+            }
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row['total_solicitacao_aberto'];
+        }
+
+        function total_coletas_dashboard_admin(){
+            $PDO = db_connect();
+            $sql = "SELECT COUNT(1) as total_coletas FROM coleta_andamento";
+            $stmt = $PDO->prepare($sql);
+            if(!$stmt->execute()){
+                echo($stmt->errorInfo());
+            }
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row['total_coletas'];
+        }
+
+        function total_coletasConcluidas_dashboard_admin(){
+            $PDO = db_connect();
+            $sql = "SELECT COUNT(1) as total_coletas_concluidas FROM coleta_andamento WHERE status='FINALIZADA'";
+            $stmt = $PDO->prepare($sql);
+            if(!$stmt->execute()){
+                echo($stmt->errorInfo());
+            }
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row['total_coletas_concluidas'];
+        }
+
+        
         
 ?>
