@@ -93,7 +93,10 @@
 	<div class="container">
 		<header>
 			<h1>Faça sua <strong>autenticação</strong></h1>
+			<br>
+			<h3>Trashall</h3>
 		</header>
+		
 		<section class="main">
 			<form id="formLogin" action="" method="post" class="form-2">
 				<h1><span class="sign-in">Log in</span></h1>
