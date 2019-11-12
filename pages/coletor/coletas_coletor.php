@@ -38,24 +38,9 @@
                             success: function( response )
                             {
                               if(response == '1'){
-                                Swal.fire({
-                                      title: 'Avalie a coleta',
-                                      input: 'text',
-                                      icon: 'info',
-                                      inputAttributes: {
-                                        autocapitalize: 'off'
-                                      },
-                                      showCancelButton: true,
-                                      confirmButtonText: 'Enviar',
-                                      showLoaderOnConfirm: true,
-                                      preConfirm: (login) => {
-                                          //regarrega página automaticamente;  
-                                          setTimeout(function(){
-                                              window.location.reload(1);
-                                            }, 2000);   
-                                      },
-                                      allowOutsideClick: () => !Swal.isLoading()
-                                    })                                    
+                                
+                                $('#modalRatings').modal('show');      
+                                                              
                                                             
                               }else if(response == '0'){
                                 console.log(response);
@@ -131,6 +116,21 @@
               /*link de redirecionamento com os parametros para o zap*/
               window.open("https://api.whatsapp.com/send?phone="+contato_condominio+"&text=Ol%C3%A1%2C%20sua%20coleta%20foi%20finalizada!");
         });
+
+        $(":radio").click(function() {  
+            $('#modalRatings').modal('hide');  
+            const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000
+                                    })
+
+                                    Toast.fire({
+                                          type: 'success',
+                                          title: 'Feedback registrado'
+                                    })  
+          });
         
     });
 </script>
@@ -536,6 +536,86 @@
 
     });
   </script>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modalRatings" tabindex="-1" role="dialog" aria-labelledby="modalRatings" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalRatings">Avalie a coleta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            .rate {
+                float: left;
+                height: 46px;
+                padding: 0 10px;
+            }
+            .rate:not(:checked) > input {
+                position:absolute;
+                top:-9999px;
+            }
+            .rate:not(:checked) > label {
+                float:right;
+                width:1em;
+                overflow:hidden;
+                white-space:nowrap;
+                cursor:pointer;
+                font-size:30px;
+                color:#ccc;
+            }
+            .rate:not(:checked) > label:before {
+                content: '★ ';
+            }
+            .rate > input:checked ~ label {
+                color: #ffc700;    
+            }
+            .rate:not(:checked) > label:hover,
+            .rate:not(:checked) > label:hover ~ label {
+                color: #deb217;  
+            }
+            .rate > input:checked + label:hover,
+            .rate > input:checked + label:hover ~ label,
+            .rate > input:checked ~ label:hover,
+            .rate > input:checked ~ label:hover ~ label,
+            .rate > label:hover ~ input:checked ~ label {
+                color: #c59b08;
+        }
+
+      </style>
+      <div class="rate">
+            <input type="radio" id="star5" name="rate" value="5" />
+            <label for="star5" title="Muito bom">5 stars</label>
+            <input type="radio" id="star4" name="rate" value="4" />
+            <label for="star4" title="Bom">4 stars</label>
+            <input type="radio" id="star3" name="rate" value="3" />
+            <label for="star3" title="Regular">3 stars</label>
+            <input type="radio" id="star2" name="rate" value="2" />
+            <label for="star2" title="Ruim">2 stars</label>
+            <input type="radio" id="star1" name="rate" value="1" />
+            <label for="star1" title="Muito Ruim">1 star</label>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>  
+      </div>
+    </div>
+  </div>
+</div>
+
 
 </body>
 </html>
