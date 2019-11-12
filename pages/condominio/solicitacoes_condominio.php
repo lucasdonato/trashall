@@ -117,11 +117,42 @@ $(document).ready(function(){
                 <small class="text-muted">Acompanhamento solicitações</small>
               </h3>
           </div>
-          
+          <div class="collapse navbar-collapse justify-content-end">            
+            <ul class="navbar-nav">        
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">person</i>
+                  <p class="d-lg-none d-md-block">
+                    Account
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                  <a class="dropdown-item" href="#">Perfil</a>
+                  <a class="dropdown-item" href="#">Configurações</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Sair</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </nav>
       <!-- End Navbar -->
       
-      <br><br><br><br><br>
+       <!-- inicio dos filtros -->
+
+       <br><br><br><br>
+
+        <div>
+            <input type="radio" name="situacao_coleta" value="emAberto"> Em aberto
+            <input type="radio" name="situacao_coleta" value="confirmada"> Confirmadas
+            <input type="radio" name="situacao_coleta" value="rejeitada"> Rejeitadas
+        </div>
+
+        <br>
+
+<!-- fim dos filtros -->
+
       <div class="table-responsive col-md-12">
         <table class="table table-striped" cellspacing="0" cellpadding="0">
         <?php

@@ -49,7 +49,7 @@
           <li class="nav-item">
             <a class="nav-link" href="solicitacoes_coletor.php">
               <i class="material-icons">dashboard</i>
-              <p>Ver solicitações</p>
+              <p>Acompanhar Solicitações</p>
             </a>
           </li>
           <li class="nav-item ">
@@ -62,7 +62,7 @@
       </div>
     </div>
     <div class="main-panel">
-     
+        
       </nav>
       <!-- End Navbar -->
 
