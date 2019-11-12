@@ -78,14 +78,21 @@
       <!-- End Navbar -->
 
 
-  <?php
+      <?php
       require '../init.php';
-      $total_coletores = total_coletores_dashboard_admin();
-      $total_condominio = total_condominio_dashboard_admin();
-      $total_solicitacao_rejeitadas_dashboard_admin = total_solicitacao_rejeitadas_dashboard_admin();
-      $total_solicitacao_emaberto_dashboard_admin = total_solicitacao_emaberto_dashboard_admin();
-      $total_coletas = total_coletas_dashboard_admin();
-      $total_coletas_concluidas = total_coletasConcluidas_dashboard_admin();
+
+      //solicitações
+      $total_solicitacoes_rejeitadas_dashboard_condominio = total_solicitacoes_rejeitadas_dashboard_condominio($_SESSION['id_condominio']);
+      $total_solicitacao_emaberto_dashboard_condominio = total_solicitacao_emaberto_dashboard_condominio($_SESSION['id_condominio']);
+      $total_solicitacoes = total_solicitacoes_dashboard_condominio($_SESSION['id_condominio']);
+      $total_solicitacoes_confirmadas = total_solicitacoes_confirmadas_dashboard_condominio($_SESSION['id_condominio']);
+
+      //coletas
+      $total_coletas = total_coletas_dashboard_condominio($_SESSION['id_condominio']);
+      $total_coletas_concluidas = total_coletasFinalizadas_dashboard_condominio($_SESSION['id_condominio']);
+      $total_coletas_canceladas_dashboard_condominio = total_coletas_canceladas_dashboard_condominio($_SESSION['id_condominio']);
+      $total_coletas_andamento_dashboard_condominio = total_coletas_andamento_dashboard_condominio($_SESSION['id_condominio']);
+    
   ?>
 
       <!-- inicio dashboards -->
@@ -97,8 +104,8 @@
                   <div class="card-icon">
                     <i class="material-icons">store</i>
                   </div>
-                  <p class="card-category">Total coletores</p>
-                  <h2 class="card-title"><?php echo $total_coletores ?></h2>
+                  <p class="card-category">Total solicitações</p>
+                  <h2 class="card-title"><?php echo $total_solicitacoes ?></h2>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -110,12 +117,46 @@
 
        <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">content_copy</i>
+                  </div>
+                  <p class="card-category">Solicitações em aberto</p>
+                  <h2 class="card-title"><?php echo $total_solicitacao_emaberto_dashboard_condominio ?></h2>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">local_offer</i> Período total
+                  </div>
+                </div>
+              </div>
+      </div>
+
+       <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-danger card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">info_outline</i>
+                  </div>
+                  <p class="card-category">Solicitações rejeitadas</p>
+                  <h2 class="card-title"><?php echo $total_solicitacoes_rejeitadas_dashboard_condominio ?></h2>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">local_offer</i> Período total
+                  </div>
+                </div>
+              </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
                   <div class="card-icon">
                     <i class="material-icons">store</i>
                   </div>
-                  <p class="card-category">Total condominío</p>
-                  <h2 class="card-title"><?php echo $total_condominio ?></h2>
+                  <p class="card-category">Solicitações confirmadas</p>
+                  <h2 class="card-title"><?php echo $total_solicitacoes_confirmadas ?></h2>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -125,7 +166,7 @@
               </div>
        </div>
 
-       <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
                   <div class="card-icon">
@@ -140,9 +181,43 @@
                   </div>
                 </div>
               </div>
+        </div>
+
+       <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">content_copy</i>
+                  </div>
+                  <p class="card-category">Coletas em andamento</p>
+                  <h2 class="card-title"><?php echo $total_coletas_andamento_dashboard_condominio ?></h2>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">date_range</i> Período total
+                  </div>
+                </div>
+              </div>
        </div>
 
        <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-danger card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">info_outline</i>
+                  </div>
+                  <p class="card-category">Coletas canceladas</p>
+                  <h2 class="card-title"><?php echo $total_coletas_canceladas_dashboard_condominio ?></h2>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">local_offer</i> Período total
+                  </div>
+                </div>
+              </div>
+          </div>   
+       
+      <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
                   <div class="card-icon">
@@ -158,42 +233,8 @@
                 </div>
               </div>
        </div>
-
-
-       <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-danger card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">info_outline</i>
-                  </div>
-                  <p class="card-category">Solicitações rejeitadas</p>
-                  <h2 class="card-title"><?php echo $total_solicitacao_rejeitadas_dashboard_admin ?></h2>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">local_offer</i> Período total
-                  </div>
-                </div>
-              </div>
-          </div>
-
-            
-          <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">content_copy</i>
-                  </div>
-                  <p class="card-category">Solicitações em aberto</p>
-                  <h2 class="card-title"><?php echo $total_solicitacao_emaberto_dashboard_admin ?></h2>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">local_offer</i> Período total
-                  </div>
-                </div>
-              </div>
-      </div>
+  
+      
     <!-- FIM DASHBOARDS -->
 
   </div>

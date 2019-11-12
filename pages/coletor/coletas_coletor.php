@@ -103,7 +103,7 @@
 
                                   Toast.fire({
                                         type: 'success',
-                                        title: 'Coleta finalizada'
+                                        title: 'Coleta cancelada'
                                   })                                
                                     //regarrega página automaticamente;  
                                     setTimeout(function(){
