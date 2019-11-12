@@ -10,9 +10,7 @@
 <head>
   <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../../bootstrap-css-js/assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../../bootstrap-css-js/assets/img/favicon.png">
+  
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Trashall
@@ -61,9 +59,36 @@
       </div>
     </div>
     <div class="main-panel">
-     
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+              <h3>
+                Trashall -
+                <small class="text-muted">Dashboard</small>
+              </h3>
+          </div>
+        
+          <div class="collapse navbar-collapse justify-content-end">            
+            <ul class="navbar-nav">        
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">person</i>
+                  <p class="d-lg-none d-md-block">
+                    Account
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                  <a class="dropdown-item" href="#">Perfil</a>
+                  <a class="dropdown-item" href="#">Configurações</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Sair</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </nav>
-      <!-- End Navbar -->
 
 
   <?php

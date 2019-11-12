@@ -30,12 +30,7 @@
                   <p>Dashboard</p>
                 </a>
               </li>
-            <li class="nav-item">
-                <a class="nav-link" href="feedback_condominio.php">
-                  <i class="material-icons">dashboard</i>
-                  <p>Feedback</p>
-                </a>
-              </li>
+            
           <li class="nav-item">
             <a class="nav-link" href="solicitacoes_condominio.php">
               <i class="material-icons">dashboard</i>
