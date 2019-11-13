@@ -117,7 +117,7 @@
               window.open("https://api.whatsapp.com/send?phone="+contato_condominio+"&text=Ol%C3%A1%2C%20sua%20coleta%20foi%20finalizada!");
         });
 
-        $(":radio").click(function() {  
+        $("input[name='rate']").click(function() {  
             $('#modalRatings').modal('hide');  
             const Toast = Swal.mixin({
                                         toast: true,
@@ -132,10 +132,29 @@
                                     })  
           });
 
+          /*faz logout no sistema*/
           $( "#logout" ).click(function() { 
-          window.location.href = '../index.php';      
-        });
+            window.location.href = '../index.php';    
+          });
         
+          /*faz o filtro*/
+          $( "input[name='situacao_coleta']" ).click(function() { 
+                
+                  //pega o valor do radio selecionado;
+                var situacao = $("input[name='situacao_coleta']:checked").val();
+                $.ajax({
+                            type : 'GET',
+                            url  : '../atualiza_coletas_coletor.php?situacao='+situacao,
+                            success: function( response )
+                            {
+                              alert(response);                            
+                                       $('#coletasColetor').remove(); 
+                                       $("#coletasColetor").append('');      
+                                          
+                            }
+                      }); 
+
+          });
     });
 </script>
 
@@ -236,9 +255,9 @@
           <br><br><br><br>
 
           <div>
-              <input type="radio" name="situacao_coleta" value="emAberto"> Em aberto
-              <input type="radio" name="situacao_coleta" value="confirmada"> Confirmadas
-              <input type="radio" name="situacao_coleta" value="rejeitada"> Rejeitadas
+              <input type="radio" name="situacao_coleta" value="EM ANDAMENTO"> Em andamento
+              <input type="radio" name="situacao_coleta" value="FINALIZADA"> Finalizadas
+              <input type="radio" name="situacao_coleta" value="CANCELADA"> Canceladas
           </div>
 
           <br>
