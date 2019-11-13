@@ -138,6 +138,7 @@
 
   </script>
 
+
 <body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="azure" data-background-color="white" data-image="../../bootstrap-css-js/assets/img/side.jpg">
@@ -284,8 +285,7 @@
                               /*apenas solicitações confirmadas ficam com o botão
                               visualizar ativo*/
                               if($row['situacao'] == 'CONFIRMADA' || ($row['situacao'] == 'REJEITADA')){
-                                echo "<button type='button' class='btn btn-info' data-toggle='modal' 
-                                  data-target='#ExemploModalCentralizado'>Visualizar</button>";
+                                  echo "<button type='button' title='Clique aqui para visualizar dados da coleta vinculada.' class='btn btn-info visualizarColeta'>Visualizar</button>";
                                   echo "";
                                   echo "";
                               }else if($row['situacao'] == 'EM ABERTO'){
@@ -531,9 +531,33 @@
     });
   </script>
 
+
+<script>
+
+    /*RESPONSÁVEL POR CARREGAR O MODAL 
+    COM OS DADOS DA COLETA, PARA ISSO É NECESSÁRIO
+    REALIZAR UMA REQUISIÇÃO EM OUTRO ARQUIVO PHP*/
+    $(document).ready(function() {
+          $(".visualizarColeta").click(function() { 
+
+              /*RECUPERA O ID DA SOLICITACAO*/           
+                       let id_solicitacao = $(this)             
+                                    .closest('tr')  
+                                    .find('td') 
+                                    .eq(0)      
+                                    .text();
+                        
+              $('#ExemploModalCentralizado').modal('show'); 
+              $(".modal-body").load('../coleta_vinculada.php?id_solicitacao=' + id_solicitacao);
+          });
+    });
+
+</script>
+
+
 <!-- Modal -->
 <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="TituloModalCentralizado">Informações sobre a coleta</h5>
