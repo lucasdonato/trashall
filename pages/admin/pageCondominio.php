@@ -95,6 +95,10 @@
             return false;
         })
 
+        $( "#logout" ).click(function() { 
+          window.location.href = '../index.php';      
+        });
+
 			});
   </script>
  
@@ -155,7 +159,7 @@
                   <a class="dropdown-item" href="#">Perfil</a>
                   <a class="dropdown-item" href="#">Configurações</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Sair</a>
+                  <a class="dropdown-item" id="logout" href="#">Sair</a>
                 </div>
               </li>
             </ul>
