@@ -174,7 +174,7 @@
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluirColetor">
                 Excluir</button>
             
-      </div><br><br>
+      </div>
         
       <div class="table-responsive col-md-12">
         <table id="coletasColetor" class="table table-striped" cellspacing="0" cellpadding="0">

@@ -116,8 +116,24 @@
             });      
             
             $( "#logout" ).click(function() { 
-          window.location.href = '../index.php';      
-        });
+                window.location.href = '../index.php';      
+            });
+
+            /*faz o filtro manipulando o html*/
+          $( "input[name='situacao_coleta']" ).click(function() { 
+                var situacao_radio = $("input[name='situacao_coleta']:checked").val();
+                $("#solicitacoesColetor tbody tr").each(function(){                  
+                    var situacao_table =  $(this).find( ".status" ).text();
+                    if(situacao_radio == 'TODOS'){
+                        location.reload();
+                    }else if(situacao_radio != situacao_table){
+                        $(this).hide();
+                    }else{
+                        $(this).show();
+                    }
+                });
+          });
+          /*fim manipulação filtros*/
 			});
 
   </script>
@@ -193,12 +209,24 @@
 
           <br><br><br><br>
 
-          <div>
-              <input type="radio" name="situacao_coleta" value="emAberto"> Em aberto
-              <input type="radio" name="situacao_coleta" value="confirmada"> Confirmadas
-              <input type="radio" name="situacao_coleta" value="rejeitada"> Rejeitadas
-          </div>
-
+                  <!-- MONTA OS RADIOBUTTONS -->
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="todos" name="situacao_coleta" value="TODOS" checked>
+                    <label style='color:black;' class="custom-control-label" for="todos">TODOS</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="emAberto" name="situacao_coleta" value="EM ABERTO">
+                    <label style='color:black;' class="custom-control-label" for="emAberto">EM ABERTO</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="confirmada" name="situacao_coleta" value="CONFIRMADA">
+                    <label style='color:black;' class="custom-control-label" for="confirmada">CONFIRMADA</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="rejeitada" name="situacao_coleta" value="REJEITADA">
+                    <label style='color:black;' class="custom-control-label" for="rejeitada">REJEITADA</label>
+                  </div>
+          
           <br>
 
           <!-- fim dos filtros -->
