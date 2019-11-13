@@ -81,29 +81,29 @@ $(document).ready(function(){
         </a>
       </div>
       <div class="sidebar-wrapper">
-        <ul class="nav">
+      <ul class="nav">
             <li class="nav-item">
                 <a class="nav-link" href="pageDashboard.php">
-                  <i class="material-icons">content_paste</i>
+                  <i class="material-icons">dashboard</i>
                   <p>Dashboard</p>
                 </a>
               </li>
-        
+          
           <li class="nav-item active">
             <a class="nav-link" href="solicitacoes_condominio.php">
-              <i class="material-icons">dashboard</i>
-              <p>Acompanhar solicitações</p>
+              <i class="material-icons">remove_red_eye</i>
+              <p>Acompanhar Solicitações</p>
             </a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="solicitar_coleta_condominio.php">
-              <i class="material-icons">person</i>
+              <i class="material-icons">rate_review</i>
               <p>Solicitar coleta</p>
             </a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="minhas_coletas.php">
-              <i class="material-icons">person</i>
+              <i class="material-icons">list</i>
               <p>Minhas Coletas</p>
             </a>
           </li>

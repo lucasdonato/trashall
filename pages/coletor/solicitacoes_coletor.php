@@ -131,23 +131,23 @@
         </a>
       </div>
       <div class="sidebar-wrapper">
-        <ul class="nav">
+      <ul class="nav">
             <li class="nav-item">
                 <a class="nav-link" href="pageDashboard.php">
-                  <i class="material-icons">content_paste</i>
+                  <i class="material-icons">dashboard</i>
                   <p>Dashboard</p>
                 </a>
               </li>
-          
+         
           <li class="nav-item active">
-            <a class="nav-link" href="solicitacoes_condominio.php">
-              <i class="material-icons">dashboard</i>
-              <p>Acompanhar solicitações</p>
+            <a class="nav-link" href="solicitacoes_coletor.php">
+              <i class="material-icons">remove_red_eye</i>
+              <p>Acompanhar Solicitações</p>
             </a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="coletas_coletor.php">
-              <i class="material-icons">person</i>
+              <i class="material-icons">list</i>
               <p>Minhas coletas</p>
             </a>
           </li>

@@ -44,13 +44,13 @@
               </li>
           <li class="nav-item">
             <a class="nav-link" href="pageColetor.php">
-              <i class="material-icons">dashboard</i>
+              <i class="material-icons">add_circle</i>
               <p>Cadastrar coletor</p>
             </a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="pageCondominio.php">
-              <i class="material-icons">person</i>
+              <i class="material-icons">add_circle</i>
               <p>Cadastrar condominío</p>
             </a>
           </li>
