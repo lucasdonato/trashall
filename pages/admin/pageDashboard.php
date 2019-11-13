@@ -29,8 +29,7 @@
   <div class="wrapper ">
     <div class="sidebar" data-color="azure" data-background-color="white" data-image="../../bootstrap-css-js/assets/img/side.jpg">
       <div class="logo">
-        <a href="#" class="simple-text logo-normal">
-        <span class="glyphicon glyphicon-trash" aria-hidden="true"> TrashAll </span>
+        <a href="#" class="simple-text logo-normal">TrashAll
           <br>          
           
         </a>
