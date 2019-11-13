@@ -423,6 +423,5 @@
             }
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             return $row['total_coletas_condominio'];
-        }
-        
+        }     
 ?>

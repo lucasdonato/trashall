@@ -130,6 +130,10 @@
                                           type: 'success',
                                           title: 'Feedback registrado'
                                     })  
+                                     //regarrega página automaticamente;  
+                                      setTimeout(function(){
+                                        window.location.reload(1);
+                                    }, 2000);
           });
 
           /*faz logout no sistema*/
@@ -137,24 +141,21 @@
             window.location.href = '../index.php';    
           });
         
-          /*faz o filtro*/
+          /*faz o filtro manipulando o html*/
           $( "input[name='situacao_coleta']" ).click(function() { 
-                
-                  //pega o valor do radio selecionado;
-                var situacao = $("input[name='situacao_coleta']:checked").val();
-                $.ajax({
-                            type : 'GET',
-                            url  : '../atualiza_coletas_coletor.php?situacao='+situacao,
-                            success: function( response )
-                            {
-                              alert(response);                            
-                                       $('#coletasColetor').remove(); 
-                                       $("#coletasColetor").append('');      
-                                          
-                            }
-                      }); 
-
+                var situacao_radio = $("input[name='situacao_coleta']:checked").val();
+                $("#coletasColetor tbody tr").each(function(){                  
+                    var situacao_table =  $(this).find( ".status" ).text();
+                    if(situacao_radio == 'TODOS'){
+                        location.reload();
+                    }else if(situacao_radio != situacao_table){
+                        $(this).hide();
+                    }else{
+                        $(this).show();
+                    }
+                });
           });
+          /*fim manipulação filtros*/
     });
 </script>
 
@@ -254,12 +255,24 @@
 
           <br><br><br><br>
 
-          <div>
-              <input type="radio" name="situacao_coleta" value="EM ANDAMENTO"> Em andamento
-              <input type="radio" name="situacao_coleta" value="FINALIZADA"> Finalizadas
-              <input type="radio" name="situacao_coleta" value="CANCELADA"> Canceladas
-          </div>
-
+                  <!-- MONTA OS RADIOBUTTONS -->
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="todos" name="situacao_coleta" value="TODOS" checked>
+                    <label style='color:black;' class="custom-control-label" for="todos">TODOS</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="emAndamento" name="situacao_coleta" value="EM ANDAMENTO">
+                    <label style='color:black;' class="custom-control-label" for="emAndamento">EM ANDAMENTO</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="finalizada" name="situacao_coleta" value="FINALIZADA">
+                    <label style='color:black;' class="custom-control-label" for="finalizada">FINALIZADA</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="cancelada" name="situacao_coleta" value="CANCELADA">
+                    <label style='color:black;' class="custom-control-label" for="cancelada">CANCELADA</label>
+                  </div>
+          
           <br>
 
           <!-- fim dos filtros -->
@@ -267,7 +280,7 @@
       <div class="table-responsive col-md-12">
         <table id="coletasColetor" class="table table-striped" cellspacing="0" cellpadding="0">
         <?php
-            require_once '../init.php';
+            include '../init.php';
             $PDO = db_connect();
             try{
                
@@ -304,7 +317,7 @@
                             echo "<td style='display:none;'>";
                                     echo $row['id_coleta'];
                             echo "</td>";
-                            echo "<td>";
+                            echo "<td class='status'>";
                                     echo $row['status'];
                             echo "</td>";
                             echo "<td>";
@@ -347,7 +360,6 @@
             }catch(PDOException $erro_2){
                 echo 'erro'.$erro_2->getMessage();       
             }
-        
         ?>
          </table> 
      </div>
@@ -594,10 +606,6 @@
     });
   </script>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Launch demo modal
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="modalRatings" tabindex="-1" role="dialog" aria-labelledby="modalRatings" aria-hidden="true">
