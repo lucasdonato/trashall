@@ -85,9 +85,9 @@
 
       <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">
-                <div class="card-header card-header-success card-header-icon">
+                <div class="card-header card-header-info card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">store</i>
+                    <i class="material-icons">person_outline</i>
                   </div>
                   <p class="card-category">Total coletores</p>
                   <h2 class="card-title"><?php echo $total_coletores ?></h2>
@@ -102,9 +102,9 @@
 
        <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">
-                <div class="card-header card-header-success card-header-icon">
+                <div class="card-header card-header-info card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">store</i>
+                    <i class="material-icons">person_outline</i>
                   </div>
                   <p class="card-category">Total condominío</p>
                   <h2 class="card-title"><?php echo $total_condominio ?></h2>
@@ -121,7 +121,7 @@
               <div class="card card-stats">
                 <div class="card-header card-header-info card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">store</i>
+                    <i class="material-icons">restore_from_trash</i>
                   </div>
                   <p class="card-category">Total solicitações</p>
                   <h2 class="card-title"><?php echo $total_solicitacoes ?></h2>
@@ -138,14 +138,14 @@
               <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">content_copy</i>
+                    <i class="material-icons">av_timer</i>
                   </div>
                   <p class="card-category">Solicitações em aberto</p>
                   <h2 class="card-title"><?php echo $total_solicitacao_emaberto_dashboard_admin ?></h2>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">local_offer</i> Período total
+                    <i class="material-icons">date_range</i> Período total
                   </div>
                 </div>
               </div>
@@ -157,14 +157,14 @@
               <div class="card card-stats">
                 <div class="card-header card-header-danger card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">info_outline</i>
+                    <i class="material-icons">cancel</i>
                   </div>
                   <p class="card-category">Solicitações rejeitadas</p>
                   <h2 class="card-title"><?php echo $total_solicitacao_rejeitadas_dashboard_admin ?></h2>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">local_offer</i> Período total
+                    <i class="material-icons">date_range</i> Período total
                   </div>
                 </div>
               </div>
@@ -172,9 +172,9 @@
 
       <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">
-                <div class="card-header card-header-success card-header-icon">
+                <div class="card-header card-header-info card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">store</i>
+                    <i class="material-icons">restore_from_trash</i>
                   </div>
                   <p class="card-category">Total coletas</p>
                   <h2 class="card-title"><?php echo $total_coletas ?></h2>
@@ -191,7 +191,7 @@
               <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">content_copy</i>
+                    <i class="material-icons">av_timer</i>
                   </div>
                   <p class="card-category">Coletas em andamento</p>
                   <h2 class="card-title"><?php echo $total_coletas_andamento_dashboard_admin ?></h2>
@@ -207,7 +207,7 @@
               <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">store</i>
+                    <i class="material-icons">check_box</i>
                   </div>
                   <p class="card-category">Coletas concluídas</p>
                   <h2 class="card-title"><?php echo $total_coletas_concluidas ?></h2>
@@ -224,14 +224,14 @@
               <div class="card card-stats">
                 <div class="card-header card-header-danger card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">info_outline</i>
+                    <i class="material-icons">cancel</i>
                   </div>
                   <p class="card-category">Coletas canceladas</p>
                   <h2 class="card-title"><?php echo $total_coletas_canceladas_dashboard_admin ?></h2>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">local_offer</i> Período total
+                    <i class="material-icons">date_range</i> Período total
                   </div>
                 </div>
               </div>
