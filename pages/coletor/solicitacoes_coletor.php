@@ -119,11 +119,17 @@
                 window.location.href = '../index.php';      
             });
 
+
             /*faz o filtro manipulando o html*/
           $( "input[name='situacao_coleta']" ).click(function() { 
                 var situacao_radio = $("input[name='situacao_coleta']:checked").val();
+                
                 $("#solicitacoesColetor tbody tr").each(function(){                  
-                    var situacao_table =  $(this).find( ".status" ).text();
+                    
+                  /*PEGA O ID DA IMAGEM, ESSA É A FAMOSA POG
+                  PROGRAMAÇÃO ORIENTADA A GAMBIARRA*/
+                  var situacao_table =  $(this).find( ".status img" ).attr("id");               
+
                     if(situacao_radio == 'TODOS'){
                         location.reload();
                     }else if(situacao_radio != situacao_table){
@@ -269,15 +275,15 @@
                       
                       /*VALIDA O TIPO DE SITUACAO
                       PARA ALTERAR A CORD EXIBIDA NA COLUNA*/
-                      echo "<td>";
+                      echo "<td class='status'>";
                           if($row['situacao'] == 'EM ABERTO'){
-                            echo "<img src='../../imagens/time.png' title='Solicitação em aberto.'>";
+                            echo "<img id='EM ABERTO' src='../../imagens/time.png' title='Solicitação em aberto.'>";
 
                           }else if($row['situacao'] == 'REJEITADA'){
-                            echo "<img src='../../imagens/cancel.png' title='Solicitação rejeitada.'>";
+                            echo "<img id='REJEITADA' src='../../imagens/cancel.png' title='Solicitação rejeitada.'>";
 
                           }else if($row['situacao'] == 'CONFIRMADA'){
-                            echo "<img  src='../../imagens/ok.png' title='Solicitação confirmada, uma coleta foi gerada.'>";
+                            echo "<img  id='CONFIRMADA' src='../../imagens/ok.png' title='Solicitação confirmada, uma coleta foi gerada.'>";
                           }
 
                       echo "</td>";
