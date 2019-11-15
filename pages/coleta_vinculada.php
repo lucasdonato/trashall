@@ -32,6 +32,7 @@
                               try{     
                                     echo "<thead>";                  
                                           echo "<th>Data coleta</th>";  
+                                          echo "<th>Finalizada em</th>";  
                                           echo "<th>Materiais da coleta</th>"; 
                                           echo "<th>Peso</th>";
                                           echo "<th>Coletor</th>"; 
@@ -42,6 +43,13 @@
                                     echo "<tr>";
                                     echo "<td>";
                                           echo date('d/m/Y H:i:s',strtotime($row['data_coleta']));                             
+                                    echo "</td>";
+                                    echo "<td>";
+                                          if($row['data_finalizacao'] == NULL){
+                                                echo '';
+                                          }else{
+                                                echo date('d/m/Y H:i:s',strtotime($row['data_finalizacao']));   
+                                          }                                                                    
                                     echo "</td>";
                                     echo "<td>";
                                           echo $row['materiais_coletados'];                  

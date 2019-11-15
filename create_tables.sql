@@ -112,10 +112,34 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `db_trashall`.`solicitacoes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_trashall`.`solicitacoes` (
+  `id_solicitacao` INT NOT NULL AUTO_INCREMENT,
+  `materiais_coletados` VARCHAR(200) NULL DEFAULT NULL,
+  `id_coletor` INT(100) NOT NULL,
+  `id_condominio` INT(100) NOT NULL,
+  `data_solicitacao` DATETIME NOT NULL,
+  `peso` DOUBLE NOT NULL,
+  `situacao` VARCHAR(45) NOT NULL DEFAULT 'EM ABERTO',
+  `observacoes` VARCHAR(500) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_solicitacao`),
+  CONSTRAINT `fk_solicitacoes_coletor_empresa1`
+    FOREIGN KEY (`id_coletor`)
+    REFERENCES `db_trashall`.`coletor_empresa` (`id_coletor`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_solicitacoes_condominio1`
+    FOREIGN KEY (`id_condominio`)
+    REFERENCES `db_trashall`.`condominio` (`id_condominio`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `db_trashall`.`coleta_andamento`
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `db_trashall` DEFAULT CHARACTER SET utf8 ;
-USE `db_trashall` ;
 CREATE TABLE IF NOT EXISTS `db_trashall`.`coleta_andamento` (
   `id_coleta` INT NOT NULL AUTO_INCREMENT,
   `status` VARCHAR(45) NULL DEFAULT NULL,
@@ -124,6 +148,7 @@ CREATE TABLE IF NOT EXISTS `db_trashall`.`coleta_andamento` (
   `id_condominio` INT(100) NULL DEFAULT NULL,
   `id_solicitacao` INT(100) NOT NULL,
   `id_endereco_destino` INT(100) NOT NULL,
+  `data_finalizacao` DATETIME NULL,
   PRIMARY KEY (`id_coleta`),
   CONSTRAINT `fk_coleta_andamento_coletor_empresa1`
     FOREIGN KEY (`id_coletor`)
@@ -153,43 +178,12 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_trashall`.`feedback` (
   `id` INT(100) NOT NULL,
-  `email_entidade` VARCHAR(45) NULL DEFAULT NULL,
-  `conteudo` VARCHAR(500) NULL DEFAULT NULL,
-  `id_coletor` INT(100) NULL DEFAULT NULL,
-  `id_condominio` INT(100) NULL DEFAULT NULL,
+  `avaliacao` VARCHAR(500) NULL DEFAULT NULL,
+  `id_coleta` INT NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_feedback_coletor_empresa1`
-    FOREIGN KEY (`id_coletor`)
-    REFERENCES `db_trashall`.`coletor_empresa` (`id_coletor`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_feedback_condominio1`
-    FOREIGN KEY (`id_condominio`)
-    REFERENCES `db_trashall`.`condominio` (`id_condominio`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
--- -----------------------------------------------------
--- Table `db_trashall`.`solicitacoes`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_trashall`.`solicitacoes` (
-  `id_solicitacao` INT NOT NULL AUTO_INCREMENT,
-  `materiais_coletados` VARCHAR(200) NULL DEFAULT NULL,
-  `id_coletor` INT(100) NOT NULL,
-  `id_condominio` INT(100) NOT NULL,
-  `data_solicitacao` DATETIME NOT NULL,
-  `peso` DOUBLE NOT NULL,
-  `situacao` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id_solicitacao`),
-  CONSTRAINT `fk_solicitacoes_coletor_empresa1`
-    FOREIGN KEY (`id_coletor`)
-    REFERENCES `db_trashall`.`coletor_empresa` (`id_coletor`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_solicitacoes_condominio1`
-    FOREIGN KEY (`id_condominio`)
-    REFERENCES `db_trashall`.`condominio` (`id_condominio`)
+  CONSTRAINT `fk_feedback_coleta_andamento1`
+    FOREIGN KEY (`id_coleta`)
+    REFERENCES `db_trashall`.`coleta_andamento` (`id_coleta`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

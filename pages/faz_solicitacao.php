@@ -11,18 +11,20 @@
         $material = $_POST['checkMaterial'];
         $material_solicitacao =  json_encode($material);   
         $peso_aproximado = $_POST['txtPesoAproximado']; 
+        $observacoes = $_POST['obs_solicitacao'];
         
         $PDO = db_connect();
 
-            $sql = "INSERT INTO solicitacoes(materiais_coletados,id_coletor,id_condominio,data_solicitacao,peso,situacao) 
-                VALUES(:materiais_coletados,:id_coletor,:id_condominio,NOW(),:peso,'EM ABERTO')";
+            $sql = "INSERT INTO solicitacoes(materiais_coletados,id_coletor,id_condominio,data_solicitacao,peso,situacao,observacoes) 
+                VALUES(:materiais_coletados,:id_coletor,:id_condominio,NOW(),:peso,'EM ABERTO',:observacoes)";
             $stmt = $PDO->prepare($sql);
             
             /*define os parametros que serão enviados*/
             $stmt->bindParam(':materiais_coletados', $material_solicitacao);
             $stmt->bindParam(':id_coletor', $id_coletor);
             $stmt->bindParam(':id_condominio', $_SESSION['id_condominio']);
-            $stmt->bindParam(':peso', $peso_aproximado );
+            $stmt->bindParam(':peso', $peso_aproximado);
+            $stmt->bindParam(':observacoes', $observacoes);
             if($stmt->execute()){
                 /*retorna 1 para que seja tratado o 
                 response do ajax*/

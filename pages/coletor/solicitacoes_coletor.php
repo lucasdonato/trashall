@@ -257,6 +257,7 @@
                           echo "<th style='display:none;'>id_solicitacao</th>";
                           echo "<th>Condomínio</th>";
                           echo "<th>Data Solicitação</th>";
+                          echo "<th>Observações</th>";
                           echo "<th>Situação</th>";
                           echo "<th class'actions'>O que vamos fazer?</th>";
                   echo "</thead>";                 
@@ -271,6 +272,9 @@
                       echo "</td>";
                       echo "<td>";
                         echo date('d/m/Y H:i:s',strtotime($row['data_solicitacao']));
+                      echo "</td>";
+                      echo "<td>";
+                        echo $row['observacoes'];
                       echo "</td>";
                       
                       /*VALIDA O TIPO DE SITUACAO

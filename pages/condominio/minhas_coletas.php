@@ -145,7 +145,7 @@
             $PDO = db_connect();
             try{
                
-                $sql = "SELECT ca.id_coleta,ca.status, ca.data_coleta, s.peso, col.nome_empresa, cont.descricao
+                $sql = "SELECT ca.id_coleta,ca.status, ca.data_coleta,ca.data_finalizacao, s.peso, col.nome_empresa, cont.descricao
                 FROM coleta_andamento ca 
                 JOIN coletor_empresa col ON col.id_coletor = ca.id_coletor
                 JOIN contato cont ON cont.id_coletor = ca.id_coletor
@@ -163,6 +163,7 @@
                         echo "<th style='display:none;'>id_coleta</th>";
                         echo "<th>Status</th>";
                         echo "<th>Data da coleta</th>";
+                        echo "<th>Finalizada em</th>";
                         echo "<th>Peso total</th>";
                         echo "<th>Coletor</th>";
                         echo "<th>Contato</th>";
@@ -185,6 +186,13 @@
                             echo "</td>";
                             echo "<td>";
                                     echo date('d/m/Y H:i:s',strtotime($row['data_coleta']));
+                            echo "</td>";
+                            echo "<td>";
+                                  if($row['data_finalizacao'] == NULL){
+                                    echo '';
+                                  }else{
+                                      echo date('d/m/Y H:i:s',strtotime($row['data_finalizacao']));   
+                                  }  
                             echo "</td>";
                             echo "<td>";
                                     echo $row['peso'].' KG';

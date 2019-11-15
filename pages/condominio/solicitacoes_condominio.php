@@ -210,6 +210,7 @@ $(document).ready(function(){
                           echo "<th style='display:none;'>id_solicitacao</th>";
                           echo "<th>Nome do Coletor</th>";
                           echo "<th>Data Solicitação</th>";
+                          echo "<th>Observações</th>";
                           echo "<th>Situação</th>";
                           echo "<th class'actions'>Ações</th>";
                   echo "</thead>";                 
@@ -224,6 +225,9 @@ $(document).ready(function(){
                       echo "</td>";
                       echo "<td>";
                         echo date('d/m/Y H:i:s',strtotime($row['data_solicitacao']));
+                      echo "</td>";
+                      echo "<td>";
+                        echo $row['observacoes'];
                       echo "</td>";
                       
                       /*VALIDA O TIPO DE SITUACAO

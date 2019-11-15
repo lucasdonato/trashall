@@ -207,9 +207,14 @@
                         <label class="custom-control-label" for="checkVidro">Vidro</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="checkMaterial[]" value="aluminio" class="custom-control-input" id="checkAluminio">
-                        <label class="custom-control-label" for="checkAluminio">Alumínio</label>
-                      </div>                                 
+                        <input type="checkbox" name="checkMaterial[]" value="orgânico" class="custom-control-input" id="checkAluminio">
+                        <label class="custom-control-label" for="checkAluminio">Orgânico</label>
+                      </div>   
+                    
+                      <div class="form-group">
+                          <textarea class="form-control" placeholder='Alguma observação?' name="obs_solicitacao" rows="3"></textarea>
+                        </div>
+
                   </div>
                   <div class="modal-footer">
                     <input type="submit" id="btnEnviaSolicitacao" value="Solicitar" class="btn btn-success">
