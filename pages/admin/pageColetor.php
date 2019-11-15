@@ -33,7 +33,7 @@
                 //regarrega página automaticamente;  
                 setTimeout(function(){
                                         window.location.reload(1);
-                                    }, 3000);
+                                    }, 2000);
 
                   $('#modalAdicionarColetor').modal('hide');
               }else if(response == '0'){
@@ -64,7 +64,7 @@
                         toast: true,
                         position: 'top-end',
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 2000
                   })
 
                   Toast.fire({
@@ -512,8 +512,8 @@
                     <label class="custom-control-label" for="checkVidro">Vidro</label>
                   </div>
                   <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="checkMaterial[]" value="aluminio" class="custom-control-input" id="checkAluminio">
-                    <label class="custom-control-label" for="checkAluminio">Alumínio</label>
+                    <input type="checkbox" name="checkMaterial[]" value="orgânico" class="custom-control-input" id="checkAluminio">
+                    <label class="custom-control-label" for="checkAluminio">Orgânico</label>
                   </div>                
 
               
