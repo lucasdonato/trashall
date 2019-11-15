@@ -10,10 +10,34 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+
+
       $( "#logout" ).click(function() { 
           window.location.href = '../index.php';      
-        }); 
-    });
+        });     
+    
+            /*faz o filtro manipulando o html*/
+            $( "input[name='situacao_coleta']" ).click(function() { 
+                var situacao_radio = $("input[name='situacao_coleta']:checked").val();
+
+                $("#coletasColetor tbody tr").each(function(){                  
+                    
+                  /*PEGA O ID DA IMAGEM, ESSA É A FAMOSA POG
+                  PROGRAMAÇÃO ORIENTADA A GAMBIARRA*/
+                  var situacao_table =  $(this).find( ".status img" ).attr("id");               
+
+                    if(situacao_radio == 'TODOS'){
+                        location.reload();
+                    }else if(situacao_radio != situacao_table){
+                        $(this).hide();
+                    }else{
+                        $(this).show();
+                    }
+                });
+          });
+          /*fim manipulação filtros*/
+      });
+
 </script>
 
 <body class="">
@@ -86,19 +110,33 @@
         </div>
       </nav>
       <!-- End Navbar -->
- <!-- inicio dos filtros -->
 
- <br><br><br><br>
+       <!-- inicio dos filtros -->
 
-    <div>
-        <input type="radio" name="situacao_coleta" value="emAberto"> Em aberto
-        <input type="radio" name="situacao_coleta" value="finalizada"> Finalizadas
-        <input type="radio" name="situacao_coleta" value="rejeitada"> Rejeitadas
-    </div>
+       <br><br><br><br>
 
-    <br>
+        <!-- MONTA OS RADIOBUTTONS -->
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="todos" name="situacao_coleta" value="TODOS" checked>
+          <label style='color:black;' class="custom-control-label" for="todos">TODOS</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="emAberto" name="situacao_coleta" value="EM ANDAMENTO">
+          <label style='color:black;' class="custom-control-label" for="emAberto">EM ANDAMENTO</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="confirmada" name="situacao_coleta" value="FINALIZADA">
+          <label style='color:black;' class="custom-control-label" for="confirmada">FINALIZADA</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="rejeitada" name="situacao_coleta" value="CANCELADA">
+          <label style='color:black;' class="custom-control-label" for="rejeitada">CANCELADA</label>
+        </div>
 
-    <!-- fim dos filtros -->
+        <br>
+
+        <!-- fim dos filtros -->
+
 
       <div class="table-responsive col-md-12">
         <table id="coletasColetor" class="table table-striped" cellspacing="0" cellpadding="0">
@@ -136,13 +174,13 @@
                             echo "<td style='display:none;'>";
                                     echo $row['id_coleta'];
                             echo "</td>";
-                            echo "<td>";
+                            echo "<td class='status'>";
                             if($row['status'] == 'EM ANDAMENTO'){
-                                echo '<img class="" src="../../imagens/time.png" title="Coleta em andamento."';                                
+                                echo '<img class="" id="EM ANDAMENTO" src="../../imagens/time.png" title="Coleta em andamento."';                                
                             }else if($row['status'] == 'CANCELADA'){
-                                echo '<img class="cancelarColeta" src="../../imagens/cancel.png" title="Essa coleta foi cancelada."';
+                                echo '<img class="cancelarColeta" id="CANCELADA" src="../../imagens/cancel.png" title="Essa coleta foi cancelada."';
                             }else{
-                                echo '<img class="" src="../../imagens/ok.png" title="Coleta finalizada."';
+                                echo '<img class="" id="FINALIZADA" src="../../imagens/ok.png" title="Coleta finalizada."';
                             }
                             echo "</td>";
                             echo "<td>";

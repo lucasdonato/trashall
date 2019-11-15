@@ -68,6 +68,28 @@ $(document).ready(function(){
         $( "#logout" ).click(function() { 
           window.location.href = '../index.php';      
         });
+          /*faz o filtro manipulando o html*/
+          $( "input[name='situacao_coleta']" ).click(function() { 
+                          var situacao_radio = $("input[name='situacao_coleta']:checked").val();
+
+                          $("#solicitacoesCondominio tbody tr").each(function(){                  
+                              
+                            /*PEGA O ID DA IMAGEM, ESSA É A FAMOSA POG
+                            PROGRAMAÇÃO ORIENTADA A GAMBIARRA*/
+                            var situacao_table =  $(this).find( ".status img" ).attr("id");               
+
+                              if(situacao_radio == 'TODOS'){
+                                  location.reload();
+                              }else if(situacao_radio != situacao_table){
+                                  $(this).hide();
+                              }else{
+                                  $(this).show();
+                              }
+                          });
+                    });
+                    /*fim manipulação filtros*/
+
+
 });
 
 </script>
@@ -142,23 +164,34 @@ $(document).ready(function(){
         </div>
       </nav>
       <!-- End Navbar -->
-      
        <!-- inicio dos filtros -->
 
        <br><br><br><br>
 
-        <div>
-            <input type="radio" name="situacao_coleta" value="emAberto"> Em aberto
-            <input type="radio" name="situacao_coleta" value="confirmada"> Confirmadas
-            <input type="radio" name="situacao_coleta" value="rejeitada"> Rejeitadas
+        <!-- MONTA OS RADIOBUTTONS -->
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="todos" name="situacao_coleta" value="TODOS" checked>
+          <label style='color:black;' class="custom-control-label" for="todos">TODOS</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="emAberto" name="situacao_coleta" value="EM ABERTO">
+          <label style='color:black;' class="custom-control-label" for="emAberto">EM ABERTO</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="confirmada" name="situacao_coleta" value="CONFIRMADA">
+          <label style='color:black;' class="custom-control-label" for="confirmada">CONFIRMADA</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="rejeitada" name="situacao_coleta" value="REJEITADA">
+          <label style='color:black;' class="custom-control-label" for="rejeitada">REJEITADA</label>
         </div>
 
         <br>
 
-<!-- fim dos filtros -->
+        <!-- fim dos filtros -->
 
       <div class="table-responsive col-md-12">
-        <table class="table table-striped" cellspacing="0" cellpadding="0">
+        <table id="solicitacoesCondominio" class="table table-striped" cellspacing="0" cellpadding="0">
         <?php
             require_once '../init.php';
             $PDO = db_connect();
@@ -195,15 +228,15 @@ $(document).ready(function(){
                       
                       /*VALIDA O TIPO DE SITUACAO
                       PARA ALTERAR A CORD EXIBIDA NA COLUNA*/
-                      echo "<td>";
+                      echo "<td class='status'>";
                           if($row['situacao'] == 'EM ABERTO'){
-                            echo "<img src='../../imagens/time.png' title='Solicitação em aberto, aguardando coletor.'>";
+                            echo "<img id='EM ABERTO' src='../../imagens/time.png' title='Solicitação em aberto, aguardando coletor.'>";
 
                           }else if($row['situacao'] == 'REJEITADA'){
-                            echo "<img src='../../imagens/cancel.png' title='Solicitação rejeitada pelo coletor.'>";
+                            echo "<img src='../../imagens/cancel.png' id='REJEITADA' title='Solicitação rejeitada pelo coletor.'>";
 
                           }else if($row['situacao'] == 'CONFIRMADA'){
-                            echo "<img src='../../imagens/ok.png' title='Solicitação confirmada pelo coletor, uma coleta foi gerada!'>";
+                            echo "<img src='../../imagens/ok.png' id='CONFIRMADA' title='Solicitação confirmada pelo coletor, uma coleta foi gerada!'>";
                           }                         
 
                       echo "</td>";
