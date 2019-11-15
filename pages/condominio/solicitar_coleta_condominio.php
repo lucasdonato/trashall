@@ -230,7 +230,7 @@
                   <p class='card-category'>Escolha abaixo um coletor para coletar o seu lixo!</p>
                 </div>
                 <div class='card-body table-responsive'>
-                  <table class='table-hover'>
+                  <table id='list_coletores' class='table-hover'>
                     <?php
                           require_once '../init.php';
                           $PDO = db_connect();
