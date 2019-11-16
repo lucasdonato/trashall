@@ -39,8 +39,8 @@
                             {
                               if(response == '1'){
                                 
-                                $('#modalRatings').modal('show');      
-                                                              
+                                $("input[name='id_coleta_ratings']").val(id_coleta);
+                                $('#modalRatings').modal('show');                                                                 
                                                             
                               }else if(response == '0'){
                                 console.log(response);
@@ -114,17 +114,33 @@
                                     .text(); 
               
               /*link de redirecionamento com os parametros para o zap*/
-              window.open("https://api.whatsapp.com/send?phone="+contato_condominio+"&text=Ol%C3%A1%2C%20sua%20coleta%20foi%20finalizada!");
+              window.open("https://api.whatsapp.com/send?phone=+55"+contato_condominio+"&text=Ol%C3%A1%2C%20sua%20coleta%20foi%20finalizada!");
         });
 
         $("input[name='rate']").click(function() {  
-            $('#modalRatings').modal('hide');  
-            const Toast = Swal.mixin({
+
+            /*pega o valor da avaliação para
+            salvar no banco de dados..*/
+            avaliacao = $(this).val();  
+
+            /*PEGA O ID DA COLETA DE MODO GAMBIARRA, MAS FUNCIONA*/
+            id_coleta_ratings = $("input[name='id_coleta_ratings']").val();
+
+            $.ajax({
+                            type : 'POST',
+                            url  : '../avaliacao_coleta.php',
+                            data : {id_coleta_ratings : id_coleta_ratings},
+                      
+                            success: function( response )
+                            {
+                             // if(response == '1'){
+                                $('#modalRatings').modal('hide');  
+                                      const Toast = Swal.mixin({
                                         toast: true,
                                         position: 'top-end',
                                         showConfirmButton: false,
                                         timer: 3000
-                                    })
+                                      })
 
                                     Toast.fire({
                                           type: 'success',
@@ -134,6 +150,12 @@
                                       setTimeout(function(){
                                         window.location.reload(1);
                                     }, 2000);
+                                                            
+                              /*}else if(response == '0'){
+                                console.log(response);
+                              }*/
+                            }
+              });
           });
 
           /*faz logout no sistema*/
@@ -671,8 +693,10 @@
             <label for="star2" title="Ruim">2 stars</label>
             <input type="radio" id="star1" name="rate" value="1" />
             <label for="star1" title="Muito Ruim">1 star</label>
+           
         </div>
-
+        <!-- gambiarra para avaloar a coleta -->
+        <input type="hidden" name='id_coleta_ratings'>
       </div>
       <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>  
