@@ -129,11 +129,14 @@
             $.ajax({
                             type : 'POST',
                             url  : '../avaliacao_coleta.php',
-                            data : {id_coleta_ratings : id_coleta_ratings},
+                            data : {
+                              id_coleta_ratings : id_coleta_ratings,
+                              avaliacao : avaliacao
+                            },
                       
                             success: function( response )
                             {
-                             // if(response == '1'){
+                             if(response == '1'){
                                 $('#modalRatings').modal('hide');  
                                       const Toast = Swal.mixin({
                                         toast: true,
@@ -151,9 +154,9 @@
                                         window.location.reload(1);
                                     }, 2000);
                                                             
-                              /*}else if(response == '0'){
+                              }else if(response == '0'){
                                 console.log(response);
-                              }*/
+                              }
                             }
               });
           });
