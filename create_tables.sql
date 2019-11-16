@@ -177,7 +177,7 @@ ENGINE = InnoDB;
 -- Table `db_trashall`.`feedback`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_trashall`.`feedback` (
-  `id` INT(100) NOT NULL,
+  `id` INT(100) NOT NULL AUTO_INCREMENT,
   `avaliacao` VARCHAR(500) NULL DEFAULT NULL,
   `id_coleta` INT NOT NULL,
   PRIMARY KEY (`id`),

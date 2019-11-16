@@ -5,8 +5,6 @@
     $id_coleta_ratings =  $_POST['id_coleta_ratings'];
     $avaliacao = $_POST['avaliacao'];
 
-    echo $avaliacao;
-
     /*SALVAR NA TABELA FEEDBACK*/
     $PDO = db_connect();
     
