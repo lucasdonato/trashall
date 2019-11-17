@@ -145,11 +145,12 @@
             $PDO = db_connect();
             try{
                
-                $sql = "SELECT ca.id_coleta,ca.status, ca.data_coleta,ca.data_finalizacao, s.peso, col.nome_empresa, cont.descricao
+                $sql = "SELECT ca.id_coleta,ca.status, f.avaliacao,f.id_coleta, ca.data_coleta,ca.data_finalizacao, s.peso, col.nome_empresa, cont.descricao
                 FROM coleta_andamento ca 
                 JOIN coletor_empresa col ON col.id_coletor = ca.id_coletor
                 JOIN contato cont ON cont.id_coletor = ca.id_coletor
                 JOIN solicitacoes s on s.id_solicitacao = ca.id_solicitacao
+                LEFT JOIN feedback f ON f.id_coleta = ca.id_coleta
                 WHERE ca.id_condominio = :id_condominio
                 ORDER BY ca.data_coleta DESC";
 
@@ -167,6 +168,7 @@
                         echo "<th>Peso total</th>";
                         echo "<th>Coletor</th>";
                         echo "<th>Contato</th>";
+                        echo "<th>Avaliação Coletor</th>";
 
                     echo "</thead>";   
   
@@ -202,7 +204,34 @@
                             echo "</td>";    
                             echo "<td>";
                                     echo $row['descricao'];
-                            echo "</td>";                        
+                            echo "</td>";    
+                            echo "<td>";
+
+                                  /*verifica a avaliação da coleta para preencher
+                                  a coluna com a image correspondente*/
+                                  if($row['status'] == 'FINALIZADA'){                                 
+
+                                    switch ($row['avaliacao']) {
+                                      case 1:
+                                          echo '<img src="../../imagens/1_stars.png"';
+                                          break;
+                                      case 2:
+                                          echo '<img src="../../imagens/2_stars.png"';
+                                          break;
+                                      case 3:
+                                          echo '<img src="../../imagens/3_stars.png"';
+                                          break;
+                                      case 4:
+                                          echo '<img src="../../imagens/4_stars.png"';
+                                          break;
+                                      case 5:
+                                          echo '<img src="../../imagens/5_stars.png"';
+                                          break;    
+                                      }
+                                    
+                                  }
+                                 
+                            echo "</td>";
                         echo "</tr>";
 
                     }
