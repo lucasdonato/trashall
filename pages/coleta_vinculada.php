@@ -52,7 +52,10 @@
                                           }                                                                    
                                     echo "</td>";
                                     echo "<td>";
-                                          echo $row['materiais_coletados'];                  
+                                    $ma = json_decode($row['materiais_coletados']);
+                                    foreach ($ma as $value) {
+                                      echo $value.", ";
+                                    }                
                                     echo "</td>"; echo "<td>";
                                           echo $row['peso']. ' KG';
                                     echo "</td>"; echo "<td>";
