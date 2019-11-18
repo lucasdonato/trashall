@@ -168,17 +168,26 @@
         
           /*faz o filtro manipulando o html*/
           $( "input[name='situacao_coleta']" ).click(function() { 
+            var qtd_linhas = 0;
                 var situacao_radio = $("input[name='situacao_coleta']:checked").val();
                 $("#coletasColetor tbody tr").each(function(){                  
                     var situacao_table =  $(this).find( ".status" ).text();
                     if(situacao_radio == 'TODOS'){
+                      qtd_linhas++;
                         location.reload();
                     }else if(situacao_radio != situacao_table){
                         $(this).hide();
                     }else{
                         $(this).show();
+                        qtd_linhas++;
                     }
                 });
+                  /*SE A TABELA NÃO TIVER RESULTADOS, MOSTRA O ALERTA*/
+                  if(qtd_linhas == 0){
+                                $('#alert_table').show();          
+                            }else{
+                                $('#alert_table').hide();
+                            }
           });
           /*fim manipulação filtros*/
     });
@@ -387,6 +396,9 @@
             }
         ?>
          </table> 
+     </div>
+     <div style='display:none;' id="alert_table">            
+        <div class="alert alert-warning" role="alert"> Nenhum registro encontrado!</div>
      </div>
   </div>
 
