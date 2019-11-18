@@ -461,7 +461,7 @@
 
 <!-- Modal cadastrar condominio-->
 <div class="modal fade" id="modalAdicionarCondominio" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="TituloModalLongoExemplo">Cadastrar condominio</h5>
@@ -471,19 +471,21 @@
       </div>
       <form id="formCadastrarCondominio" action="" method="post">
             <div class="modal-body">
-              
-                  Nome: <input type="nome" required name="txtNomeCondominio" id="txtNomeCondominio">
-                  Email usuário: <input type="email" required name="txtEmailCondominio" id="txtEmailCondominio">
-                  Senha : <input type="password" required name="txtSenhaCondominio" id="txtSenhaCondominio">
-                  <br>
-                  Cep: <input tyte="text" required name="txtCepCondominio" id="txtCepCondominio">
-                  Logradouro: <input type="text" required name = "txtLogradouroCondominio" id = "txtLogradouroCondominio">
-                  Número: <input type="number" required name ="txtNumeroCondominio" maxlength="5" id ="txtNumeroCondominio">
-                  <br>
-                  Bairro: <input type="text" required name ="txtBairroCondominio" id ="txtBairroCondominio">
-                  Cidade: <input type="text" required name ="txtCidadeCondominio" id ="txtCidadeCondominio">
+            <div id="dados" style='height:280px;'>  
+              <div id="dados_gerais">
+                  <input placeholder='Nome' style='width:200px;' class="form-control" type="nome" required name="txtNomeCondominio" id="txtNomeCondominio">
+                  <input placeholder='Email usuário' style='width:200px;' class="form-control" type="email" required name="txtEmailCondominio" id="txtEmailCondominio">
+                  <input placeholder='Senha' type="password" style='width:200px;' class="form-control" required name="txtSenhaCondominio" id="txtSenhaCondominio">
+                  <input type="tel" style='width:200px;' class="form-control"placeholder='Contato (DDD+NUMERO)' required name="txtContatoCondominio" id="txtContatoCondominio"> 
+              </div>
+                <div id="endereco" style='float:right; margin-top:-153px;'>
+                  <input placeholder='CEP' tyte="text" style='width:200px;' class="form-control"  required name="txtCepCondominio" id="txtCepCondominio">
+                  <input placeholder='Logradouro' type="text" style='width:200px;' class="form-control" required name = "txtLogradouroCondominio" id = "txtLogradouroCondominio">
+                  <input placeholder='Número' type="tel" style='width:200px;' class="form-control" required name ="txtNumeroCondominio" maxlength="5" id ="txtNumeroCondominio">
+                  <input placeholder='Bairro' type="text" style='width:200px;' class="form-control" required name ="txtBairroCondominio" id ="txtBairroCondominio">
+                  <input placeholder='Cidade' type="text" style='width:200px;' class="form-control"  required name ="txtCidadeCondominio" id ="txtCidadeCondominio">
                   <br>Estado:
-                    <div style='width:200px;' class="form-group">
+                    <div style='width:150px;' class="form-group">
                       <select class="form-control" name="estado">
                       <option value="MG">Minas Gerais</option>
                       <option value="AC">Acre</option>
@@ -515,10 +517,8 @@
                       <option value="EX">Estrangeiro</option>
                       </select>
                     </div>
-                  <br>
-                  Número: <input type="tel" placeholder='DDD+NUMERO' required name="txtContatoCondominio" id="txtContatoCondominio">
-
-              
+               </div>
+                  </div>
             </div>
             <div class="modal-footer">
               <input type="submit" value='Confirmar' id="btnConfirmar" class="btn btn-success">
@@ -526,6 +526,7 @@
           
             </div>
       </form>
+      </div>
     </div>
   </div>
 </div>
