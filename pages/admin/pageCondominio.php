@@ -485,7 +485,7 @@
                   <input placeholder='Bairro' type="text" style='width:200px;' class="form-control" required name ="txtBairroCondominio" id ="txtBairroCondominio">
                   <input placeholder='Cidade' type="text" style='width:200px;' class="form-control"  required name ="txtCidadeCondominio" id ="txtCidadeCondominio">
                   <br>Estado:
-                    <div style='width:150px;' class="form-group">
+                    <div style='width:200px;' class="form-group">
                       <select class="form-control" name="estado">
                       <option value="MG">Minas Gerais</option>
                       <option value="AC">Acre</option>
