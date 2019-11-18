@@ -468,7 +468,7 @@
 
 <!-- Modal cadastrar coletor-->
 <div class="modal fade" id="modalAdicionarColetor" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="TituloModalLongoExemplo">Cadastrar coletor</h5>
@@ -477,78 +477,80 @@
         </button>
       </div>
       <form id="formCadastrarColetor" action="" method="post">
-            <div class="modal-body">
-              
-                  Coletor: <input type="nome" required name="txtNomeColetor" id="txtNomeColetor">
-                  Email usuário: <input type="email" required name="txtEmailColetor" id="txtEmailColetor">
-                  Senha : <input type="password" required name="txtSenhaColetor" id="txtSenhaColetor">
+            <div class="modal-body">       
+              <div id="dados">       
+                  <div id="dados_gerais">
+                      <input placeholder='Nome coletor' type="nome"  style='width:200px;' class="form-control" required name="txtNomeColetor" id="txtNomeColetor">
+                      <input placeholder='Email usuário' style='width:200px;' class="form-control" type="email" required name="txtEmailColetor" id="txtEmailColetor">
+                      <input  placeholder='Senha' style='width:200px;' class="form-control" type="password" required name="txtSenhaColetor" id="txtSenhaColetor"> 
+                      <input type="tel" placeholder='Contato (DDD+NUMERO)' style='width:200px;' class="form-control"required  name="txtContatoColetor" id="txtContatoColetor">
+                  </div>
                   <br>
-                  Cep: <input typte="text" required name="txtCepColetor" id="txtCepColetor">
-                  Logradouro: <input type="text" required name = "txtLogradouroColetor" id = "txtLogradouroColetor">
-                  Número: <input type="number" required name ="txtNumeroColetor" maxlength="5" id ="txtNumeroColetor">
-                  <br>
-                  Bairro: <input type="text" required name ="txtBairroColetor" id ="txtBairroColetor">
-                  Cidade: <input type="text" required name ="txtCidadeColetor" id ="txtCidadeColetor">
-                  <br>Estado:
-                    <div style='width:200px;' class="form-group">
-                      <select class="form-control" name="estado">
-                      <option value="MG">Minas Gerais</option>
-                      <option value="AC">Acre</option>
-                      <option value="AL">Alagoas</option>
-                      <option value="AP">Amapá</option>
-                      <option value="AM">Amazonas</option>
-                      <option value="BA">Bahia</option>
-                      <option value="CE">Ceará</option>
-                      <option value="DF">Distrito Federal</option>
-                      <option value="ES">Espírito Santo</option>
-                      <option value="GO">Goiás</option>
-                      <option value="MA">Maranhão</option>
-                      <option value="MT">Mato Grosso</option>
-                      <option value="MS">Mato Grosso do Sul</option>                      
-                      <option value="PA">Pará</option>
-                      <option value="PB">Paraíba</option>
-                      <option value="PR">Paraná</option>
-                      <option value="PE">Pernambuco</option>
-                      <option value="PI">Piauí</option>
-                      <option value="RJ">Rio de Janeiro</option>
-                      <option value="RN">Rio Grande do Norte</option>
-                      <option value="RS">Rio Grande do Sul</option>
-                      <option value="RO">Rondônia</option>
-                      <option value="RR">Roraima</option>
-                      <option value="SC">Santa Catarina</option>
-                      <option value="SP">São Paulo</option>
-                      <option value="SE">Sergipe</option>
-                      <option value="TO">Tocantins</option>
-                      <option value="EX">Estrangeiro</option>
-                      </select>
+
+                  <div id="endereco" style='float:right; margin-top:-175px;'>
+                      <input placeholder='CEP' style='width:200px;' class="form-control" type="text" required name="txtCepColetor" id="txtCepColetor">
+                      <input placeholder='Logradouro'  style='width:200px;' class="form-control" type="text" required name = "txtLogradouroColetor" id = "txtLogradouroColetor">
+                      <input placeholder='Número' style='width:200px;' class="form-control" type="number" required name ="txtNumeroColetor" maxlength="5" id ="txtNumeroColetor">
+                      <input placeholder='Bairro' style='width:200px;' class="form-control" type="text" required name ="txtBairroColetor" id ="txtBairroColetor">
+                      <input placeholder='Cidade' style='width:200px;' class="form-control" type="text" required name ="txtCidadeColetor" id ="txtCidadeColetor">
+                      <br>Estado:
+                      <div style='width:200px;' class="form-group">
+                          <select class="form-control" name="estado">
+                                <option value="MG">Minas Gerais</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>                      
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                                <option value="EX">Estrangeiro</option>
+                          </select>
                     </div>
-                  <br>
-                  Número: <input type="tel" placeholder='DDD+NUMERO' required  name="txtContatoColetor" id="txtContatoColetor">
-
-                  <br>
-                  Materias coletados:<br>
-                  <!-- Default checked -->
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="checkMaterial[]" value="papel" class="custom-control-input" id="checkPapel">
-                    <label class="custom-control-label" for="checkPapel">Papel</label>
-                  </div>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="checkMaterial[]" value="plastico" class="custom-control-input" id="checkPlastico">
-                    <label class="custom-control-label" for="checkPlastico">Plástico</label>
-                  </div>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="checkMaterial[]" value="metal" class="custom-control-input" id="checkMetal">
-                    <label class="custom-control-label" for="checkMetal">Metal</label>
-                  </div>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="checkMaterial[]" value="vidro" class="custom-control-input" id="checkVidro">
-                    <label class="custom-control-label" for="checkVidro">Vidro</label>
-                  </div>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="checkMaterial[]" value="orgânico" class="custom-control-input" id="checkAluminio">
-                    <label class="custom-control-label" for="checkAluminio">Orgânico</label>
                   </div>                
-
+                 <div style="width:200px;" id="materiaisdiv">
+                        Materias coletados:<br>
+                        <!-- Default checked -->
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" name="checkMaterial[]" value="papel" class="custom-control-input" id="checkPapel">
+                          <label class="custom-control-label" for="checkPapel">Papel</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" name="checkMaterial[]" value="plastico" class="custom-control-input" id="checkPlastico">
+                          <label class="custom-control-label" for="checkPlastico">Plástico</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" name="checkMaterial[]" value="metal" class="custom-control-input" id="checkMetal">
+                          <label class="custom-control-label" for="checkMetal">Metal</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" name="checkMaterial[]" value="vidro" class="custom-control-input" id="checkVidro">
+                          <label class="custom-control-label" for="checkVidro">Vidro</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" name="checkMaterial[]" value="orgânico" class="custom-control-input" id="checkAluminio">
+                          <label class="custom-control-label" for="checkAluminio">Orgânico</label>
+                        </div>                
+                </div>
               
             </div>
             <div class="modal-footer">
@@ -557,6 +559,7 @@
           
             </div>
       </form>
+    </div>
     </div>
   </div>
 </div>
