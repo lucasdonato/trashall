@@ -14,6 +14,7 @@
         $cidade             = $_POST['txtCidadeCondominio'];
         $contato            = $_POST['txtContatoCondominio'];
         $senha              = $_POST['txtSenhaCondominio'];
+        $estado             = $_POST['estado'];
 
         $PDO = db_connect();
     
@@ -37,7 +38,7 @@
                 
                 //insere endereço condominio
                 if($cep != "" &&  $logradouro != "" && $numero != "" && $bairro != "" && $cidade != ""){
-                    inserirEnderecoCondominio($cep,$logradouro,$numero,$bairro,$cidade,$id_condominio);
+                    inserirEnderecoCondominio($cep,$logradouro,$numero,$bairro,$cidade,$estado,$id_condominio);
                 }
 
                 //insere contato condominio

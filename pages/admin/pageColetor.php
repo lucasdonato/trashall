@@ -479,18 +479,51 @@
       <form id="formCadastrarColetor" action="" method="post">
             <div class="modal-body">
               
-                  Coletor: <input type="nome" name="txtNomeColetor" id="txtNomeColetor">
-                  Email usuário: <input type="email" name="txtEmailColetor" id="txtEmailColetor">
-                  Senha : <input type="password" name="txtSenhaColetor" id="txtSenhaColetor">
+                  Coletor: <input type="nome" required name="txtNomeColetor" id="txtNomeColetor">
+                  Email usuário: <input type="email" required name="txtEmailColetor" id="txtEmailColetor">
+                  Senha : <input type="password" required name="txtSenhaColetor" id="txtSenhaColetor">
                   <br>
-                  Cep: <input typte="text" name="txtCepColetor" id="txtCepColetor">
-                  Logradouro: <input type="text" name = "txtLogradouroColetor" id = "txtLogradouroColetor">
-                  Número: <input type="number" name ="txtNumeroColetor" maxlength="5" id ="txtNumeroColetor">
+                  Cep: <input typte="text" required name="txtCepColetor" id="txtCepColetor">
+                  Logradouro: <input type="text" required name = "txtLogradouroColetor" id = "txtLogradouroColetor">
+                  Número: <input type="number" required name ="txtNumeroColetor" maxlength="5" id ="txtNumeroColetor">
                   <br>
-                  Bairro: <input type="text" name ="txtBairroColetor" id ="txtBairroColetor">
-                  Cidade: <input type="text" name ="txtCidadeColetor" id ="txtCidadeColetor">
+                  Bairro: <input type="text" required name ="txtBairroColetor" id ="txtBairroColetor">
+                  Cidade: <input type="text" required name ="txtCidadeColetor" id ="txtCidadeColetor">
+                  <br>Estado:
+                    <div style='width:200px;' class="form-group">
+                      <select class="form-control" name="estado">
+                      <option value="MG">Minas Gerais</option>
+                      <option value="AC">Acre</option>
+                      <option value="AL">Alagoas</option>
+                      <option value="AP">Amapá</option>
+                      <option value="AM">Amazonas</option>
+                      <option value="BA">Bahia</option>
+                      <option value="CE">Ceará</option>
+                      <option value="DF">Distrito Federal</option>
+                      <option value="ES">Espírito Santo</option>
+                      <option value="GO">Goiás</option>
+                      <option value="MA">Maranhão</option>
+                      <option value="MT">Mato Grosso</option>
+                      <option value="MS">Mato Grosso do Sul</option>                      
+                      <option value="PA">Pará</option>
+                      <option value="PB">Paraíba</option>
+                      <option value="PR">Paraná</option>
+                      <option value="PE">Pernambuco</option>
+                      <option value="PI">Piauí</option>
+                      <option value="RJ">Rio de Janeiro</option>
+                      <option value="RN">Rio Grande do Norte</option>
+                      <option value="RS">Rio Grande do Sul</option>
+                      <option value="RO">Rondônia</option>
+                      <option value="RR">Roraima</option>
+                      <option value="SC">Santa Catarina</option>
+                      <option value="SP">São Paulo</option>
+                      <option value="SE">Sergipe</option>
+                      <option value="TO">Tocantins</option>
+                      <option value="EX">Estrangeiro</option>
+                      </select>
+                    </div>
                   <br>
-                  Contato: <input type="email"  name="txtContatoColetor" id="txtContatoColetor">
+                  Número: <input type="tel" placeholder='DDD+NUMERO' required  name="txtContatoColetor" id="txtContatoColetor">
 
                   <br>
                   Materias coletados:<br>

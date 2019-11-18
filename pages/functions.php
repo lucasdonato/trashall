@@ -26,7 +26,7 @@
                 }
         }
 
-        function inserirEnderecoCondominio($cep,$logradouro,$numero,$bairro,$cidade,$id_condominio){
+        function inserirEnderecoCondominio($cep,$logradouro,$numero,$bairro,$cidade,$estado,$id_condominio){
             $PDO = db_connect();
             $sql = "INSERT INTO endereco(logradouro,bairro,cidade,estado,numero,cep,id_condominio)
             VALUES(:logradouro,:bairro,:cidade,:estado,:numero,:cep,:id_condominio)";
@@ -59,7 +59,7 @@
             }
     }
 
-        function inserirEnderecoColetor($cep,$logradouro,$numero,$bairro,$cidade,$id_coletor){
+        function inserirEnderecoColetor($cep,$logradouro,$numero,$bairro,$cidade,$estado,$id_coletor){
             $PDO = db_connect();
             $sql = "INSERT INTO endereco(logradouro,bairro,cidade,estado,numero,cep,id_coletor)
             VALUES(:logradouro,:bairro,:cidade,:estado,:numero,:cep,:id_coletor)";

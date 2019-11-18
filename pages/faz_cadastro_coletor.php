@@ -13,7 +13,8 @@
         $bairro             = $_POST['txtBairroColetor'];
         $cidade             = $_POST['txtCidadeColetor'];
         $contato            = $_POST['txtContatoColetor'];
-        $senha              = $_POST['txtSenhaColetor'];        
+        $senha              = $_POST['txtSenhaColetor'];  
+        $estado             = $_POST['estado'];      
 
         /*monta a string do check dos materiais e 
         adiciona na tabela materiais em formato json*/
@@ -45,7 +46,7 @@
 
                 //insere endereço coletor
                 if($cep != "" &&  $logradouro != "" && $numero != "" && $bairro != "" && $cidade != ""){
-                    inserirEnderecoColetor($cep,$logradouro,$numero,$bairro,$cidade,$id_coletor);
+                    inserirEnderecoColetor($cep,$logradouro,$numero,$bairro,$cidade,$estado,$id_coletor);
                 }
 
                 //insere contato coletor

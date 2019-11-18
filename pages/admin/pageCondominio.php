@@ -472,18 +472,51 @@
       <form id="formCadastrarCondominio" action="" method="post">
             <div class="modal-body">
               
-                  Nome: <input type="nome" name="txtNomeCondominio" id="txtNomeCondominio">
-                  Email usuário: <input type="email" name="txtEmailCondominio" id="txtEmailCondominio">
-                  Senha : <input type="password" name="txtSenhaCondominio" id="txtSenhaCondominio">
+                  Nome: <input type="nome" required name="txtNomeCondominio" id="txtNomeCondominio">
+                  Email usuário: <input type="email" required name="txtEmailCondominio" id="txtEmailCondominio">
+                  Senha : <input type="password" required name="txtSenhaCondominio" id="txtSenhaCondominio">
                   <br>
-                  Cep: <input tyte="text" name="txtCepCondominio" id="txtCepCondominio">
-                  Logradouro: <input type="text" name = "txtLogradouroCondominio" id = "txtLogradouroCondominio">
-                  Número: <input type="number" name ="txtNumeroCondominio" maxlength="5" id ="txtNumeroCondominio">
+                  Cep: <input tyte="text" required name="txtCepCondominio" id="txtCepCondominio">
+                  Logradouro: <input type="text" required name = "txtLogradouroCondominio" id = "txtLogradouroCondominio">
+                  Número: <input type="number" required name ="txtNumeroCondominio" maxlength="5" id ="txtNumeroCondominio">
                   <br>
-                  Bairro: <input type="text" name ="txtBairroCondominio" id ="txtBairroCondominio">
-                  Cidade: <input type="text" name ="txtCidadeCondominio" id ="txtCidadeCondominio">
+                  Bairro: <input type="text" required name ="txtBairroCondominio" id ="txtBairroCondominio">
+                  Cidade: <input type="text" required name ="txtCidadeCondominio" id ="txtCidadeCondominio">
+                  <br>Estado:
+                    <div style='width:200px;' class="form-group">
+                      <select class="form-control" name="estado">
+                      <option value="MG">Minas Gerais</option>
+                      <option value="AC">Acre</option>
+                      <option value="AL">Alagoas</option>
+                      <option value="AP">Amapá</option>
+                      <option value="AM">Amazonas</option>
+                      <option value="BA">Bahia</option>
+                      <option value="CE">Ceará</option>
+                      <option value="DF">Distrito Federal</option>
+                      <option value="ES">Espírito Santo</option>
+                      <option value="GO">Goiás</option>
+                      <option value="MA">Maranhão</option>
+                      <option value="MT">Mato Grosso</option>
+                      <option value="MS">Mato Grosso do Sul</option>                      
+                      <option value="PA">Pará</option>
+                      <option value="PB">Paraíba</option>
+                      <option value="PR">Paraná</option>
+                      <option value="PE">Pernambuco</option>
+                      <option value="PI">Piauí</option>
+                      <option value="RJ">Rio de Janeiro</option>
+                      <option value="RN">Rio Grande do Norte</option>
+                      <option value="RS">Rio Grande do Sul</option>
+                      <option value="RO">Rondônia</option>
+                      <option value="RR">Roraima</option>
+                      <option value="SC">Santa Catarina</option>
+                      <option value="SP">São Paulo</option>
+                      <option value="SE">Sergipe</option>
+                      <option value="TO">Tocantins</option>
+                      <option value="EX">Estrangeiro</option>
+                      </select>
+                    </div>
                   <br>
-                  Contato: <input type="email"  name="txtContatoCondominio" id="txtContatoCondominio">
+                  Número: <input type="tel" placeholder='DDD+NUMERO' required name="txtContatoCondominio" id="txtContatoCondominio">
 
               
             </div>
