@@ -520,12 +520,13 @@
                </div>
                   </div>
             </div>
-            <div class="modal-footer">
+            
+      </form>
+      <div class="modal-footer">
               <input type="submit" value='Confirmar' id="btnConfirmar" class="btn btn-success">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>             
           
             </div>
-      </form>
       </div>
     </div>
   </div>
