@@ -338,7 +338,7 @@
                         echo "<th style='display:none;'>id_coleta</th>";
                         echo "<th>Status</th>";
                         echo "<th>Data da coleta</th>";
-                        echo "<th>Peso total</th>";
+                        echo "<th>Peso</th>";
                         echo "<th>Condomínio</th>";
                         echo "<th>Contato</th>";
                         echo "<th>Local da coleta</th>";
