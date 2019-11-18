@@ -168,9 +168,12 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
-                  <h5 class="modal-title" id="TituloModalLongoExemplo">Resumo coletor:</h5>
+                  <h5 class="modal-title" id="TituloModalLongoExemplo">Nova Solicitação</h5>
               </div>
-              <div id="conteudo-solicitacao">  
+              <div style='margin:0 auto 0 auto;' id="conteudo-solicitacao">  
+              <fieldset>
+                      <legend>Informações coletor</legend>
+                  </fieldset>
                 <form id="formFazSolicitacao" action="" method="post">   
                   Nome: <span class="font-weight-light" id="nomeempresa"></span>
                   <br>
@@ -180,11 +183,14 @@
                   <br>
                   Endereço: <span class="font-weight-light" id="logradouro"></span>
                   <br><hr>  
-                  Peso aproximado em KG: <input name="txtPesoAproximado" required form-control type="number">
-                  <br>
-
+                  
                   <!-- CAMPO OCULTO PARA ESCONDER O
                   ID DO CONDOMINIO -->
+                  <fieldset>
+                      <legend>Dados coleta:</legend>
+                  </fieldset>
+                  Peso aproximado em KG: <input name="txtPesoAproximado" required form-control type="number">
+                  <br>
                   <input type="text" style="display:none;" class="font-weight-light" name="txtIdCondominio" id="txtIdCondominio">
 
                   Quais são os materias que serão coletados? :<br>
@@ -273,7 +279,10 @@
                                   }
                                   echo "</td>";  
                                   echo " <td name='materiais_coletados' style='display:none;'>";
-                                  echo $row['materiais_coletados'];
+                                  $ma = json_decode($row['materiais_coletados']);
+                                  foreach ($ma as $value) {
+                                    echo $value.", ";
+                                  } 
                                   echo "</td>";     
 
                                   /*esses ids precisam ser ocultos
