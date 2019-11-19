@@ -230,10 +230,10 @@
                                           echo '<img src="../../imagens/2_stars.png"';
                                           break;
                                       case 3:
-                                          echo '<img src="../../imagens/3_stars.png"';
+                                          echo '<img src="../../imagens/rating/3_stars.jpg"';
                                           break;
                                       case 4:
-                                          echo '<img src="../../imagens/4_stars.png"';
+                                          echo '<img src="../../imagens/rating/4_stars.jpg"';
                                           break;
                                       case 5:
                                           echo '<img src="../../imagens/5_stars.png"';
