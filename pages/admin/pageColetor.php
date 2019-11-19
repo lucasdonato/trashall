@@ -234,13 +234,27 @@
                         echo "</tr>";
                       }
 
+                      $count = $stmt->rowCount();
+                      if($count == 0){
+                        /*APOSTO QUE ESSAS POG (RECURSO TÉNICOS)
+                        VOCÊS NUNCA VIRAM HEHEHEHE*/
+                          echo "
+                              <script>
+                                  $(document).ready(function(){
+                                      $('#alert_table').show(); 
+                                  });
+                              </script>
+                          ";
+                      }
                       
                   }catch(PDOException $erro_2){
                       echo 'erro'.$erro_2->getMessage();       
                   }
             ?>
       </table>
-
+      <div style='display:none;' id="alert_table">            
+        <div class="alert alert-warning" role="alert"> Nenhum registro encontrado!</div>
+     </div>
   </div>
 
   <!--   Core JS Files   -->
