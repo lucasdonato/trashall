@@ -80,7 +80,7 @@ $(document).ready(function(){
                             var situacao_table =  $(this).find( ".status img" ).attr("id");               
 
                               if(situacao_radio == 'TODOS'){
-                                qtd_linhas++;
+                                  qtd_linhas++;
                                   location.reload();
                               }else if(situacao_radio != situacao_table){
                                   $(this).hide();
@@ -262,6 +262,19 @@ $(document).ready(function(){
                       echo "</td>";
                     echo "</tr>";
 
+                  }
+
+                  $count = $stmt->rowCount();
+                  if($count == 0){
+                    /*APOSTO QUE ESSAS POG (RECURSO TÉNICOS)
+                    VOCÊS NUNCA VIRAM HEHEHEHE*/
+                      echo "
+                          <script>
+                              $(document).ready(function(){
+                                  $('#alert_table').show(); 
+                              });
+                          </script>
+                      ";
                   }
 
             }catch(PDOException $erro_2){

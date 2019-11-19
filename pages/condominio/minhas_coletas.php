@@ -248,6 +248,20 @@
                     }
 
                  }
+
+                 $count = $stmt->rowCount();
+                 if($count == 0){
+                   /*APOSTO QUE ESSAS POG (RECURSO TÉNICOS)
+                   VOCÊS NUNCA VIRAM HEHEHEHE*/
+                     echo "
+                         <script>
+                             $(document).ready(function(){
+                                 $('#alert_table').show(); 
+                             });
+                         </script>
+                     ";
+                 }
+                 
             }catch(PDOException $erro_2){
                 echo 'erro'.$erro_2->getMessage();       
             }
