@@ -553,15 +553,15 @@
                 </div>
               
             </div>
-           
-      </form>
-      
-    </div>
-    <div class="modal-footer">
+            <div class="modal-footer">
               <input type="submit" value='Confirmar' id="btnConfirmaExclusao" class="btn btn-success">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
           
             </div>
+      </form>
+      
+    </div>
+    
     </div>
   </div>
 </div>

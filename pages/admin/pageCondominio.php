@@ -471,7 +471,7 @@
       </div>
       <form id="formCadastrarCondominio" action="" method="post">
             <div class="modal-body">
-            <div id="dados" style='height:280px;'>  
+            <div id="dados" style='height:300px;'>  
               <div id="dados_gerais">
                   <input placeholder='Nome' style='width:200px;' class="form-control" type="nome" required name="txtNomeCondominio" id="txtNomeCondominio">
                   <input placeholder='Email usuário' style='width:200px;' class="form-control" type="email" required name="txtEmailCondominio" id="txtEmailCondominio">
@@ -521,12 +521,13 @@
                   </div>
             </div>
             
-      </form>
+      
       <div class="modal-footer">
               <input type="submit" value='Confirmar' id="btnConfirmar" class="btn btn-success">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>             
           
             </div>
+            </form>
       </div>
     </div>
   </div>
