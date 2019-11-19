@@ -1,5 +1,1 @@
-<?php
-
-    echo "estou no heroku";
-
-?>
+<?php header('Location:pages/index.php'); ?>
