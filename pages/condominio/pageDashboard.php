@@ -31,7 +31,7 @@
   <div class="wrapper ">
     <div class="sidebar" data-color="azure" data-background-color="white" data-image="../../bootstrap-css-js/assets/img/side.jpg">
       <div class="logo">
-        <a href="#" class="simple-text logo-normal">TrashAll 
+      <a href="#" class="simple-text logo-normal"> TrashAll - <?php echo $_SESSION['tipo_entidade']; ?> 
           <br>          
           
         </a>

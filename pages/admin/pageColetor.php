@@ -4,6 +4,7 @@
 <head>
     <?php
           include "../bibliotecas.php";
+          session_start();
     ?>
 </head>
 
@@ -108,7 +109,7 @@
     <div class="sidebar" data-color="azure" data-background-color="white" data-image="../../bootstrap-css-js/assets/img/side.jpg">
       <div class="logo">
         <a href="#" class="simple-text logo-normal">
-          TrashAll
+          TrashAll - <?php echo $_SESSION['tipo_entidade']; ?>
         </a>
       </div>
       <div class="sidebar-wrapper">
