@@ -228,7 +228,7 @@
                           echo " <td>";
                             $ma = json_decode($row['materiais_coletados']);
                             foreach ($ma as $value) {
-                              echo $value.".. ";
+                              echo $value.", ";
                             } 
                           echo "</td>";
                           
