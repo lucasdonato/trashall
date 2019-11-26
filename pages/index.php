@@ -93,8 +93,7 @@
 	<div class="container">
 		<header>
 			<h1>Faça sua <strong>autenticação</strong></h1>
-			<br>
-			<h3>Trashall</h3>
+			<img src="../imagens/trashall.png">
 		</header>
 		
 		<section class="main">
