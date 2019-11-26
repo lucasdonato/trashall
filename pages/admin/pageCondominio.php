@@ -144,7 +144,7 @@
         <div class="container-fluid">
           <div class="navbar-wrapper">
               <h3>
-                Trashall -
+                 
                 <small class="text-muted">Cadastrar Condominío</small>
               </h3>
           </div>

@@ -234,7 +234,7 @@
         <div class="container-fluid">
           <div class="navbar-wrapper">
           <h3>
-                Trashall -
+                 
                 <small class="text-muted">Minhas Coletas</small>
               </h3>
           </div>

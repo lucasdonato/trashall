@@ -145,7 +145,7 @@
         <div class="container-fluid">
           <div class="navbar-wrapper">
               <h3>
-                Trashall -
+                 
                 <small class="text-muted">Cadastrar Coletores</small>
               </h3>
           </div>

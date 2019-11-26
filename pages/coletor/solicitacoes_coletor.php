@@ -194,7 +194,7 @@
         <div class="container-fluid">
           <div class="navbar-wrapper">
           <h3>
-                Trashall -
+                 
                 <small class="text-muted">Minhas solicitações</small>
               </h3>
           </div>
