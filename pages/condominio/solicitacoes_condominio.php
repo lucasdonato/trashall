@@ -235,7 +235,7 @@ $(document).ready(function(){
                         echo $row['nome_empresa'];
                       echo "</td>";
                       echo "<td>";
-                        echo date('d/m/Y H:i:s',strtotime($row['data_solicitacao']));
+                        echo date('d/m/Y H:i:s',strtotime($row['data_solicitacao']) - 10800);
                       echo "</td>";
                       echo "<td>";
                         echo $row['observacoes'];
