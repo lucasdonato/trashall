@@ -226,7 +226,7 @@
                             
                           echo "</td>";
                           echo " <td>";
-                            echo date('d/m/Y H:i:s',strtotime($row['data_cadastro']));
+                            echo date('d/m/Y H:i:s',strtotime($row['data_cadastro']) - 10800);
                           echo "</td>";
                         
                         echo "</tr>";

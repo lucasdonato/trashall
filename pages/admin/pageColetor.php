@@ -225,7 +225,7 @@
                             echo "-";
                           }
                           echo " <td>";
-                            echo date('d/m/Y H:i:s',strtotime($row['data_cadastro']));
+                            echo date('d/m/Y H:i:s',strtotime($row['data_cadastro']) - 10800);
                           echo "</td>";
                           echo " <td>";
                             $ma = json_decode($row['materiais_coletados']);
