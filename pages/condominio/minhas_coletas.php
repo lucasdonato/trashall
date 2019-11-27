@@ -206,7 +206,7 @@
                                   if($row['data_finalizacao'] == NULL){
                                     echo '';
                                   }else{
-                                      echo date('d/m/Y H:i:s',strtotime($row['data_finalizacao']));   
+                                      echo date('d/m/Y H:i:s',strtotime($row['data_finalizacao']) - 10800);   
                                   }  
                             echo "</td>";
                             echo "<td>";

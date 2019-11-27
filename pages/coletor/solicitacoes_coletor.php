@@ -281,7 +281,7 @@
                         echo $row['nome_condominio'];
                       echo "</td>";
                       echo "<td>";
-                        echo date('d/m/Y H:i:s',strtotime($row['data_solicitacao']));
+                        echo date('d/m/Y H:i:s',strtotime($row['data_solicitacao']) - 10800);
                       echo "</td>";
                       echo "<td>";
                         echo $row['observacoes'];

@@ -42,13 +42,13 @@
                                     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                     echo "<tr>";
                                     echo "<td>";
-                                          echo date('d/m/Y H:i:s',strtotime($row['data_coleta']));                             
+                                          echo date('d/m/Y H:i:s',strtotime($row['data_coleta']) - 10800);                             
                                     echo "</td>";
                                     echo "<td>";
                                           if($row['data_finalizacao'] == NULL){
                                                 echo '';
                                           }else{
-                                                echo date('d/m/Y H:i:s',strtotime($row['data_finalizacao']));   
+                                                echo date('d/m/Y H:i:s',strtotime($row['data_finalizacao']) - 10800);   
                                           }                                                                    
                                     echo "</td>";
                                     echo "<td>";
